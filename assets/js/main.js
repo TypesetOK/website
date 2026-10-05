@@ -69,16 +69,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Hero Monograph Plate Local Grid Toggle (Non-intrusive)
-  const monographGridBtn = document.getElementById('monographGridBtn');
-  const monographSheet = document.getElementById('monographSheet');
-  if (monographGridBtn && monographSheet) {
-    monographGridBtn.addEventListener('click', () => {
-      const active = monographSheet.classList.toggle('show-grid');
-      monographGridBtn.classList.toggle('active', active);
-      monographGridBtn.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
+  // 4. Floating Download Button Glide (Scroll Observer)
+  const floatingDownload = document.getElementById('floatingDownloadWidget');
+  const heroDownloadCard = document.getElementById('heroDownloadCard');
+
+  if (floatingDownload) {
+    if (heroDownloadCard && 'IntersectionObserver' in window) {
+      const dlObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // If hero download card is NOT intersecting (user scrolled past it), show floating button
+          floatingDownload.classList.toggle('active', !entry.isIntersecting);
+        });
+      }, { threshold: 0.1 });
+      dlObserver.observe(heroDownloadCard);
+    } else {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY > 350;
+        floatingDownload.classList.toggle('active', scrolled);
+      }, { passive: true });
+    }
   }
+
+  // 5. Dynamic GitHub Latest Release Assets Fetcher
+  async function fetchLatestReleaseAssets() {
+    try {
+      const res = await fetch('https://api.github.com/repos/TypesetOK/typesetok/releases/latest', {
+        headers: { 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data || !data.assets) return;
+
+      const tagName = data.tag_name || 'v0.6.0';
+      document.querySelectorAll('.release-version-tag').forEach(el => {
+        el.textContent = tagName;
+      });
+
+      // Find Windows desktop portable zip
+      const portableAsset = data.assets.find(a => 
+        a.name.toLowerCase().includes('windows') && 
+        a.name.toLowerCase().includes('desktop') && 
+        a.name.endsWith('.zip')
+      );
+      if (portableAsset && portableAsset.browser_download_url) {
+        document.querySelectorAll('.download-link-portable').forEach(a => {
+          a.href = portableAsset.browser_download_url;
+        });
+      }
+
+      // Find Windows CLI zip
+      const cliAsset = data.assets.find(a => 
+        a.name.toLowerCase().includes('cli') && 
+        a.name.toLowerCase().includes('windows') && 
+        a.name.endsWith('.zip')
+      );
+      if (cliAsset && cliAsset.browser_download_url) {
+        document.querySelectorAll('.download-link-cli').forEach(a => {
+          a.href = cliAsset.browser_download_url;
+        });
+      }
+
+      // Find Installer if available
+      const installerAsset = data.assets.find(a => 
+        a.name.toLowerCase().endsWith('.exe') || 
+        a.name.toLowerCase().endsWith('.msi')
+      );
+      if (installerAsset && installerAsset.browser_download_url) {
+        document.querySelectorAll('.download-link-installer').forEach(a => {
+          a.href = installerAsset.browser_download_url;
+        });
+      }
+    } catch (e) {
+      // Offline or rate-limited; fallback static links already in HTML
+    }
+  }
+
+  fetchLatestReleaseAssets();
 
   // 5. Scroll Reveal Observer
   const reveals = document.querySelectorAll('.reveal-on-scroll');
@@ -206,19 +272,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 8. Newsletter Form
-  const newsletterForm = document.getElementById('newsletterForm');
-  const newsletterMsg = document.getElementById('newsletterMsg');
-  if (newsletterForm && newsletterMsg) {
-    newsletterForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const emailInput = document.getElementById('newsletterEmail');
-      if (emailInput && emailInput.value) {
-        localStorage.setItem('tok_newsletter_subscribed', emailInput.value);
-        newsletterMsg.textContent = 'תודה רבה! נרשמת בהצלחה לעדכוני המחקר והקוד של TypesetOK.';
-        newsletterMsg.style.display = 'block';
-        emailInput.value = '';
-      }
-    });
-  }
 });
+

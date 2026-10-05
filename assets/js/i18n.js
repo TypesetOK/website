@@ -1,33 +1,32 @@
 /**
  * TypesetOK (TOK) — Multilingual Translation Engine
  * Supports: Hebrew (he), US English (en), Spanish (es), French (fr).
- * Colloquial, natural, and professional terminology in all languages.
+ * Natural, professional, typesetter-oriented terminology without emojis.
  */
 
 const TOK_TRANSLATIONS = {
   he: {
     // Navigation
     nav_home: "ראשי",
-    nav_story: "ארכיטקטורה",
-    nav_principles: "עקרונות עימוד",
-    nav_comparison: "השוואה",
-    nav_workbench: "קונספט ממשק",
+    nav_comparison: "השוואה למעמדים",
+    nav_matrix: "השוואת וורד ואינדיזיין",
+    nav_quotes: "קולות מהשטח",
     nav_features: "יכולות",
-    nav_pipeline: "צינור עבודה",
+    nav_story: "ארכיטקטורה",
     nav_engineering: "בנצ'מרק",
-    nav_developer: "אתר המפתח",
-    btn_github: "פרויקט ב-GitHub",
-    btn_architecture: "דו״ח ארכיטקטורה",
+    btn_download: "הורדה",
+    btn_github: "מאגר GitHub",
+    btn_architecture: "מפרט טכני",
     btn_source_guide: "מדריך פיתוח",
 
     // Hero
-    hero_badge: "מחקר, ארכיטקטורה וקוד פתוח • שפת Rust 1.85+ • תקן ת״י 6100",
-    hero_title_1: "החזון לעימוד עברי מקצועי.",
-    hero_title_2: "דיוק של דפוס, מהירות של Rust.",
-    hero_desc: "TypesetOK (TOK) היא מערכת עימוד ופרסום שולחני (DTP) מודרנית בקוד פתוח הנמצאת במחקר ופיתוח עבור טיפוגרפיה עברית מתקדמת, ספרי קודש (ש״ס, מקראות גדולות ושו״ת), ומסמכי ענק בני אלפי עמודים — במפרט הנדסי קפדני ללא פשרות.",
-    hero_cta_github: "צפה בקוד ב-GitHub",
+    hero_badge: "תוכנת עימוד שולחנית מקצועית בקוד פתוח • ללא עלות וללא נעילה",
+    hero_title_1: "עימוד ספרים אמיתי.",
+    hero_title_2: "חופשי, פתוח ומדויק לדפוס.",
+    hero_desc: "TypesetOK נבנתה במיוחד עבור מעמדים, מעצבי ספרים ומוציאים לאור. טיפול טבעי באות העברית, ניקוד וטעמים מדויקים ללא שיבושים, עמודי ש״ס ומקראות גדולות עם ריבוי מפרשים, ועמידה מלאה בתקני דפוס.",
+    hero_cta_download: "הורד את התוכנה",
+    hero_cta_github: "מאגר הקוד ב-GitHub",
     hero_cta_arch: "מפרט ארכיטקטוני מלא",
-    hero_cta_dev: "אתר המפתח (Amlaach)",
     metric_tests: "58 / 58",
     metric_tests_label: "בדיקות ליבה ב-Rust עוברות",
     metric_clippy: "0 אזהרות",
@@ -35,11 +34,18 @@ const TOK_TRANSLATIONS = {
     metric_standards: "ת״י 6100 & ISO 15930",
     metric_standards_label: "עמידה מלאה בתקני דפוס ויוניקוד",
 
-    // Hero Specimen Plate
-    plate_badge: "גליון הוכחה ארכיטקטוני • TypesetOK Monograph",
-    plate_title: "סֵפֶר תְּהִלִּים — מִזְמוֹר כ״ג",
-    plate_text: "מִזְמ֥וֹר לְדָוִ֑ד יְהוָ֥ה רֹ֝עִ֗י לֹ֣א אֶחְסָֽר׃ בִּנְא֣וֹת דֶּ֭שֶׁא יַרְבִּיצֵ֑נִי עַל־מֵ֖י מְנֻח֣וֹת יְנַהֲלֵֽנִי׃ נַפְשִׁ֥י יְשׁוֹבֵ֑ב יַֽנְחֵ֥נִי בְמַעְגְּלֵי־צֶ֝֗דֶק לְמַ֣עַן שְׁמֽוֹ׃ גַּ֤ם כִּֽי־אֵלֵ֨ךְ בְּגֵ֪יא צַלְמָ֡וֶת לֹא־אִ֘ירָ֤א רָ֗ע כִּי־אַתָּ֥ה עִמָּדִ֑י שִׁבְטְךָ֥ וּ֝מִשְׁעַנְתֶּ֗ךָ הֵ֣מָּה יְנַֽחֲמֻֽנִי׃",
-    plate_caption: "עימוד מבוסס יחס הזהב, אותיות מתרחבות אהלתר״ם וסנכרון קווי בסיס",
+    // Download Center
+    dl_card_badge: "מהדורה רשמית ל-Windows",
+    dl_card_os: "Windows 10 / 11 (x64)",
+    dl_btn_portable_title: "הורדה ישירה (ללא התקנה)",
+    dl_btn_portable_sub: "קובץ ZIP נייד — לחלץ ולהפעיל מיד",
+    dl_btn_installer_title: "הורדה עם מתקין (Windows Setup)",
+    dl_btn_installer_sub: "התקנה מסודרת לשולחן העבודה",
+    dl_cli_label: "אפשרויות נוספות:",
+    dl_cli_windows: "CLI ל-Windows",
+    dl_cli_linux: "Linux CLI",
+    dl_cli_macos: "macOS CLI",
+    dl_floating_btn: "הורדת TypesetOK",
 
     // Storytelling
     story_pretitle: "פרק א׳: עמודי התווך של הארכיטקטורה",
@@ -56,37 +62,24 @@ const TOK_TRANSLATIONS = {
     scene3_desc: "ללא הסתמכות על מנועי הדפסת דפדפן המוגבלים ל-sRGB. מנוע ה-Rust מתוכנן לייצר ישירות קובצי דפוס מובהקים: שחור 100% K (DeviceCMYK), צלבי רישום וסימני חיתוך וקטוריים, תיבות BleedBox ו-TrimBox של 3 מ\"מ, ופרופילי Fogra 39.",
 
     // Comparison
-    comp_pretitle: "פרק ב׳: השוואה טיפוגרפית מעמיקה",
-    comp_title: "מעבד תמלילים רגיל מול אופטימיזציית TypesetOK",
-    comp_subtitle: "גררו את הסליידר או לחצו על הלחצנים המהירים כדי להשוות בין תוצר שבירת שורות פרימיטיבית בוורד לבין בלוק העימוד המהודק עם Knuth-Plass ואותיות התפשטות.",
+    comp_pretitle: "פרק ב׳: השוואה מעשית למעמדים",
+    comp_title: "שבירת שורות בוורד מול דיוק של TypesetOK",
+    comp_subtitle: "הזיזו את הסליידר או לחצו על הלחצנים כדי להשוות בין אופן פעולת מעבד תמלילים רגיל לבין בלוק העימוד המאוזן של TypesetOK.",
     comp_preset_before: "וורד (לפני)",
     comp_preset_half: "חצי-חצי (50%)",
     comp_preset_after: "TypesetOK (אחרי)",
     comp_before_label: "מעבד תמלילים מסורתי (וורד)",
-    comp_before_note: "⚠️ שורות רפויות, 'נהרות' לבנים פעורים, היעדר התאמת אותיות התפשטות ואי-אחידות בצפיפות.",
+    comp_before_note: "בוורד: שורות מתוחות, חללים לבנים בולטים, היעדר אותיות התפשטות ואי-אחידות בצפיפות העמוד.",
     comp_after_label: "מפרט TypesetOK (Knuth-Plass + אהלתר״ם)",
-    comp_after_note: "✓ בלוק טיפוגרפי אחיד, שבירת שורות גלובלית, אותיות מתרחבות אהלתר״ם וסנכרון מלא לקווי בסיס.",
-
-    // Playground
-    pg_pretitle: "פרק ג׳: הדגמת עקרונות טיפוגרפיים",
-    pg_title: "מעבדת שליטה במאפייני הטיפוגרפיה",
-    pg_subtitle: "התנסו בפרמטרים הטיפוגרפיים וראו כיצד משפיעים רווחי השורות, חלוקת הטורים ומדרגי היישור העבריים על שטף הקריאה.",
-    pg_disclaimer: "הדגמה אינטראקטיבית של עקרונות שבירת שורות, קווי בסיס ואותיות התפשטות (אהלתר״ם)",
-
-    // Developer Section
-    dev_pretitle: "פרק ד׳: אודות הפרויקט והמפתח",
-    dev_title: "חזון הקוד הפתוח של Amlaach",
-    dev_desc: "פרויקט TypesetOK הוקם מתוך צורך אמיתי של עולם הדפוס העברי והספרות התורנית בכלי עימוד מודרני, אמין, מהיר וחופשי ממנעולים מסחריים מיושנים. הפרויקט מנוהל ומפותח על ידי Amlaach.",
-    dev_btn_portfolio: "בקרו באתר האישי של Amlaach",
-    dev_btn_github: "מאגר TypesetOK ב-GitHub",
+    comp_after_note: "ב-TypesetOK: בלוק טיפוגרפי מאוזן, חלוקת שורות מותאמת לפסקה כולה, אותיות מתרחבות אהלתר״ם וסנכרון מלא לקווי בסיס.",
 
     // A11y Panel
     a11y_panel_title: "תפריט נגישות מורחב",
     a11y_font_inc: "הגדל גופן (+)",
     a11y_font_dec: "הקטן גופן (-)",
     a11y_contrast: "ניגודיות גבוהה",
-    a11y_theme: "מצב יום / לילה",
-    a11y_readable_font: "גופן קריא / פשוט",
+    a11y_theme: "ערכת נושא (יום / לילה / מערכת)",
+    a11y_readable_font: "גופן קריא ופשוט",
     a11y_links: "הדגשת קישורים",
     a11y_headings: "הדגשת כותרות",
     a11y_big_cursor: "סמן עכבר מוגדל",
@@ -100,26 +93,25 @@ const TOK_TRANSLATIONS = {
   en: {
     // Navigation
     nav_home: "Home",
-    nav_story: "Architecture",
-    nav_principles: "Typography",
     nav_comparison: "Comparison",
-    nav_workbench: "UI Concept",
+    nav_matrix: "Word vs InDesign",
+    nav_quotes: "Typesetter Voices",
     nav_features: "Features",
-    nav_pipeline: "Pipeline",
+    nav_story: "Architecture",
     nav_engineering: "Benchmarks",
-    nav_developer: "Developer Site",
-    btn_github: "GitHub Project",
-    btn_architecture: "Architecture Spec",
+    btn_download: "Download",
+    btn_github: "GitHub Repo",
+    btn_architecture: "Tech Spec",
     btn_source_guide: "Dev Guide",
 
     // Hero
-    hero_badge: "Open-Source Research & Spec • Rust 1.85+ Engine • SI 6100 Standard",
-    hero_title_1: "The Future of Hebrew Typesetting.",
-    hero_title_2: "Press-Ready Precision. Rust-Fast Speed.",
-    hero_desc: "TypesetOK (TOK) is an open-source Desktop Publishing (DTP) research and development project crafted from scratch for advanced Hebrew typography, sacred texts (Talmud, Mikraot Gedolot, Responsa), and thousand-page manuscripts — with uncompromising engineering integrity.",
+    hero_badge: "Open-Source Professional Desktop Typesetting • Free & Unlocked",
+    hero_title_1: "Real Book Typesetting.",
+    hero_title_2: "Free, Open, and Press-Ready.",
+    hero_desc: "TypesetOK is purpose-built for typesetters, book designers, and publishers. Native Hebrew typography, flawless vocalization and cantillation, multi-commentary Talmud layouts, and complete print-standard compliance.",
+    hero_cta_download: "Download Software",
     hero_cta_github: "View on GitHub",
-    hero_cta_arch: "Read Architecture Spec",
-    hero_cta_dev: "Developer Site (Amlaach)",
+    hero_cta_arch: "Architecture Spec",
     metric_tests: "58 / 58",
     metric_tests_label: "Core Rust unit tests passing",
     metric_clippy: "0 Warnings",
@@ -127,11 +119,18 @@ const TOK_TRANSLATIONS = {
     metric_standards: "SI 6100 & ISO 15930",
     metric_standards_label: "Full Unicode & Pre-press standards",
 
-    // Hero Specimen Plate
-    plate_badge: "Architectural Proof Sheet • TypesetOK Monograph",
-    plate_title: "BOOK OF PSALMS — CHAPTER XXIII",
-    plate_text: "The Lord is my shepherd; I shall not want. He maketh me to lie down in green pastures: he leadeth me beside the still waters. He restoreth my soul: he leadeth me in the paths of righteousness for his name's sake. Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me.",
-    plate_caption: "Golden ratio page geometry, classical Hebrew typography, and baseline grid lock",
+    // Download Center
+    dl_card_badge: "Official Windows Release",
+    dl_card_os: "Windows 10 / 11 (x64)",
+    dl_btn_portable_title: "Direct Download (Portable)",
+    dl_btn_portable_sub: "Standalone ZIP — Extract and run immediately",
+    dl_btn_installer_title: "Download Installer (Windows Setup)",
+    dl_btn_installer_sub: "Standard desktop installation",
+    dl_cli_label: "Additional options:",
+    dl_cli_windows: "Windows CLI",
+    dl_cli_linux: "Linux CLI",
+    dl_cli_macos: "macOS CLI",
+    dl_floating_btn: "Download TypesetOK",
 
     // Storytelling
     story_pretitle: "Chapter I: Architectural Pillars",
@@ -148,37 +147,24 @@ const TOK_TRANSLATIONS = {
     scene3_desc: "No relying on browser print engines crippled by sRGB. The Rust engine directly targets pure DeviceCMYK 100% K black, vector crop marks, 3mm BleedBox, Fogra 39 profiles, and PostScript /ToUnicode mapping for pristine text search.",
 
     // Comparison
-    comp_pretitle: "Chapter II: Deep Typographic Comparison",
-    comp_title: "Office Word Processor vs TypesetOK Optimization",
-    comp_subtitle: "Drag the slider or click presets to see the difference between primitive line breaking (loose word rivers) and TypesetOK's Knuth-Plass global line-breaking with authentic Hebrew expanding letters.",
+    comp_pretitle: "Chapter II: Practical Typesetting Comparison",
+    comp_title: "Word Processing vs TypesetOK Precision",
+    comp_subtitle: "Drag the slider or click presets to see the difference between primitive word stretching and TypesetOK's balanced paragraph line breaking with authentic Hebrew expanding letters.",
     comp_preset_before: "Word (Before)",
     comp_preset_half: "Split (50%)",
     comp_preset_after: "TypesetOK (After)",
     comp_before_label: "Standard Word Processor (MS Word)",
-    comp_before_note: "⚠️ Gaping white rivers, loose line breaks, stretched inter-word spaces, and inconsistent gray typographic density.",
+    comp_before_note: "In Word: loose stretched lines, gaping white rivers, missing extending letters, and uneven page density.",
     comp_after_label: "TypesetOK Specification (Knuth-Plass + Expanding Glyphs)",
-    comp_after_note: "✓ Harmonious typographic block, global paragraph demerit minimization, extending letters (אהלתר״ם), and strict baseline sync.",
-
-    // Playground
-    pg_pretitle: "Chapter III: Typographic Demonstration",
-    pg_title: "Typography & Layout Playground",
-    pg_subtitle: "Explore how leading, column counts, and Hebrew multi-tier justification affect readability.",
-    pg_disclaimer: "Interactive demonstration of line-breaking, baseline grids, and extending Hebrew letters (Otiyot Hitpashtut)",
-
-    // Developer Section
-    dev_pretitle: "Chapter IV: About the Creator",
-    dev_title: "Open Source Vision by Amlaach",
-    dev_desc: "TypesetOK was founded to liberate Hebrew typesetting from proprietary decades-old legacy lock-ins. Built and spearheaded by Amlaach.",
-    dev_btn_portfolio: "Visit Amlaach's Personal Portfolio",
-    dev_btn_github: "TypesetOK GitHub Organization",
+    comp_after_note: "In TypesetOK: harmonious typographic block, global paragraph optimization, authentic expanding letters, and strict baseline synchronization.",
 
     // A11y Panel
     a11y_panel_title: "Accessibility Preferences",
     a11y_font_inc: "Increase Text (+)",
     a11y_font_dec: "Decrease Text (-)",
     a11y_contrast: "High Contrast",
-    a11y_theme: "Day / Night Mode",
-    a11y_readable_font: "Dyslexia Font",
+    a11y_theme: "Theme (Light / Dark / System)",
+    a11y_readable_font: "Simple Dyslexia Font",
     a11y_links: "Highlight Links",
     a11y_headings: "Highlight Headings",
     a11y_big_cursor: "Large Cursor",
@@ -192,26 +178,25 @@ const TOK_TRANSLATIONS = {
   es: {
     // Navigation
     nav_home: "Inicio",
-    nav_story: "Arquitectura",
-    nav_principles: "Tipografía",
-    nav_comparison: "Comparación",
-    nav_workbench: "Concepto UI",
+    nav_comparison: "Comparativa",
+    nav_matrix: "Word vs InDesign",
+    nav_quotes: "Voces del Sector",
     nav_features: "Capacidades",
-    nav_pipeline: "Flujo",
+    nav_story: "Arquitectura",
     nav_engineering: "Métricas",
-    nav_developer: "Sitio del Desarrollador",
-    btn_github: "Proyecto en GitHub",
+    btn_download: "Descargar",
+    btn_github: "Repositorio GitHub",
     btn_architecture: "Especificación",
-    btn_source_guide: "Guía de Desarrollo",
+    btn_source_guide: "Guía Dev",
 
     // Hero
-    hero_badge: "Investigación y Código Abierto • Motor Rust 1.85+ • Estándar SI 6100",
-    hero_title_1: "El futuro de la tipografía hebrea.",
-    hero_title_2: "Precisión editorial. Velocidad Rust.",
-    hero_desc: "TypesetOK (TOK) es un proyecto de investigación y desarrollo de autoedición (DTP) de código abierto diseñado desde cero para tipografía hebrea avanzada, textos sagrados (Talmud, responsa) y libros masivos de miles de páginas.",
+    hero_badge: "Autoedición profesional de código abierto • Gratuita y sin ataduras",
+    hero_title_1: "Composición tipográfica real.",
+    hero_title_2: "Libre, abierta y lista para imprenta.",
+    hero_desc: "TypesetOK está diseñada específicamente para maquetadores, diseñadores de libros y editores. Soporte nativo para hebreo, vocalización precisa sin desajustes, diseño de páginas rabínicas complejas y pleno cumplimiento de estándares de impresión.",
+    hero_cta_download: "Descargar Programa",
     hero_cta_github: "Ver en GitHub",
-    hero_cta_arch: "Leer Informe Técnico",
-    hero_cta_dev: "Sitio del Desarrollador (Amlaach)",
+    hero_cta_arch: "Especificación Técnica",
     metric_tests: "58 / 58",
     metric_tests_label: "Pruebas unitarias superadas en Rust",
     metric_clippy: "0 Advertencias",
@@ -219,11 +204,18 @@ const TOK_TRANSLATIONS = {
     metric_standards: "SI 6100 & ISO 15930",
     metric_standards_label: "Cumplimiento normativo total",
 
-    // Hero Specimen Plate
-    plate_badge: "Pliego Arquitectónico • TypesetOK Monograph",
-    plate_title: "LIBRO DE LOS SALMOS — CAPÍTULO XXIII",
-    plate_text: "El Señor es mi pastor; nada me faltará. En lugares de delicados pastos me hará descansar; junto a aguas de reposo me pastoreará. Confortará mi alma; me guiará por sendas de justicia por amor de su nombre.",
-    plate_caption: "Geometría áurea, tipografía hebrea clásica y sincronización de rejilla base",
+    // Download Center
+    dl_card_badge: "Versión Oficial para Windows",
+    dl_card_os: "Windows 10 / 11 (x64)",
+    dl_btn_portable_title: "Descarga Directa (Portable)",
+    dl_btn_portable_sub: "Archivo ZIP — Descomprimir y ejecutar",
+    dl_btn_installer_title: "Descargar Instalador (Windows Setup)",
+    dl_btn_installer_sub: "Instalación estándar de escritorio",
+    dl_cli_label: "Otras opciones:",
+    dl_cli_windows: "Windows CLI",
+    dl_cli_linux: "Linux CLI",
+    dl_cli_macos: "macOS CLI",
+    dl_floating_btn: "Descargar TypesetOK",
 
     // Storytelling
     story_pretitle: "Capítulo I: Pilares de Arquitectura",
@@ -240,36 +232,23 @@ const TOK_TRANSLATIONS = {
     scene3_desc: "Sin depender de motores de navegador. Salida directa con 100% K negro puro (DeviceCMYK), sangrado de 3 mm y perfiles Fogra 39.",
 
     // Comparison
-    comp_pretitle: "Capítulo II: Comparativa Tipográfica",
-    comp_title: "Procesador Común vs Optimización TypesetOK",
+    comp_pretitle: "Capítulo II: Comparativa Práctica",
+    comp_title: "Procesador Común vs Precisión TypesetOK",
     comp_subtitle: "Mueva el control deslizante para comparar el espaciado deficiente con la justificación óptima Knuth-Plass.",
     comp_preset_before: "Word (Antes)",
     comp_preset_half: "Mitad (50%)",
     comp_preset_after: "TypesetOK (Después)",
     comp_before_label: "Procesador de Texto Común (Word)",
-    comp_before_note: "⚠️ Espacios irregulares, 'ríos' blancos y deformación del ritmo visual.",
+    comp_before_note: "En Word: espaciado irregular, 'ríos' blancos y falta de regularidad en la mancha tipográfica.",
     comp_after_label: "Especificación TypesetOK (Knuth-Plass + Letras Expansibles)",
-    comp_after_note: "✓ Mancha tipográfica armónica, minimización global de demerits y rejilla base alineada.",
-
-    // Playground
-    pg_pretitle: "Capítulo III: Demostración Tipográfica",
-    pg_title: "Laboratorio de Parámetros Tipográficos",
-    pg_subtitle: "Compruebe en tiempo real cómo influyen el interlineado y el número de columnas.",
-    pg_disclaimer: "Demostración interactiva de principios de diseño y letras hebreas expansibles",
-
-    // Developer Section
-    dev_pretitle: "Capítulo IV: Acerca del Desarrollador",
-    dev_title: "Visión de Código Abierto por Amlaach",
-    dev_desc: "TypesetOK fue iniciado para dar a la edición hebrea una herramienta moderna y libre. Liderado por Amlaach.",
-    dev_btn_portfolio: "Visitar Portafolio de Amlaach",
-    dev_btn_github: "Organización en GitHub",
+    comp_after_note: "En TypesetOK: mancha tipográfica armónica, minimización global de demerits y rejilla base alineada.",
 
     // A11y Panel
     a11y_panel_title: "Opciones de Accesibilidad",
     a11y_font_inc: "Aumentar Letra (+)",
     a11y_font_dec: "Reducir Letra (-)",
     a11y_contrast: "Alto Contraste",
-    a11y_theme: "Modo Día / Noche",
+    a11y_theme: "Tema (Día / Noche / Sistema)",
     a11y_readable_font: "Fuente Dislexia",
     a11y_links: "Resaltar Enlaces",
     a11y_headings: "Resaltar Títulos",
@@ -284,26 +263,25 @@ const TOK_TRANSLATIONS = {
   fr: {
     // Navigation
     nav_home: "Accueil",
-    nav_story: "Architecture",
-    nav_principles: "Typographie",
     nav_comparison: "Comparaison",
-    nav_workbench: "Concept UI",
+    nav_matrix: "Word vs InDesign",
+    nav_quotes: "Retours d'Expérience",
     nav_features: "Fonctions",
-    nav_pipeline: "Pipeline",
+    nav_story: "Architecture",
     nav_engineering: "Performances",
-    nav_developer: "Site du Développeur",
-    btn_github: "Projet GitHub",
+    btn_download: "Télécharger",
+    btn_github: "Dépôt GitHub",
     btn_architecture: "Spécification",
     btn_source_guide: "Guide Dev",
 
     // Hero
-    hero_badge: "Recherche Open Source • Moteur Rust 1.85+ • Norme SI 6100",
-    hero_title_1: "L'Avenir de la Composition Hébraïque.",
-    hero_title_2: "Rigueur Éditoriale. Vitesse Rust.",
-    hero_desc: "TypesetOK (TOK) est un projet open source de publication assistée par ordinateur (PAO) conçu dès le départ pour la typographie hébraïque avancée, les textes sacrés (Talmud, Mikraot Gedolot) et les manuscrits massifs de milliers de pages.",
+    hero_badge: "PAO professionnelle open source • Gratuite et sans verrouillage",
+    hero_title_1: "La vraie composition de livres.",
+    hero_title_2: "Libre, ouverte et prête pour l'impression.",
+    hero_desc: "TypesetOK est spécialement conçue pour les typographes, maquettistes et éditeurs. Typographie hébraïque native, vocalisation sans bavure, mise en page du Talmud à commentaires multiples et conformité prépresse totale.",
+    hero_cta_download: "Télécharger le Logiciel",
     hero_cta_github: "Voir sur GitHub",
-    hero_cta_arch: "Spécification d'Architecture",
-    hero_cta_dev: "Site du Développeur (Amlaach)",
+    hero_cta_arch: "Spécification Technique",
     metric_tests: "58 / 58",
     metric_tests_label: "Tests unitaires validés en Rust",
     metric_clippy: "0 Avertissement",
@@ -311,11 +289,18 @@ const TOK_TRANSLATIONS = {
     metric_standards: "SI 6100 & ISO 15930",
     metric_standards_label: "Normes d'impression et Unicode",
 
-    // Hero Specimen Plate
-    plate_badge: "Feuille d'Épreuve Architecturale • TypesetOK",
-    plate_title: "LIVRE DES PSAUMES — CHAPITRE XXIII",
-    plate_text: "L'Éternel est mon berger : je ne manquerai de rien. Il me fait reposer dans de verts pâturages, il me dirige près des eaux paisibles. Il restaure mon âme, il me conduit dans les sentiers de la justice, à cause de son nom.",
-    plate_caption: "Proportions dorées, typographie hébraïque classique et grille de justification",
+    // Download Center
+    dl_card_badge: "Version Officielle pour Windows",
+    dl_card_os: "Windows 10 / 11 (x64)",
+    dl_btn_portable_title: "Téléchargement Direct (Portable)",
+    dl_btn_portable_sub: "Fichier ZIP — Extraire et lancer",
+    dl_btn_installer_title: "Télécharger l'Installateur (Setup)",
+    dl_btn_installer_sub: "Installation bureau classique",
+    dl_cli_label: "Options complémentaires :",
+    dl_cli_windows: "CLI Windows",
+    dl_cli_linux: "CLI Linux",
+    dl_cli_macos: "CLI macOS",
+    dl_floating_btn: "Télécharger TypesetOK",
 
     // Storytelling
     story_pretitle: "Chapitre I: Piliers d'Architecture",
@@ -324,7 +309,7 @@ const TOK_TRANSLATIONS = {
     scene1_num: "Pilier 01",
     scene1_title: "Normalisation stricte selon la norme SI 6100",
     scene1_desc: "Les logiciels de traitement de texte altèrent souvent l'ordre des voyelles et signes diacritiques. TypesetOK impose un ordre canonique déterministe.",
-    scene2_num: "Pilar 02",
+    scene2_num: "Pilier 02",
     scene2_title: "Résolveur de contraintes multiflux (Talmud)",
     scene2_desc: "Le sommet de la mise en page : texte central et commentaires périphériques synchronisés de façon fluide sur chaque page.",
     scene3_num: "Pilier 03",
@@ -332,36 +317,23 @@ const TOK_TRANSLATIONS = {
     scene3_desc: "Sortie directe sans intermédiaire web : 100% noir K (DeviceCMYK), repères de coupe vectoriels et profils Fogra 39.",
 
     // Comparison
-    comp_pretitle: "Chapitre II: Comparaison Typographique",
-    comp_title: "Traitement de Texte vs Optimisation TypesetOK",
+    comp_pretitle: "Chapitre II: Comparaison Pratique",
+    comp_title: "Traitement de Texte vs Rigueur TypesetOK",
     comp_subtitle: "Glissez le curseur pour comparer les césures approximatives de Word avec l'optimisation Knuth-Plass de TypesetOK.",
     comp_preset_before: "Word (Avant)",
     comp_preset_half: "Partage (50%)",
     comp_preset_after: "TypesetOK (Après)",
     comp_before_label: "Traitement de Texte Standard (Word)",
-    comp_before_note: "⚠️ Espaces anarchiques, 'lézardes' blanches et manque de régularité.",
+    comp_before_note: "Sous Word: espacements anarchiques, 'lézardes' blanches et manque de régularité.",
     comp_after_label: "Spécification TypesetOK (Knuth-Plass + Lettres Étirables)",
-    comp_after_note: "✓ Bloc typographique homogène, minimisation des défauts et alignement sur la grille.",
-
-    // Playground
-    pg_pretitle: "Chapitre III: Démonstration Typographique",
-    pg_title: "Atelier de Principes Typographiques",
-    pg_subtitle: "Testez l'impact de l'interlignage et du nombre de colonnes sur le confort de lecture.",
-    pg_disclaimer: "Démonstration interactive des principes de composition et de lettres extensibles",
-
-    // Developer Section
-    dev_pretitle: "Chapitre IV: À Propos du Développeur",
-    dev_title: "Vision Open Source par Amlaach",
-    dev_desc: "TypesetOK a été fondé pour libérer l'édition hébraïque des outils propriétaires désuets. Mené par Amlaach.",
-    dev_btn_portfolio: "Consulter le Portfolio d'Amlaach",
-    dev_btn_github: "Organisation sur GitHub",
+    comp_after_note: "Sous TypesetOK: bloc typographique homogène, minimisation des défauts et alignement sur la grille.",
 
     // A11y Panel
     a11y_panel_title: "Options d'Accessibilité",
     a11y_font_inc: "Agrandir le Texte (+)",
     a11y_font_dec: "Réduire le Texte (-)",
     a11y_contrast: "Contraste Élevé",
-    a11y_theme: "Mode Jour / Nuit",
+    a11y_theme: "Thème (Jour / Nuit / Système)",
     a11y_readable_font: "Police Lisible",
     a11y_links: "Surligner les Liens",
     a11y_headings: "Surligner les Titres",

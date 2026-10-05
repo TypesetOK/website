@@ -220,34 +220,102 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Theme Toggle in Header & A11y (Default: Dark mode, toggle to light)
+  // Theme Engine (Supports: Light, Dark, System — Default for Typesetters: Light/System)
   const themeToggle = document.getElementById('toggleThemeBtn');
+  const themePopover = document.getElementById('themeMenuPopover');
   const a11yThemeToggle = document.getElementById('btnA11yTheme');
+  const systemMedia = window.matchMedia('(prefers-color-scheme: dark)');
 
-  function toggleTheme() {
-    const currentTheme = root.getAttribute('data-theme') || 'dark';
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    root.setAttribute('data-theme', newTheme);
-    localStorage.setItem('tok_theme', newTheme);
+  const ICONS = {
+    light: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+    dark: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+    system: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>'
+  };
+
+  function applyThemeMode(mode) {
+    let effectiveTheme = mode;
+    if (mode === 'system') {
+      effectiveTheme = systemMedia.matches ? 'dark' : 'light';
+    }
+
+    root.setAttribute('data-theme', effectiveTheme);
+    root.setAttribute('data-theme-setting', mode);
+    localStorage.setItem('tok_theme', mode);
+
     if (themeToggle) {
-      themeToggle.classList.toggle('active', newTheme === 'light');
-      themeToggle.setAttribute('aria-label', newTheme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode');
+      themeToggle.innerHTML = ICONS[mode] || ICONS.light;
+      const labelMap = {
+        light: 'ערכת נושא: מצב יום (בהיר)',
+        dark: 'ערכת נושא: מצב לילה (כהה)',
+        system: 'ערכת נושא: לפי המערכת (אוטומטי)'
+      };
+      themeToggle.setAttribute('aria-label', labelMap[mode] || 'ערכת נושא');
+      themeToggle.setAttribute('title', labelMap[mode] || 'ערכת נושא');
+    }
+
+    if (themePopover) {
+      themePopover.querySelectorAll('.theme-menu-item').forEach(btn => {
+        const isCurrent = btn.getAttribute('data-theme-opt') === mode;
+        btn.classList.toggle('active', isCurrent);
+        btn.setAttribute('aria-checked', isCurrent ? 'true' : 'false');
+      });
     }
   }
 
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
-  }
-  if (a11yThemeToggle) {
-    a11yThemeToggle.addEventListener('click', toggleTheme);
+  // Handle system color scheme change in real time
+  systemMedia.addEventListener('change', () => {
+    const saved = localStorage.getItem('tok_theme') || 'system';
+    if (saved === 'system') {
+      applyThemeMode('system');
+    }
+  });
+
+  // Toggle dropdown on header button click
+  if (themeToggle && themePopover) {
+    themeToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = themePopover.classList.toggle('open');
+      themeToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    themePopover.querySelectorAll('.theme-menu-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedMode = btn.getAttribute('data-theme-opt') || 'system';
+        applyThemeMode(selectedMode);
+        themePopover.classList.remove('open');
+        themeToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!themePopover.contains(e.target) && e.target !== themeToggle) {
+        themePopover.classList.remove('open');
+        themeToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && themePopover.classList.contains('open')) {
+        themePopover.classList.remove('open');
+        themeToggle.setAttribute('aria-expanded', 'false');
+        themeToggle.focus();
+      }
+    });
   }
 
-  // Set default theme to dark if not set
-  const savedTheme = localStorage.getItem('tok_theme') || 'dark';
-  root.setAttribute('data-theme', savedTheme);
-  if (themeToggle) {
-    themeToggle.classList.toggle('active', savedTheme === 'light');
+  // Accessibility panel theme button (cycles: light -> dark -> system)
+  if (a11yThemeToggle) {
+    a11yThemeToggle.addEventListener('click', () => {
+      const current = localStorage.getItem('tok_theme') || 'system';
+      const order = ['light', 'dark', 'system'];
+      const next = order[(order.indexOf(current) + 1) % order.length];
+      applyThemeMode(next);
+    });
   }
+
+  // Initial theme initialization: default to 'system' (or 'light' for typesetters)
+  const initialTheme = localStorage.getItem('tok_theme') || 'system';
+  applyThemeMode(initialTheme);
 
   // Initial application of accessibility state
   applyA11yState();

@@ -24,52 +24,39 @@
 ## 🇮🇱 עברית
 
 ### 📖 אודות האתר והקונספט
-ריפו זה מכיל את קוד המקור של אתר התדמית וההדגמה הרשמי של **TypesetOK (TOK)** — מפרט ארכיטקטוני ותשתית מחקר בקוד פתוח לעימוד ופרסום שולחני (DTP) לטיפוגרפיה עברית מתקדמת, ספרי קודש (ש"ס, מקראות גדולות ושו"ת) ומסמכי ענק.
-פותח ומוביל: **[Amlaach](https://amlaach.github.io/personal-site/)**.
+ריפו זה מכיל את קוד המקור של אתר התדמית וההורדה הרשמי של **TypesetOK (TOK)** — מפרט ארכיטקטוני ותוכנת עימוד שולחני (DTP) בקוד פתוח לטיפוגרפיה עברית מתקדמת, ספרי קודש (ש"ס, מקראות גדולות ושו"ת) ומסמכי ענק.
 
-האתר עוצב ותוכנת לפי קונספט **Editorial Technology** — ממשק אינטראקטיבי המעביר את תחושת הטיפוגרפיה והעימוד החי דרך החוויה עצמה, ללא הסתמכות על דפי נחיתה שיווקיים גנריים. האתר מותאם להרצה מלאה כאתר סטטי ב-**GitHub Pages**, כולל תמיכה ב-4 שפות (עברית, אנגלית, ספרדית, צרפתית), מצב כהה כברירת מחדל, וסרגל נגישות מקיף (WCAG 2.2 AA).
+האתר עוצב ותוכנת לפי קונספט **Editorial Technology** — ממשק ענייני ומדויק עבור מעמדים ומוציאים לאור, המתמקד בפרקטיקה של עולם העימוד (נייר, רשתות קווי בסיס, תקני דפוס וייצוא PDF/X-1a). האתר מותאם להרצה מלאה כאתר סטטי ב-**GitHub Pages**, כולל תמיכה ב-4 שפות (עברית, אנגלית, ספרדית, צרפתית), מצב יום (נייר) כברירת מחדל יחד עם תמיכה במצב מערכת ומצב לילה, וכפתור הורדה צף ונגיש.
 
 ---
 
-### 🌟 רכיבים אינטראקטיביים מרכזיים
+### 🌟 רכיבים מרכזיים באתר
 
-1. **לוח הגהה מונוגרפי ב-Hero (Editorial Monograph Specimen):**
-   * תצוגת מופת דפוס חיה של פרק א' במשנה (ברכות), משולבת קווי ייחוס טיפוגרפיים, נרמול ת"י 6100 ואיזון שורות.
-   * מתג גריד ייעודי לבחינת קווי היסוד הדפוסאיים.
+1. **מרכז הורדות ראשי וכפתור צף (Download Hub):**
+   * הורדה ישירה של הגרסה העדכנית ביותר (v0.6.0) מ-GitHub Releases: גרסה ניידת ללא התקנה (Portable ZIP), מתקין שולחני וכלי שורת פקודה (CLI).
+   * כפתור הורדה חכם ההופך לרכיב צף (Sticky Widget) בצד המסך בעת גלילה מעבר לחלק העליון.
 
-2. **גלילת סיפור טיפוגרפי (Scroll Storytelling):**
-   * **סצנה 1:** נרמול קפדני לפי תקן ישראלי ת"י 6100 וגימטריה דטרמיניסטית (15 $\rightarrow$ ט״ו, 16 $\rightarrow$ ט״ז).
-   * **סצנה 2:** פותר אילוצים רב-תזרימי (Talmud Solver) לעמודי ש"ס ומקראות גדולות (גמרא, רש"י ותוספות).
-   * **סצנה 3:** קדם-דפוס נייטיב ISO 15930 (PDF/X-1a) עם שחור 100% K DeviceCMYK, פרופיל Fogra 39 וטבלאות `/ToUnicode`.
+2. **השוואה מעשית מול וורד ואינדיזיין (Head-to-Head Matrix):**
+   * טבלת השוואה עניינית ומעשית של התמודדות מול מסמכי ענק (500+ עמודים), ניקוד וטעמים, ספרי קודש ומפרשים מרובים, יישור בלוק הטקסט וייצוא קדם-דפוס.
 
-3. **מעבדת עימוד אינטראקטיבית (Typography Playground):**
-   * שליטה בזמן אמת בגודל אות, רווח שורות (Leading), חלוקת טורים, רווח בין טורים, ומדרג יישור עברי (אהלתר"ם).
-   * סרגלי מידה מדויקים (מילימטרים / A4) ומתג לרשת קווי בסיס (Baseline Grid).
+3. **קולות מהשטח — ציטוטים מפורומי מעמדים:**
+   * אתגרים אמיתיים ומצוקות מפורומי מעמדים (פרוג, פורום לתורה, איגודי דפוס) והמענה המבני של TypesetOK עבורם.
 
 4. **סליידר השוואה לפני/אחרי (Before / After Comparison):**
-   * השוואה ויזואלית בין מעבד תמלילים רגיל (וורד) לבין בלוק העימוד המהודק של TypesetOK.
-   * כפתורי Presets מהירים (Word / 50% / TypesetOK), תמיכה במגע, עכבר ומקלדת (מקשי חצים, Home/End) בשפות RTL ו-LTR.
+   * השוואה ויזואלית חיה בין פלט מעבד תמלילים פשוט לבין בלוק העימוד המהודק והמאוזן של TypesetOK.
 
-5. **הדמיית סביבת עבודה שולחנית (Product Workbench Preview):**
-   * עץ צמתים סמנטי (TDM Node Tree) המעדכן מאפייני אלמנטים בזמן אמת.
-   * סמן וירטואלי ברינדור 120 FPS ופאנל בדיקות קדם-דפוס חי (Live Preflight).
+5. **שבעת עמודי התווך (Bento Grid):**
+   * ליבת Rust עצמאית ווירטואליזציה (3 עמודים פעילים), ת״י 6100, יישור תלת-שלבי (Knuth-Plass), פותר אילוצים רב-תזרימי, קדם-דפוס ISO 15930, ומסד נתונים פנימי עמיד קריסות (ACID WAL).
 
-6. **Bento Grid חכם ליכולות המערכת:**
-   * 7 כרטיסיות אסימטריות המפרטות את הארכיטקטורה: Rust Core, SI 6100, 3-Tier Justification, Multi-Flow, Prepress, ACID WAL Storage, Holy Name Guardian.
-
-7. **צינור זרימת העבודה (Pipeline with Progressive Disclosure):**
-   * 5 שלבי עימוד אינטראקטיביים עם מפרט טכני מתרחב בלחיצה.
-
-8. **לוח בנצ'מרק ובדיקות אמת מאומתות:**
-   * נתונים אמיתיים מתוך ריפו ה-Rust (58/58 בדיקות עוברות, Clippy 0 אזהרות, דטרמיניזם ביט-אחר-ביט, עמידה במבחן עומס של 1,000 עמודים).
+6. **שקיפות הנדסית ואימות נתונים:**
+   * תוצאות בדיקות אמת במאגר הקוד של הליבה (58/58 בדיקות עוברות, 0 אזהרות Clippy, דטרמיניזם ביט-אחר-ביט, עמידה במבחן עומס של 1,000 עמודים).
 
 ---
 
 ### ♿ נגישות (WCAG 2.2 AA) וביצועים (Core Web Vitals)
 
-* **ניווט מקלדת מלא:** קישור Skip Link, חיווי `:focus-visible` בולט, וסמנטיקת ARIA מלאה.
-* **הפחתת תנועה (Reduced Motion):** תמיכה בהעדפת מערכת הפעלה (`prefers-reduced-motion`) לצד מתג ידני עליון באתר הנשמר ב-`localStorage`.
-* **מתג רשת גריד טיפוגרפית:** אפשרות להפעיל/לכבות שכבת גריד ועזרי מדידה בכל רחבי האתר.
+* **מצבי תצוגה מורחבים:** ברירת מחדל של מצב יום (Editorial Paper), עם אפשרות למצב לילה ומצב מערכת אוטומטי (Auto/System).
+* **ניווט מקלדת מלא:** תמיכה מלאה בתקני נגישות, דילוג לתוכן מרכזי (Skip Link), ופוקוס ברור.
 * **אפס תלויות כבדות:** קוד Vanilla JS ו-CSS מודולרי ללא ספריות ענק (LCP $\le$ 1.2s, INP $\le$ 50ms, CLS = 0).
 
 ---
@@ -91,10 +78,9 @@ python -m http.server 8000
 ## 🇺🇸 English
  
 ### 📖 About
-This repository contains the source code for the official website and interactive showcase of **TypesetOK (TOK)** — an open-source architectural specification and research foundation for desktop publishing (DTP) dedicated to advanced Hebrew typography, sacred texts (Talmud, Mikraot Gedolot, Responsa), and large-scale manuscripts.
-Lead Developer: **[Amlaach](https://amlaach.github.io/personal-site/)**.
+This repository contains the source code for the official website and download portal of **TypesetOK (TOK)** — an open-source desktop publishing system (DTP) dedicated to advanced Hebrew typography, sacred texts (Talmud, Mikraot Gedolot, Responsa), and large-scale manuscripts.
 
-The site is designed under the **Editorial Technology** concept, turning the physical world of typography, baseline grids, and pre-press standards into an interactive, accessible digital surface. It is fully static, deployed directly to **GitHub Pages**, with dark mode as default, 4 languages (Hebrew, US English, Spanish, French), and an accessible toolbar (WCAG 2.2 AA).
+The site is designed under the **Editorial Technology** concept, turning the physical world of typography, baseline grids, and pre-press standards into an accessible digital surface. It is fully static, deployed directly to **GitHub Pages**, with editorial light mode as default (with System and Dark options), 4 languages (Hebrew, US English, Spanish, French), an accessible toolbar (WCAG 2.2 AA), and a smooth floating download widget.
 
 ---
 
@@ -115,7 +101,7 @@ The site is designed under the **Editorial Technology** concept, turning the phy
 ```
 website/
 ├── index.html                   # Semantic HTML5 Master Document (i18n & Schema.org)
-├── 404.html                     # Custom Accessible 404 Page (Dark mode default)
+├── 404.html                     # Custom Accessible 404 Page (Light mode default)
 ├── .nojekyll                    # Disables Jekyll processing on GitHub Pages
 ├── site.webmanifest             # Web App Manifest
 ├── robots.txt                   # Search Engine Crawler Directives
@@ -132,21 +118,19 @@ website/
 │
 └── assets/
     ├── images/
-    │   ├── logo.jpg             # TypesetOK Brand Logo (Open Book + OK)
-    │   └── favicon.svg          # Crisp Vector Favicon
+    │   ├── logo.jpg             # TypesetOK Brand Logo
+    │   └── favicon.svg          # Vector Favicon
     ├── css/
-    │   ├── tokens.css           # Design Tokens (Colors, Typography, Dark Default)
+    │   ├── tokens.css           # Design Tokens (Colors, Typography, Light Default)
     │   ├── reset.css            # Accessible RTL Reset
     │   ├── main.css             # Editorial Grid & Layout Primitives
     │   ├── components.css       # Interactive Modules & Demos (Fluid mobile-safe)
     │   └── a11y-motion.css      # WCAG 2.2 AA Toolbar & Reduced Motion Overrides
     └── js/
-        ├── main.js              # Navigation, Observers & Modals
+        ├── main.js              # Navigation, Observers, Downloads & Modals
         ├── i18n.js              # Multi-lingual Engine (HE, EN, ES, FR)
-        ├── a11y.js              # Universal Accessibility Controller (12 features)
-        ├── playground.js        # Interactive Typography Playground
-        ├── before-after.js      # Accessible Fluid Comparison Slider & Presets
-        └── workbench.js         # Desktop Workbench & TDM Inspector
+        ├── a11y.js              # Universal Accessibility Controller & Theme Engine
+        └── before-after.js      # Accessible Fluid Comparison Slider & Presets
 ```
 
 ---

@@ -1,48 +1,50 @@
 /* ==========================================================================
    TypesetOK (TOK) — Design Tokens (Editorial Technology)
-   Default: Dark Mode (מצב לילה כברירת מחדל)
+   Default: Light Mode (מצב יום כברירת מחדל עבור מעמדים)
+   Supports: Light, Dark, System
    ========================================================================== */
 
-:root {
-  /* Color Palette — Premium Dark Editorial Mode (DEFAULT) */
-  --color-bg-base: #0B0E14;
-  --color-bg-paper: #111622;
-  --color-bg-surface: #171E2E;
-  --color-bg-subtle: #1D263A;
-  --color-bg-elevated: #242F46;
-  
-  --color-ink-primary: #F0F4FA;
-  --color-ink-secondary: #CBD5E1;
-  --color-ink-muted: #8E9BB0;
-  --color-ink-faint: #5B6880;
+:root,
+[data-theme="light"] {
+  /* Color Palette — Editorial Paper Light Mode (Default for Typesetters) */
+  --color-bg-base: #F8F6F0;
+  --color-bg-paper: #FCFBF9;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-subtle: #F1EEE6;
+  --color-bg-elevated: #FFFFFF;
+
+  --color-ink-primary: #12161F;
+  --color-ink-secondary: #3D4554;
+  --color-ink-muted: #647087;
+  --color-ink-faint: #9AA4B5;
 
   /* Brand Palette from TypesetOK Identity */
-  --color-brand-blue: #2563EB;
-  --color-brand-blue-hover: #3B82F6;
-  --color-brand-blue-light: rgba(37, 99, 235, 0.16);
-  --color-brand-blue-glow: rgba(37, 99, 235, 0.25);
-  
-  --color-brand-navy: #E2E8F0;
-  --color-brand-navy-dark: #07090D;
-  --color-brand-navy-light: #60A5FA;
-  
-  --color-accent-gold: #D9A04B;
-  --color-accent-gold-light: rgba(217, 160, 75, 0.15);
-  --color-accent-gold-hover: #F59E0B;
+  --color-brand-blue: #1D63ED;
+  --color-brand-blue-hover: #1551CA;
+  --color-brand-blue-light: #EFF5FF;
+  --color-brand-blue-glow: rgba(29, 99, 237, 0.15);
+
+  --color-brand-navy: #16234B;
+  --color-brand-navy-dark: #0D1527;
+  --color-brand-navy-light: #233468;
+
+  --color-accent-gold: #B4833E;
+  --color-accent-gold-light: #FBF6EB;
+  --color-accent-gold-hover: #976B2C;
 
   /* Prepress Ink Separations (Fogra 39 / ISO 15930) */
-  --color-cmyk-cyan: #00B4D8;
-  --color-cmyk-magenta: #F72585;
-  --color-cmyk-yellow: #FFD166;
-  --color-cmyk-black: #06080C;
+  --color-cmyk-cyan: #0098BA;
+  --color-cmyk-magenta: #D9106A;
+  --color-cmyk-yellow: #E5B300;
+  --color-cmyk-black: #0E121A;
 
   /* Borders & Editorial Rule Lines */
-  --color-border-subtle: #1F283C;
-  --color-border-medium: #2C3852;
-  --color-border-strong: #4B5E82;
-  --color-guide-line: rgba(255, 255, 255, 0.08);
-  --color-guide-active: #3B82F6;
-  --color-grid-overlay: rgba(59, 130, 246, 0.05);
+  --color-border-subtle: #E5E1D6;
+  --color-border-medium: #D1CCBF;
+  --color-border-strong: #16234B;
+  --color-guide-line: rgba(22, 35, 75, 0.12);
+  --color-guide-active: #1D63ED;
+  --color-grid-overlay: rgba(29, 99, 237, 0.04);
 
   /* Typography Families */
   --font-serif: 'Frank Ruhl Libre', 'David Libre', 'David', 'Times New Roman', serif;
@@ -90,10 +92,10 @@
   --radius-pill: 9999px;
 
   /* Paper Shadows */
-  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-paper: 0 4px 16px rgba(0, 0, 0, 0.45);
-  --shadow-floating: 0 16px 48px rgba(0, 0, 0, 0.65);
-  --shadow-glow: 0 0 24px rgba(37, 99, 235, 0.35);
+  --shadow-subtle: 0 1px 2px rgba(22, 35, 75, 0.05);
+  --shadow-paper: 0 2px 8px -2px rgba(22, 35, 75, 0.06), 0 10px 24px -4px rgba(22, 35, 75, 0.07);
+  --shadow-floating: 0 4px 12px rgba(22, 35, 75, 0.06), 0 20px 48px -10px rgba(22, 35, 75, 0.14);
+  --shadow-glow: 0 0 24px rgba(29, 99, 237, 0.2);
 
   /* Motion Timing & Easing */
   --motion-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -118,36 +120,46 @@
   --z-toast: 1000;
 }
 
-/* Light Mode Variant (Active when user clicks Day/Night toggle) */
-[data-theme="light"] {
-  --color-bg-base: #F8F6F0;
-  --color-bg-paper: #FCFBF9;
-  --color-bg-surface: #FFFFFF;
-  --color-bg-subtle: #F1EEE6;
-  --color-bg-elevated: #FFFFFF;
+/* Dark Mode Variant */
+[data-theme="dark"] {
+  --color-bg-base: #0B0E14;
+  --color-bg-paper: #111622;
+  --color-bg-surface: #171E2E;
+  --color-bg-subtle: #1D263A;
+  --color-bg-elevated: #242F46;
 
-  --color-ink-primary: #12161F;
-  --color-ink-secondary: #3D4554;
-  --color-ink-muted: #647087;
-  --color-ink-faint: #9AA4B5;
+  --color-ink-primary: #F0F4FA;
+  --color-ink-secondary: #CBD5E1;
+  --color-ink-muted: #8E9BB0;
+  --color-ink-faint: #5B6880;
 
-  --color-brand-blue: #1D63ED;
-  --color-brand-blue-hover: #1551CA;
-  --color-brand-blue-light: #EFF5FF;
-  --color-brand-blue-glow: rgba(29, 99, 237, 0.15);
+  --color-brand-blue: #2563EB;
+  --color-brand-blue-hover: #3B82F6;
+  --color-brand-blue-light: rgba(37, 99, 235, 0.16);
+  --color-brand-blue-glow: rgba(37, 99, 235, 0.25);
 
-  --color-brand-navy: #16234B;
-  --color-brand-navy-dark: #0D1527;
-  --color-brand-navy-light: #233468;
+  --color-brand-navy: #E2E8F0;
+  --color-brand-navy-dark: #07090D;
+  --color-brand-navy-light: #60A5FA;
 
-  --color-accent-gold: #B4833E;
-  --color-accent-gold-light: #FBF6EB;
+  --color-accent-gold: #D9A04B;
+  --color-accent-gold-light: rgba(217, 160, 75, 0.15);
+  --color-accent-gold-hover: #F59E0B;
 
-  --color-border-subtle: #E5E1D6;
-  --color-border-medium: #D1CCBF;
-  --color-border-strong: #16234B;
-  --color-guide-line: rgba(22, 35, 75, 0.12);
+  --color-cmyk-cyan: #00B4D8;
+  --color-cmyk-magenta: #F72585;
+  --color-cmyk-yellow: #FFD166;
+  --color-cmyk-black: #06080C;
 
-  --shadow-paper: 0 2px 8px -2px rgba(22, 35, 75, 0.06), 0 10px 24px -4px rgba(22, 35, 75, 0.07);
-  --shadow-floating: 0 4px 12px rgba(22, 35, 75, 0.06), 0 20px 48px -10px rgba(22, 35, 75, 0.14);
+  --color-border-subtle: #1F283C;
+  --color-border-medium: #2C3852;
+  --color-border-strong: #4B5E82;
+  --color-guide-line: rgba(255, 255, 255, 0.08);
+  --color-guide-active: #3B82F6;
+  --color-grid-overlay: rgba(59, 130, 246, 0.05);
+
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-paper: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-floating: 0 16px 48px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 0 24px rgba(37, 99, 235, 0.35);
 }

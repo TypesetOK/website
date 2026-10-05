@@ -43,9 +43,7 @@ def main():
         "assets/js/main.js",
         "assets/js/i18n.js",
         "assets/js/a11y.js",
-        "assets/js/playground.js",
-        "assets/js/before-after.js",
-        "assets/js/workbench.js"
+        "assets/js/before-after.js"
     ]
 
     for f in required_files:
