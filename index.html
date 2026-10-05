@@ -1,1253 +1,347 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl" data-theme="dark">
+<html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  
-  <!-- Primary High-Authority Meta Tags -->
-  <title>TypesetOK (TOK) — תוכנת עימוד שולחנית מקצועית בקוד פתוח | DTP System for Hebrew Typography, Talmud &amp; Pre-Press</title>
-  <meta name="title" content="TypesetOK (TOK) — תוכנת עימוד שולחנית מקצועית בקוד פתוח">
-  <meta name="description" content="מערכת עימוד ופרסום שולחני (DTP) מודרנית בקוד פתוח לטיפוגרפיה עברית מתקדמת, ספרי קודש (ש״ס, מקראות גדולות ושו״ת) ומסמכי ענק. ליבת Rust, אלגוריתם Knuth-Plass, פלט PDF/X-1a נייטיב.">
-  <meta name="keywords" content="תוכנת עימוד, עימוד עברי, עימוד ספרים, ספרי קודש, עימוד שס, מקראות גדולות, תוכנת תג, אינדיזיין עברית, Knuth-Plass, Rust DTP, Desktop Publishing, Hebrew typesetting, Talmud layout, PDF/X-1a, SI 6100, Open source typesetting, Amlaach">
-  <meta name="author" content="Amlaach, TypesetOK Open-Source Team">
-  <meta name="creator" content="Amlaach">
-  <meta name="publisher" content="TypesetOK">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="google-site-verification" content="google4c6f85691547b7d9">
-  <link rel="canonical" href="https://typesetok.github.io/website/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>TypesetOK — תוכנת עימוד עברית חינמית לספרים וספרי קודש</title>
+<meta name="description" content="TypesetOK (TOK) — תוכנת עימוד בקוד פתוח, בנויה למעמדים. ניקוד וטעמים, גמרא ומפרשים, אותיות מתרחבות, ויצוא ישיר לדפוס. בפיתוח פעיל.">
+<meta name="author" content="Amlaach, TypesetOK Open-Source Team">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="google-site-verification" content="google4c6f85691547b7d9">
+<link rel="canonical" href="https://typesetok.github.io/website/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://typesetok.github.io/website/">
+<meta property="og:site_name" content="TypesetOK">
+<meta property="og:title" content="TypesetOK — תוכנת עימוד עברית למעמדים">
+<meta property="og:description" content="עימוד ספרים וספרי קודש בלי להילחם בתוכנה. קוד פתוח, בפיתוח פעיל.">
+<meta property="og:image" content="assets/images/logo.jpg">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+<link rel="apple-touch-icon" href="assets/images/logo.jpg">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#FBFAF7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TypesetOK","applicationCategory":"DesignApplication","operatingSystem":"Desktop","inLanguage":"he","description":"תוכנת עימוד עברית בקוד פתוח לספרים וספרי קודש","url":"https://typesetok.github.io/website/","author":{"@type":"Person","name":"Amlaach","url":"https://amlaach.github.io/personal-site/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"ILS"}}
+</script>
+<style>
+:root{--bg:#FBFAF7;--bg2:#F3F1EB;--ink:#14161A;--mute:#5B606B;--line:#E4E1D8;--acc:#1F4FD8;--acc-soft:#E8EEFC;--card:#fff;--r:18px;--hdr:rgba(251,250,247,.88);--btn:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:Heebo,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:1.125rem;padding-top:env(safe-area-inset-top,0)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:"Frank Ruhl Libre",serif;line-height:1.15;font-weight:900;letter-spacing:-.01em}
+.progress{position:fixed;top:0;right:0;height:3px;width:0;background:var(--acc);z-index:100}
+header{position:sticky;top:0;z-index:50;background:var(--hdr);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.25rem}
+.brand-logo-img{border-radius:8px}
+nav ul{display:flex;gap:6px;list-style:none}
+nav a{padding:8px 14px;border-radius:99px;font-size:1rem;color:var(--mute);transition:.2s}
+nav a:hover,nav a.on{background:var(--acc-soft);color:var(--acc)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:99px;font-weight:700;font-size:1.0625rem;transition:.2s;border:1.5px solid var(--ink)}
+.btn.p{background:var(--ink);color:var(--btn)}.btn.p:hover{background:var(--acc);border-color:var(--acc);transform:translateY(-2px)}
+.btn.g:hover{background:var(--ink);color:#fff}
+.nav .btn{padding:8px 20px;font-size:0.9375rem}
+@media(max-width:860px){nav{display:none}}
+section{padding:110px 0}
+.eyebrow{display:inline-block;color:var(--acc);font-weight:700;font-size:0.9375rem;letter-spacing:.04em;margin-bottom:14px}
+h2{font-size:clamp(2rem,4.6vw,3.25rem);margin-bottom:18px;max-width:18ch}
+.lead{color:var(--mute);font-size:1.25rem;max-width:56ch}
+.hero{padding:80px 0 100px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.badge{display:inline-flex;gap:8px;align-items:center;background:var(--acc-soft);color:var(--acc);padding:6px 16px;border-radius:99px;font-size:0.9375rem;font-weight:700;margin-bottom:24px}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--acc);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.25}}
+h1{font-size:clamp(2.625rem,6.4vw,4.875rem);margin-bottom:24px}
+h1 em{font-style:normal;color:var(--acc)}
+.hero .lead{margin-bottom:34px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.page{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px;box-shadow:0 30px 60px -20px rgba(20,22,26,.25);padding:26px;aspect-ratio:3/4;transform:rotate(-2.5deg);transition:transform .2s;font-family:"Frank Ruhl Libre",serif}
+.page .hd{display:flex;justify-content:space-between;font-size:0.6875rem;color:var(--mute);border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px}
+.talmud{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:10px;height:calc(100% - 30px)}
+.talmud div{font-size:0.59375rem;line-height:1.55;text-align:justify;color:var(--ink);overflow:hidden}
+.talmud .m{font-size:0.8125rem;font-weight:700;color:var(--ink);line-height:1.7}
+.talmud b{display:block;font-family:Heebo;font-size:0.625rem;color:var(--acc);margin-bottom:3px}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.pain{background:var(--bg2)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px}
+.box h3{font-size:1.625rem;margin-bottom:16px}
+.box ul{list-style:none;display:grid;gap:12px}
+.box li{padding-right:30px;position:relative;font-size:1.0625rem}
+.box li:before{content:"✕";position:absolute;right:0;color:#C2410C;font-weight:700}
+.box.yes{border-color:var(--acc);background:var(--acc-soft)}
+.box.yes li:before{content:"✓";color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;transition:.25s}
+.card:hover{transform:translateY(-6px);border-color:var(--acc);box-shadow:0 18px 40px -18px rgba(31,79,216,.35)}
+.ic{width:48px;height:48px;border-radius:14px;background:var(--acc-soft);color:var(--acc);display:grid;place-items:center;font-size:1.375rem;margin-bottom:18px;font-family:"Frank Ruhl Libre",serif;font-weight:900}
+.card h3{font-size:1.4375rem;margin-bottom:10px}
+.card p{color:var(--mute);font-size:1.03125rem}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:52px;counter-reset:s}
+.step{counter-increment:s;border-top:2px solid var(--ink);padding-top:22px}
+.step:before{content:"0" counter(s);font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:2.75rem;color:var(--acc)}
+.step h3{font-size:1.5rem;margin:6px 0 8px}.step p{color:var(--mute);font-size:1.03125rem}
+.shots{background:var(--bg2)}
+.shotgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}
+.shot{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.shot img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--bg2)}
+.shot figcaption{padding:16px 22px;font-weight:700;font-size:1rem;border-top:1px solid var(--line)}
+.shot:first-child{grid-column:1/-1}
+.shot:first-child img{aspect-ratio:21/9}
+.status{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.st{padding:26px;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
+.st small{display:block;font-weight:700;font-size:0.875rem;margin-bottom:8px;color:var(--mute)}
+.st.now{border-color:var(--acc)}.st.now small{color:var(--acc)}
+.st h3{font-size:1.3125rem;margin-bottom:6px}.st p{font-size:1rem;color:var(--mute)}
+.final{background:#14161A;color:#fff;text-align:center;border-radius:32px;padding:80px 28px;margin:0 24px}
+.final h2{margin:0 auto 16px;max-width:20ch}.final .lead{margin:0 auto 32px;color:#B8BCC6}
+.final .btn.p{background:#fff;color:#14161A;border-color:#fff}.final .btn.p:hover{background:var(--acc);color:#fff;border-color:var(--acc)}
+.final .btn.g{border-color:#4B5160;color:#fff}.final .cta{justify-content:center}
+footer{padding:48px 0;color:var(--mute);font-size:0.9375rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+footer a:hover{color:var(--acc)}
+@media(max-width:860px){
+ section{padding:72px 0}.hero .wrap,.cols,.grid,.steps,.shotgrid,.status{grid-template-columns:1fr}
+ .page{max-width:340px;margin:0 auto}.shot:first-child img{aspect-ratio:16/10}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}.badge i{animation:none}}
 
-  <!-- Multilingual Internationalization Alternate Links -->
-  <link rel="alternate" hreflang="he" href="https://typesetok.github.io/website/?lang=he">
-  <link rel="alternate" hreflang="en" href="https://typesetok.github.io/website/?lang=en">
-  <link rel="alternate" hreflang="es" href="https://typesetok.github.io/website/?lang=es">
-  <link rel="alternate" hreflang="fr" href="https://typesetok.github.io/website/?lang=fr">
-  <link rel="alternate" hreflang="x-default" href="https://typesetok.github.io/website/">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://typesetok.github.io/website/">
-  <meta property="og:site_name" content="TypesetOK">
-  <meta property="og:title" content="TypesetOK — תוכנת עימוד שולחנית מקצועית בקוד פתוח">
-  <meta property="og:description" content="החזון לעימוד עברי מקצועי. דיוק של דפוס, מהירות של Rust. מחקר ופיתוח מערכת DTP פתוחה לספרי קודש ומסמכי ענק.">
-  <meta property="og:image" content="assets/images/logo.jpg">
-  <meta property="og:image:alt" content="TypesetOK Logo — Open Book &amp; Typography">
-  <meta property="og:locale" content="he_IL">
-  <meta property="og:locale:alternate" content="en_US">
-  <meta property="og:locale:alternate" content="es_ES">
-  <meta property="og:locale:alternate" content="fr_FR">
-
-  <!-- Twitter / X -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://typesetok.github.io/website/">
-  <meta property="twitter:title" content="TypesetOK — תוכנת עימוד שולחנית מקצועית ב-Rust">
-  <meta property="twitter:description" content="מערכת עימוד ופרסום שולחני בקוד פתוח לטיפוגרפיה עברית מתקדמת, ש״ס ומנוע קדם-דפוס ISO 15930.">
-  <meta property="twitter:image" content="assets/images/logo.jpg">
-  <meta property="twitter:creator" content="@Amlaach">
-
-  <!-- Favicons & App Manifest -->
-  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="apple-touch-icon" href="assets/images/logo.jpg">
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#0B0E14" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#2563EB" media="(prefers-color-scheme: light)">
-
-  <!-- High-Performance Font Loading -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;800;900&family=Heebo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Core Stylesheets -->
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/a11y-motion.css">
-
-  <!-- Comprehensive Schema.org Graph JSON-LD (Power SEO) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://typesetok.github.io/website/#website",
-        "url": "https://typesetok.github.io/website/",
-        "name": "TypesetOK",
-        "description": "תוכנת עימוד שולחנית מקצועית בקוד פתוח לטיפוגרפיה עברית וספרי קודש",
-        "inLanguage": ["he", "en", "es", "fr"],
-        "publisher": {
-          "@id": "https://typesetok.github.io/website/#organization"
-        }
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://typesetok.github.io/website/#organization",
-        "name": "TypesetOK",
-        "url": "https://typesetok.github.io/website/",
-        "logo": "https://typesetok.github.io/website/assets/images/logo.jpg",
-        "founder": {
-          "@type": "Person",
-          "name": "Amlaach",
-          "url": "https://amlaach.github.io/personal-site/"
-        },
-        "sameAs": [
-          "https://github.com/TypesetOK",
-          "https://github.com/TypesetOK/typesetok",
-          "https://amlaach.github.io/personal-site/"
-        ]
-      },
-      {
-        "@type": "Person",
-        "@id": "https://amlaach.github.io/personal-site/#person",
-        "name": "Amlaach",
-        "url": "https://amlaach.github.io/personal-site/",
-        "sameAs": [
-          "https://github.com/Amlaach",
-          "https://amlaach.github.io/personal-site/"
-        ],
-        "jobTitle": "Lead Systems Architect & Developer"
-      },
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://typesetok.github.io/website/#software",
-        "name": "TypesetOK",
-        "alternateName": "TOK",
-        "applicationCategory": "DesignApplication",
-        "operatingSystem": "Windows 10+, macOS 12+, Linux",
-        "softwareVersion": "1.0-ARCHITECTURE-RELEASE",
-        "license": "https://github.com/TypesetOK/typesetok/blob/main/LICENSE.md",
-        "codeRepository": "https://github.com/TypesetOK/typesetok",
-        "author": {
-          "@id": "https://amlaach.github.io/personal-site/#person"
-        },
-        "description": "תוכנת עימוד ופרסום שולחני (DTP) מודרנית בקוד פתוח לטיפוגרפיה עברית מתקדמת, ש״ס, מקראות גדולות ומנוע קדם-דפוס נייטיב."
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "דף הבית",
-            "item": "https://typesetok.github.io/website/"
-          }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "מהי מערכת TypesetOK ובמה היא שונה מתוכנות עימוד ישנות?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "TypesetOK היא מערכת פרסום שולחני (DTP) מודרנית שנבנית מן היסוד בשפת Rust עבור עברית וטקסטים דו-כיווניים (Bidi/RTL). בשונה מתוכנות כבדות או ישנות משנות ה-90 כמו 'תג' ו-Adobe InDesign שבהן עברית היא טלאי משני, TypesetOK מפרידה בין ליבת Rust מהירה לבין הממשק ומציעה עימוד יציב במסמכי ענק בני אלפי עמודים ללא קיפאון ממשק."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "כיצד עובד מנגנון אותיות ההתפשטות (אהלתר״ם) ואלגוריתם Knuth-Plass?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "במקום למתוח רווחים בין מילים וליצור 'נהרות' לבנים מכוערים כפי שעושים מעבדי תמלילים פשוטים, המערכת משלבת את אלגוריתם Knuth-Plass למזעור פגמים טיפוגרפיים לאורך הפסקה כולה, יחד עם אותיות מתרחבות מסורתיות (א, ה, ל, ת, ר, ם) לקבלת בלוק עימוד ישר והרמוני."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "האם TypesetOK מיועדת לעימוד ספרי קודש מורכבים כמו ש״ס ומקראות גדולות?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "כן. ארכיטקטורת המערכת כוללת פותר אילוצים רב-תזרימי (Talmud Solver) ייעודי המסנכרן בין טקסט מרכזי (גמרא / מקרא) לבין מפרשים מקבילים (רש״י, תוספות, תרגום) בעמודים ובכפולות עמודים."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "מדוע נבחרה שפת Rust לפיתוח ליבת העימוד?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "שפת Rust מספקת ביצועי קצה מהירים, בטיחות זיכרון מוחלטת ללא Garbage Collector הגורם לגמגומים, ויכולת עיבוד מקבילי עבור מסמכים עתירי עמודים וחישוב שבירת שורות בזמן אמת."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "באילו תקני דפוס ויוניקוד המערכת תומכת?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "TypesetOK תומכת בתקן ישראלי ת״י 6100 לנרמול אותיות, ניקוד וטעמים, ובתקן ISO 15930 (PDF/X-1a ו-PDF/X-4) עם שחור 100% K DeviceCMYK, פרופילי Fogra 39, צלבי חיתוך וטבלאות /ToUnicode לטקסט שניתן לחיפוש והעתקה."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
+.skip-link{position:absolute;top:-60px;right:16px;background:var(--ink);color:var(--btn);padding:10px 20px;border-radius:0 0 12px 12px;z-index:200;font-weight:700;transition:top .2s}
+.skip-link:focus{top:0}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.tools{display:flex;align-items:center;gap:10px}
+.ib{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:1.1rem;font-family:inherit}
+.ib:hover{border-color:var(--acc);color:var(--acc)}
+.menu-btn{display:none}
+nav a.dev{color:var(--acc);font-weight:700}
+.mnav{display:none;flex-direction:column;padding:8px 24px 20px;border-top:1px solid var(--line)}
+.mnav.open{display:flex}
+.mnav a{padding:12px 0;border-bottom:1px solid var(--line);font-size:1.05rem}
+@media(max-width:860px){.menu-btn{display:grid}.nav>.btn{display:none}}
+@media(min-width:861px){.mnav{display:none!important}}
+.a11y-fab{position:fixed;left:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:54px;height:54px;border-radius:50%;background:var(--acc);color:#fff;border:0;cursor:pointer;z-index:90;display:grid;place-items:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.4)}
+.a11y-panel{position:fixed;left:18px;bottom:calc(84px + env(safe-area-inset-bottom,0px));width:min(340px,calc(100vw - 36px));max-height:70vh;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 24px 60px -16px rgba(0,0,0,.4);padding:18px;z-index:91;display:none}
+.a11y-panel.open{display:block}
+.a11y-panel header{position:static;background:none;border:0;backdrop-filter:none;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:700}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ab{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:10px 8px;cursor:pointer;font-family:inherit;font-size:.9rem;display:grid;gap:2px;text-align:center}
+.ab strong{font-size:1.15rem}
+.ab[aria-pressed=true]{border-color:var(--acc);background:var(--acc-soft);color:var(--acc)}
+.ab.wide{grid-column:1/-1}
+[data-theme=dark]{--bg:#0F1115;--bg2:#161920;--ink:#F2F0EA;--mute:#A4A9B5;--line:#2A2E38;--card:#1A1D25;--acc:#7DA2FF;--acc-soft:#1E2740;--hdr:rgba(15,17,21,.88);--btn:#0F1115}
+[data-theme=dark] .a11y-fab{color:#0F1115}
+[data-contrast]{--bg:#fff;--bg2:#fff;--ink:#000;--mute:#000;--line:#000;--acc:#0022AA;--acc-soft:#fff;--card:#fff;--btn:#fff}
+[data-contrast][data-theme=dark]{--bg:#000;--bg2:#000;--ink:#fff;--mute:#fff;--line:#fff;--acc:#FFE600;--acc-soft:#000;--card:#000;--btn:#000}
+.x-links a{text-decoration:underline!important;font-weight:700}
+.x-heads h1,.x-heads h2,.x-heads h3{outline:2px solid var(--acc);outline-offset:4px}
+.x-cursor,.x-cursor *{cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M4 2l26 14-11 3 7 13-5 3-7-13-8 8z' fill='black' stroke='white' stroke-width='2'/></svg>") 4 2,auto!important}
+.x-still *,.x-still *:before{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+.x-still .rv{opacity:1!important;transform:none!important}
+.x-space body{line-height:2.1}
+.x-letters body{letter-spacing:.08em}
+.x-gray{filter:grayscale(1)}
+.x-plain body,.x-plain h1,.x-plain h2,.x-plain h3{font-family:Arial,Helvetica,sans-serif!important}
+</style>
 </head>
-<body>
-
-  <!-- Accessible Skip Link -->
-  <a href="#main-content" class="skip-link">דלג לתוכן המרכזי</a>
-
-  <!-- Sticky Site Header -->
-  <header class="site-header" role="banner">
-    <div class="scroll-progress-bar" id="scrollProgressBar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100"></div>
-    <div class="container header-inner">
-      
-      <!-- Brand & Logo -->
-      <a href="#hero" class="brand-wrapper" aria-label="TypesetOK Home">
-        <img src="assets/images/logo.jpg" alt="TypesetOK Logo" class="brand-logo-img" width="40" height="40">
-        <div class="brand-text">
-          <span class="brand-name">TypesetOK</span>
-          <span class="brand-tagline">Hebrew DTP System</span>
-        </div>
-      </a>
-
-      <!-- Primary Desktop Nav -->
-      <nav class="primary-nav" role="navigation" aria-label="Main Navigation">
-        <a href="#hero" class="nav-link active" data-i18n="nav_home">ראשי</a>
-        <a href="#storytelling" class="nav-link" data-i18n="nav_story">ארכיטקטורה</a>
-        <a href="#comparison" class="nav-link" data-i18n="nav_comparison">השוואה</a>
-        <a href="#playground" class="nav-link" data-i18n="nav_principles">עקרונות עימוד</a>
-        <a href="#workbench" class="nav-link" data-i18n="nav_workbench">קונספט ממשק</a>
-        <a href="#features" class="nav-link" data-i18n="nav_features">יכולות</a>
-        <a href="#engineering" class="nav-link" data-i18n="nav_engineering">בנצ'מרק</a>
-        <a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer" class="nav-link" style="color: var(--color-accent-gold);" data-i18n="nav_developer">
-          אתר המפתח ↗
-        </a>
-      </nav>
-
-      <!-- Action & Utility Controls -->
-      <div class="header-actions">
-        
-        <!-- Language Switcher (עב | EN | ES | FR) -->
-        <div class="lang-switcher" role="group" aria-label="Language Selector">
-          <button type="button" class="lang-btn active" data-lang="he" aria-pressed="true" title="עברית">עב</button>
-          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" title="English (US)">EN</button>
-          <button type="button" class="lang-btn" data-lang="es" aria-pressed="false" title="Español">ES</button>
-          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false" title="Français">FR</button>
-        </div>
-
-        <!-- Day / Night Theme Toggle (Default is Night) -->
-        <button type="button" class="icon-btn" id="toggleThemeBtn" aria-label="Switch between Day and Night mode" title="החלף בין מצב לילה למצב יום">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-        </button>
-
-        <!-- GitHub Primary Link -->
-        <a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;" aria-label="GitHub Repository">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-          </svg>
-          <span data-i18n="btn_github">GitHub</span>
-        </a>
-
-        <!-- Mobile Drawer Toggle -->
-        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="mobileNavDrawer">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="3" y1="12" x2="21" y2="12"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <line x1="3" y1="18" x2="21" y2="18"/>
-          </svg>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Mobile Drawer -->
-    <div class="mobile-nav-drawer" id="mobileNavDrawer" role="region" aria-label="Mobile Navigation">
-      <a href="#hero" class="mobile-nav-link" data-i18n="nav_home">ראשי</a>
-      <a href="#storytelling" class="mobile-nav-link" data-i18n="nav_story">ארכיטקטורה</a>
-      <a href="#comparison" class="mobile-nav-link" data-i18n="nav_comparison">השוואה</a>
-      <a href="#playground" class="mobile-nav-link" data-i18n="nav_principles">עקרונות עימוד</a>
-      <a href="#workbench" class="mobile-nav-link" data-i18n="nav_workbench">קונספט ממשק</a>
-      <a href="#features" class="mobile-nav-link" data-i18n="nav_features">יכולות</a>
-      <a href="#engineering" class="mobile-nav-link" data-i18n="nav_engineering">בנצ'מרק</a>
-      <a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link" style="color: var(--color-accent-gold);" data-i18n="nav_developer">
-        אתר המפתח (Amlaach) ↗
-      </a>
-      <div style="margin-top: 12px; display: flex; gap: 8px;">
-        <a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1; justify-content: center;">
-          GitHub Repository
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content Landmark -->
-  <main id="main-content" role="main">
-
-    <!-- ====================================================================
-         SECTION 1: HERO
-         ==================================================================== -->
-    <section class="hero-section" id="hero">
-      <div class="container hero-grid">
-        
-        <!-- Left Column: Copy & Genuine Architectural Actions -->
-        <div class="hero-copy">
-          <div class="badge badge-brand hero-tag">
-            <span class="badge-dot"></span>
-            <span data-i18n="hero_badge">מחקר, ארכיטקטורה וקוד פתוח • שפת Rust 1.85+ • תקן ת״י 6100</span>
-          </div>
-
-          <h1 class="hero-title">
-            <span data-i18n="hero_title_1">החזון לעימוד עברי מקצועי.</span><br>
-            <span class="highlight-blue" data-i18n="hero_title_2">דיוק של דפוס, מהירות של Rust.</span>
-          </h1>
-
-          <p class="hero-description" data-i18n="hero_desc">
-            <strong>TypesetOK (TOK)</strong> היא מערכת עימוד ופרסום שולחני (DTP) מודרנית בקוד פתוח הנמצאת במחקר ופיתוח עבור טיפוגרפיה עברית מתקדמת, ספרי קודש (ש״ס, מקראות גדולות ושו״ת), ומסמכי ענק בני אלפי עמודים — במפרט הנדסי קפדני ללא פשרות.
-          </p>
-
-          <div class="hero-actions">
-            <a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg" aria-label="Open TypesetOK on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-              </svg>
-              <span data-i18n="hero_cta_github">צפה בקוד ב-GitHub</span>
-            </a>
-
-            <button type="button" class="btn btn-secondary btn-lg" data-open-modal="architecture">
-              <span data-i18n="hero_cta_arch">מפרט ארכיטקטוני מלא</span>
-            </button>
-
-            <a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg" aria-label="Amlaach Developer Portfolio">
-              <span data-i18n="hero_cta_dev">אתר המפתח (Amlaach) ↗</span>
-            </a>
-          </div>
-
-          <!-- Real & Honest Engineering Metrics -->
-          <div class="hero-metrics">
-            <div class="hero-metric-item">
-              <span class="hero-metric-value" data-i18n="metric_tests">58 / 58</span>
-              <span class="hero-metric-label" data-i18n="metric_tests_label">בדיקות ליבה ב-Rust עוברות</span>
-            </div>
-            <div class="hero-metric-item">
-              <span class="hero-metric-value" data-i18n="metric_clippy">0 אזהרות</span>
-              <span class="hero-metric-label" data-i18n="metric_clippy_label">קוד נקי בתקן Clippy</span>
-            </div>
-            <div class="hero-metric-item">
-              <span class="hero-metric-value" data-i18n="metric_standards">ת״י 6100 &amp; ISO 15930</span>
-              <span class="hero-metric-label" data-i18n="metric_standards_label">עמידה מלאה בתקני דפוס ויוניקוד</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Authentic Editorial Monograph Plate -->
-        <div class="hero-monograph-plate paper-sheet-crops" role="region" aria-label="לוח הוכחה ארכיטקטוני">
-          <div class="monograph-header">
-            <div class="monograph-logo-wrap">
-              <img src="assets/images/logo.jpg" alt="TypesetOK Logo" width="28" height="28" style="border-radius: 4px;">
-              <span style="font-weight: 700; color: var(--color-ink-primary);">TypesetOK Monograph</span>
-            </div>
-            <span data-i18n="plate_badge">גליון הוכחה ארכיטקטוני • SI 6100</span>
-          </div>
-
-          <div class="monograph-page-sheet" id="monographSheet">
-            <div class="monograph-sheet-header" data-i18n="plate_title">
-              סֵפֶר תְּהִלִּים — מִזְמוֹר כ״ג
-            </div>
-            <div class="monograph-sheet-body" data-i18n="plate_text">
-              מִזְמ֥וֹר לְדָוִ֑ד יְהוָ֥ה רֹ֝עִ֗י לֹ֣א אֶחְסָֽר׃ בִּנְא֣וֹת דֶּ֭שֶׁא יַרְבִּיצֵ֑נִי עַל־מֵ֖י מְנֻח֣וֹת <span class="expand-letter">יְנַהֲלֵֽנִי׃</span> נַפְשִׁ֥י יְשׁוֹבֵ֑ב יַֽנְחֵ֥נִי בְמַעְגְּלֵי־צֶ֝֗דֶק לְמַ֣עַן <span class="expand-letter">שְׁמֽוֹ׃</span> גַּ֤ם כִּֽי־אֵלֵ֨ךְ בְּגֵ֪יא צַלְמָ֡וֶת לֹא־אִ֘ירָ֤א רָ֗ע כִּי־אַתָּ֥ה עִמָּדִ֑י שִׁבְטְךָ֥ וּ֝מִשְׁעַנְתֶּ֗ךָ הֵ֣מָּה <span class="expand-letter">יְנַֽחֲמֻֽנִי׃</span>
-            </div>
-            <div class="monograph-sheet-footer">
-              <span data-i18n="plate_caption">יחס הזהב, אותיות מתרחבות אהלתר״ם וסנכרון קווי בסיס</span>
-              <button type="button" class="monograph-toggle-grid" id="monographGridBtn" aria-pressed="false">
-                רשת קווי בסיס ⊞
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         SECTION 2: SCROLL STORYTELLING
-         ==================================================================== -->
-    <section class="editorial-section" id="storytelling">
-      <div class="container-editorial">
-        
-        <div class="section-lead-header">
-          <span class="section-pretitle" data-i18n="story_pretitle">פרק א׳: עמודי התווך של הארכיטקטורה</span>
-          <h2 class="section-title" data-i18n="story_title">שלושה עקרונות הנדסיים מנחים</h2>
-          <p class="section-subtitle" data-i18n="story_subtitle">
-            כיצד תוכנן מנוע העימוד של TypesetOK לפתור את האתגרים ההיסטוריים של עולם הדפוס העברי.
-          </p>
-        </div>
-
-        <div class="story-scenes">
-          
-          <!-- Scene 1: Normalization -->
-          <article class="story-scene-card reveal-on-scroll">
-            <div class="scene-content">
-              <span class="scene-num" data-i18n="scene1_num">עקרון 01</span>
-              <h3 data-i18n="scene1_title">נרמול קפדני לפי תקן ישראלי ת"י 6100</h3>
-              <p data-i18n="scene1_desc">
-                מעבדי תמלילים ומערכות עימוד מערביות משבשות לעיתים קרובות את סדר האותיות והניקוד ביוניקוד. TypesetOK אוכפת סדר יוניקוד דטרמיניסטי מלא ומפעילה מנוע גימטריה דטרמיניסטי למניעת צירופי טאבו ושמות קודש (15 ← ט״ו, 16 ← ט״ז, 270 ← ע״ר).
-              </p>
-              <div class="scene-features-list">
-                <div class="scene-feature-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>סדר יוניקוד קנוני: אות ← נקודת ש/שׂ ← דגש ← ניקוד ← מתג ← טעמים</span>
-                </div>
-                <div class="scene-feature-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>אינדוקס שברירי ב-$O(1)$ ללא צורך במספור מחדש של המסמך</span>
-                </div>
-              </div>
-            </div>
-            <div class="scene-visual">
-              <div style="background: var(--color-bg-paper); border: 1px solid var(--color-border-subtle); padding: 16px; border-radius: 6px;">
-                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--color-ink-muted); margin-bottom: 8px;">UNICODE CANONICAL SI 6100 DECOMPOSITION:</div>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px;">
-                  <span style="background: var(--color-brand-blue-light); border: 1px solid rgba(37,99,235,0.3); padding: 3px 6px; border-radius: 4px; color: var(--color-brand-blue-hover);">U+05E9 (ש)</span>
-                  <span style="background: var(--color-brand-blue-light); border: 1px solid rgba(37,99,235,0.3); padding: 3px 6px; border-radius: 4px; color: #4ADE80;">U+05C1 (שׁ)</span>
-                  <span style="background: var(--color-brand-blue-light); border: 1px solid rgba(37,99,235,0.3); padding: 3px 6px; border-radius: 4px; color: #F87171;">U+05BC (ּ)</span>
-                  <span style="background: var(--color-brand-blue-light); border: 1px solid rgba(37,99,235,0.3); padding: 3px 6px; border-radius: 4px; color: var(--color-accent-gold);">U+05B8 (ָ)</span>
-                  <span style="background: var(--color-brand-blue-light); border: 1px solid rgba(37,99,235,0.3); padding: 3px 6px; border-radius: 4px; color: #C084FC;">U+0591 (֑)</span>
-                </div>
-                <div style="margin-top: 14px; font-family: var(--font-serif); font-size: 26px; text-align: center; color: var(--color-ink-primary);">
-                  שָׁ֕
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Scene 2: Multi-Flow Talmud -->
-          <article class="story-scene-card reveal-on-scroll">
-            <div class="scene-content">
-              <span class="scene-num" data-i18n="scene2_num">עקרון 02</span>
-              <h3 data-i18n="scene2_title">פותר אילוצים רב-תזרימי (Talmud Solver)</h3>
-              <p data-i18n="scene2_desc">
-                עמודי ש"ס ומקראות גדולות הם פסגת הקושי הטיפוגרפי העולמי: גמרא במרכז, רש"י בצד אחד ותוספות בצד השני, כאשר כל שינוי בפסקה אחת משפיע על גלישת הטקסט של שני הפירושים האחרים. מפרט המערכת מגדיר פותר אילוצים מתמטי ייעודי לסנכרון רציף.
-              </p>
-              <div class="scene-features-list">
-                <div class="scene-feature-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>סנכרון תזרימי טקסט מקבילים באותו עמוד ובכפולות עמודים</span>
-                </div>
-                <div class="scene-feature-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>אלגוריתם Knuth-Plass כולל למניעת שורות יתומות וחללים רפויים</span>
-                </div>
-              </div>
-            </div>
-            <div class="scene-visual">
-              <div class="talmud-layout-specimen">
-                <div class="talmud-rashi">
-                  <div class="talmud-label">רש״י</div>
-                  מאימתי — מאיזה זמן קורין את שמע בערבין משעה שהכהנים נכנסים לאכול בתרומתן.
-                </div>
-                <div class="talmud-gemara">
-                  <div class="talmud-label">גמרא</div>
-                  מֵאֵימָתַי קוֹרִין אֶת שְׁמַע בְּעַרְבִין? מִשָּׁעָה שֶׁהַכֹּהֲנִים נִכְנָסִים לֶאֱכוֹל בִּתְרוּמָתָן.
-                </div>
-                <div class="talmud-tosafot">
-                  <div class="talmud-label">תוספות</div>
-                  מאימתי קורין — לא פירש תנא דידן היכן רמיזא קריאת שמע, אלא סמך אקרא.
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Scene 3: Prepress -->
-          <article class="story-scene-card reveal-on-scroll">
-            <div class="scene-content">
-              <span class="scene-num" data-i18n="scene3_num">עקרון 03</span>
-              <h3 data-i18n="scene3_title">קדם-דפוס נייטיב: ISO 15930 (PDF/X-1a)</h3>
-              <p data-i18n="scene3_desc">
-                ללא הסתמכות על מנועי הדפסת דפדפן המוגבלים ל-sRGB. מנוע ה-Rust מתוכנן לייצר ישירות קובצי דפוס מובהקים: שחור 100% K (DeviceCMYK), צלבי רישום וסימני חיתוך וקטוריים, תיבות BleedBox ו-TrimBox של 3 מ\"מ, ופרופילי Fogra 39.
-              </p>
-              <div class="scene-features-list">
-                <div class="scene-feature-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>טבלאות /ToUnicode קפדניות: טקסט מנוקד שניתן להעתקה וחיפוש ב-PDF</span>
-                </div>
-                <div class="scene-feature-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>תמיכה מלאה בצבעי ספוט (Spot/Pantone) ישירות מקובץ ההגדרות</span>
-                </div>
-              </div>
-            </div>
-            <div class="scene-visual">
-              <div class="prepress-proof-visual">
-                <div class="prepress-crop-tl"></div>
-                <div class="prepress-crop-tr"></div>
-                <div class="prepress-crop-bl"></div>
-                <div class="prepress-crop-br"></div>
-                <div style="font-family: var(--font-mono); font-size: 10px; color: var(--color-ink-muted); text-align: center; margin-bottom: 8px;">
-                  ISO 15930-1:2001 PDF/X-1a | Fogra 39 Coated | Bleed: 3.00mm
-                </div>
-                <div style="border: 1px solid var(--color-border-subtle); padding: 12px; text-align: center; font-family: var(--font-serif); font-size: 15px; color: var(--color-ink-primary);">
-                  מסמך מוגן לדפוס — הפרדת לוחות CMYK טהורה
-                </div>
-                <div class="cmyk-color-bars" aria-label="CMYK Bars">
-                  <div class="cmyk-patch" style="background: var(--color-cmyk-cyan);" title="Cyan"></div>
-                  <div class="cmyk-patch" style="background: var(--color-cmyk-magenta);" title="Magenta"></div>
-                  <div class="cmyk-patch" style="background: var(--color-cmyk-yellow);" title="Yellow"></div>
-                  <div class="cmyk-patch" style="background: var(--color-cmyk-black);" title="Key Black"></div>
-                </div>
-              </div>
-            </div>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         SECTION 3: BEFORE / AFTER TYPOGRAPHIC COMPARISON
-         ==================================================================== -->
-    <section class="editorial-section" id="comparison">
-      <div class="container">
-        
-        <div class="section-lead-header">
-          <span class="section-pretitle" data-i18n="comp_pretitle">פרק ב׳: השוואה טיפוגרפית מעמיקה</span>
-          <h2 class="section-title" data-i18n="comp_title">מעבד תמלילים רגיל מול אופטימיזציית TypesetOK</h2>
-          <p class="section-subtitle" data-i18n="comp_subtitle">
-            גררו את הסליידר או לחצו על הלחצנים המהירים כדי להשוות בין תוצר שבירת שורות פרימיטיבית בוורד לבין בלוק העימוד המהודק עם Knuth-Plass ואותיות התפשטות.
-          </p>
-        </div>
-
-        <!-- Presets Bar -->
-        <div class="comp-presets-bar">
-          <button type="button" class="comp-preset-btn" id="compPresetBefore" data-i18n="comp_preset_before">וורד (לפני)</button>
-          <button type="button" class="comp-preset-btn" id="compPresetHalf" data-i18n="comp_preset_half">חצי-חצי (50%)</button>
-          <button type="button" class="comp-preset-btn" id="compPresetAfter" data-i18n="comp_preset_after">TypesetOK (אחרי)</button>
-        </div>
-
-        <div class="comparison-wrapper" id="comparisonContainer" role="region" aria-label="השוואת עימוד">
-          
-          <!-- Before Layer (Legacy Word Processor) -->
-          <div class="comparison-before">
-            <span class="comp-badge comp-badge-before" data-i18n="comp_before_label">מעבד תמלילים מסורתי (וורד)</span>
-            <div class="comparison-inner">
-              <h4 style="font-family: Arial, sans-serif; font-size: 20px; text-align: right; margin-bottom: 12px; color: var(--color-ink-primary);">
-                הלכות דעות — פרק ראשון
-              </h4>
-              <p style="font-family: Arial, sans-serif; font-size: 15px; line-height: 1.5; text-align: justify; word-spacing: 5px; color: var(--color-ink-secondary);">
-                דעות הרבה יש לכל אחד ואחד מבני אדם, וזו משונה מזו ורחוקה ממנה ביותר: יש אדם שהוא בעל חמה כועס תמיד, ויש אדם שדעתו מיושבת עליו ואינו כועס כלל. ויש אדם שהוא גבה לב ביותר, ויש שהוא שפל רוח בתכלית. ועל דרך זו שאר כל הדעות כולן. והדרך הישרה היא מידה בינונית שבכל דעה ודעה מכל הדעות שיש לו לאדם.
-              </p>
-              <div style="margin-top: 18px; padding: 8px 12px; background: rgba(239, 68, 68, 0.1); border-right: 3px solid #EF4444; font-size: 12px; color: #F87171; font-family: var(--font-mono);" data-i18n="comp_before_note">
-                ⚠️ שורות רפויות, 'נהרות' לבנים פעורים, היעדר התאמת אותיות התפשטות ואי-אחידות בצפיפות.
-              </div>
-            </div>
-          </div>
-
-          <!-- After Layer (TypesetOK Precision Engine) -->
-          <div class="comparison-after" id="comparisonAfter">
-            <span class="comp-badge comp-badge-after" data-i18n="comp_after_label">מפרט TypesetOK (Knuth-Plass + אהלתר״ם)</span>
-            <div class="comparison-inner">
-              <h4 style="font-family: var(--font-serif); font-size: 22px; text-align: right; margin-bottom: 12px; color: var(--color-ink-primary); font-weight: 800;">
-                הִלְכוֹת דֵּעוֹת — פֶּרֶק רִאשׁוֹן
-              </h4>
-              <p style="font-family: var(--font-serif); font-size: 16px; line-height: 1.65; text-align: justify; color: var(--color-ink-primary);">
-                דֵּעוֹת הַרְבֵּה יֵשׁ לְכָל אֶחָד וְאֶחָד מִבְּנֵי אָדָם, וְזוֹ מְשֻׁנָּה מִזּוֹ וּרְחוֹקָה מִמֶּנָּה <span class="expand-letter">בְּיוֹתֵר:</span> יֵשׁ אָדָם שֶׁהוּא בַּעַל חֵמָה כּוֹעֵס תָּמִיד, וְיֵשׁ אָדָם שֶׁדַּעְתּוֹ מְיוּשֶׁבֶת עָלָיו וְאֵינוֹ כּוֹעֵס כְּלָל. וְיֵשׁ אָדָם שֶׁהוּא גְּבַהּ לֵב בְּיוֹתֵר, וְיֵשׁ שֶׁהוּא שְׁפַל רוּחַ <span class="expand-letter">בְּתַכְלִית.</span> וְעַל דֶּרֶךְ זוֹ שְׁאָר כָּל הַדֵּעוֹת כֻּלָּן. וְהַדֶּרֶךְ הַיְשָׁרָה הִיא מִדָּה בֵּינוֹנִית שֶׁבְּכָל דֵּעָה וְדֵעָה מִכָּל הַדֵּעוֹת שֶׁיֵּשׁ לוֹ <span class="expand-letter">לָאָדָם.</span>
-              </p>
-              <div style="margin-top: 18px; padding: 8px 12px; background: rgba(34, 197, 94, 0.1); border-right: 3px solid #22C55E; font-size: 12px; color: #4ADE80; font-family: var(--font-mono);" data-i18n="comp_after_note">
-                ✓ בלוק טיפוגרפי אחיד, שבירת שורות גלובלית, אותיות מתרחבות אהלתר״ם וסנכרון מלא לקווי בסיס.
-              </div>
-            </div>
-          </div>
-
-          <!-- Draggable Handle -->
-          <div class="comparison-handle" id="comparisonHandle" role="slider" tabindex="0" aria-label="Comparison Slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-            <div class="handle-line"></div>
-            <div class="handle-circle">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 18 9 12 15 6"/>
-                <polyline points="9 18 3 12 9 6" style="display:none;"/>
-              </svg>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         SECTION 4: TYPOGRAPHY PRINCIPLES DEMO (PLAYGROUND)
-         ==================================================================== -->
-    <section class="editorial-section" id="playground">
-      <div class="container">
-        
-        <div class="section-lead-header">
-          <span class="section-pretitle" data-i18n="pg_pretitle">פרק ג׳: הדגמת עקרונות טיפוגרפיים</span>
-          <h2 class="section-title" data-i18n="pg_title">מעבדת שליטה במאפייני הטיפוגרפיה</h2>
-          <p class="section-subtitle" data-i18n="pg_subtitle">
-            התנסו בפרמטרים הטיפוגרפיים וראו כיצד משפיעים רווחי השורות, חלוקת הטורים ומדרגי היישור העבריים על שטף הקריאה.
-          </p>
-          <div style="margin-top: 10px;">
-            <span class="badge badge-accent" data-i18n="pg_disclaimer">הדגמה אינטראקטיבית של עקרונות שבירת שורות, קווי בסיס ואותיות התפשטות (אהלתר״ם)</span>
-          </div>
-        </div>
-
-        <div class="playground-card" role="region" aria-label="סדנת עימוד">
-          
-          <!-- Controls Sidebar -->
-          <div class="playground-controls-sidebar">
-            
-            <div class="control-group">
-              <div class="control-header">
-                <label for="pgFontSize">גודל אות (Font Size)</label>
-                <span class="control-value-badge" id="pgFontSizeVal">18px</span>
-              </div>
-              <input type="range" id="pgFontSize" class="range-slider" min="14" max="26" value="18" step="1">
-            </div>
-
-            <div class="control-group">
-              <div class="control-header">
-                <label for="pgLineHeight">רווח שורות (Leading)</label>
-                <span class="control-value-badge" id="pgLineHeightVal">1.65</span>
-              </div>
-              <input type="range" id="pgLineHeight" class="range-slider" min="1.2" max="2.2" value="1.65" step="0.05">
-            </div>
-
-            <div class="control-group">
-              <div class="control-header">
-                <span>חלוקת טורים (Columns)</span>
-              </div>
-              <div class="button-segmented" role="group" aria-label="Columns Selection">
-                <button type="button" class="segment-btn pg-col-btn" data-cols="1">1 טור</button>
-                <button type="button" class="segment-btn pg-col-btn active" data-cols="2">2 טורים</button>
-                <button type="button" class="segment-btn pg-col-btn" data-cols="3">3 טורים</button>
-              </div>
-            </div>
-
-            <div class="control-group">
-              <div class="control-header">
-                <label for="pgColGap">רווח בין טורים (Column Gap)</label>
-                <span class="control-value-badge" id="pgColGapVal">24px</span>
-              </div>
-              <input type="range" id="pgColGap" class="range-slider" min="12" max="40" value="24" step="2">
-            </div>
-
-            <div class="control-group">
-              <div class="control-header">
-                <span>מדרג יישור עברי (Justification Tier)</span>
-              </div>
-              <div class="button-segmented" role="group" aria-label="Justification Selection">
-                <button type="button" class="segment-btn pg-tier-btn" data-tier="tier-1">Tier 1: מילים</button>
-                <button type="button" class="segment-btn pg-tier-btn active" data-tier="tier-2">Tier 2: אהלתר"ם</button>
-                <button type="button" class="segment-btn pg-tier-btn" data-tier="tier-3">Tier 3: טרקינג</button>
-              </div>
-            </div>
-
-            <hr style="border: 0; border-top: 1px solid var(--color-border-subtle); margin: 4px 0;">
-
-            <div class="toggle-row" id="pgToggleNikudRow">
-              <span>הצגת ניקוד וטעמים מלאים</span>
-              <div class="switch-toggle active" id="pgToggleNikud" role="switch" aria-checked="true" tabindex="0">
-                <div class="switch-thumb"></div>
-              </div>
-            </div>
-
-            <div class="toggle-row" id="pgToggleBaselineRow">
-              <span>רשת קווי בסיס (Baseline Grid 24px)</span>
-              <div class="switch-toggle" id="pgToggleBaseline" role="switch" aria-checked="false" tabindex="0">
-                <div class="switch-thumb"></div>
-              </div>
-            </div>
-
-            <div style="margin-top: 12px;">
-              <button type="button" class="btn btn-secondary" style="width: 100%; font-size: 11px;" id="pgResetBtn">
-                אפס לברירות מחדל ↺
-              </button>
-            </div>
-
-          </div>
-
-          <!-- Specimen Display Window -->
-          <div class="playground-stage-wrapper">
-            <div class="playground-specimen-page paper-sheet-crops" id="playgroundSpecimenPage">
-              <div class="playground-text-content" id="playgroundSpecimenText" style="font-size: 18px; line-height: 1.65; column-count: 2; column-gap: 24px;">
-                <!-- Content injected via JS -->
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         SECTION 5: PRODUCT WORKBENCH CONCEPT
-         ==================================================================== -->
-    <section class="editorial-section" id="workbench">
-      <div class="container">
-        
-        <div class="section-lead-header">
-          <span class="section-pretitle">פרק ד׳: קונספט ממשק המשתמש</span>
-          <h2 class="section-title">תכנון סביבת עבודה שולחנית מודרנית (DTP Workbench)</h2>
-          <p class="section-subtitle">
-            הדמיית ממשק העריכה המתוכנן המשלב מעטפת עריכה מודרנית עם ליבת Rust מהירה במיוחד.
-          </p>
-        </div>
-
-        <div class="workbench-frame paper-sheet-crops" role="region" aria-label="קונספט ממשק TypesetOK">
-          
-          <div class="wb-window-header">
-            <div class="wb-dots">
-              <span class="wb-dot wb-dot-red"></span>
-              <span class="wb-dot wb-dot-yellow"></span>
-              <span class="wb-dot wb-dot-green"></span>
-            </div>
-            <div class="wb-title">TypesetOK Workbench Architecture Concept — [ספר_בראשית.tok]</div>
-            <div style="font-family: var(--font-mono); font-size: 11px; color: #48BB78;">● Planned Rust Binary IPC</div>
-          </div>
-
-          <div class="wb-menubar" role="menubar">
-            <span class="wb-menu-item active" role="menuitem">קובץ</span>
-            <span class="wb-menu-item" role="menuitem">עריכה</span>
-            <span class="wb-menu-item" role="menuitem">פריסה וטורים</span>
-            <span class="wb-menu-item" role="menuitem">טיפוגרפיה ות"י 6100</span>
-            <span class="wb-menu-item" role="menuitem">קדם-דפוס (PDF/X)</span>
-            <span class="wb-menu-item" role="menuitem">עזרה</span>
-          </div>
-
-          <div class="wb-body">
-            
-            <div class="wb-sidebar-left">
-              <div class="wb-panel-title">עץ צמתים סמנטי (TDM Tree)</div>
-              <div style="display: flex; flex-direction: column; gap: 4px;">
-                <div class="wb-tree-item selected" data-node-key="doc-root">
-                  <span>📄 DocumentRoot</span>
-                </div>
-                <div class="wb-tree-item" data-node-key="sec-1" style="padding-right: 18px;">
-                  <span>📁 Section: בראשית</span>
-                </div>
-                <div class="wb-tree-item" data-node-key="flow-main" style="padding-right: 32px;">
-                  <span>⚡ Flow: ראשי (2 טורים)</span>
-                </div>
-                <div class="wb-tree-item" data-node-key="p-1" style="padding-right: 46px;">
-                  <span>¶ פסקא: בראשית ברא...</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="wb-canvas-center">
-              <div class="wb-rendered-page paper-sheet-crops" id="wbRenderedPage">
-                <div style="text-align: center; font-weight: 800; font-size: 14px; margin-bottom: 8px; border-bottom: 1px solid #E2E8F0; padding-bottom: 4px;">
-                  פֶּרֶק רִאשׁוֹן — מַעֲשֵׂה בְרֵאשִׁית
-                </div>
-                <div style="columns: 2; column-gap: 14px; column-rule: 1px solid #E2E8F0; text-align: justify;">
-                  <p>
-                    בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ׃ וְהָאָ֗רֶץ הָיְתָ֥ה תֹ֙הוּ֙ וָבֹ֔הוּ וְחֹ֖שֶׁךְ עַל־פְּנֵ֣י תְה֑וֹם וְר֣וּחַ אֱלֹהִ֔ים מְרַחֶ֖פֶת עַל־פְּנֵ֥י הַמָּֽיִם׃
-                  </p>
-                  <p>
-                    וַיֹּ֥אמֶר אֱלֹהִ֖ים יְהִ֣י א֑וֹר וַֽיְהִי־אֽוֹר׃ וַיַּ֧רְא אֱלֹהִ֛ים אֶת־הָא֖וֹר כִּי־ט֑וֹב.
-                  </p>
-                </div>
-                <div style="position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-size: 10px; color: #718096; font-family: var(--font-mono);">
-                  עמוד א׳ • TypesetOK Specimen Concept
-                </div>
-              </div>
-            </div>
-
-            <div class="wb-sidebar-right">
-              <div>
-                <div class="wb-panel-title">בדיקות קדם-דפוס (Preflight Spec)</div>
-                <div class="wb-prop-row">
-                  <span class="wb-prop-label">תקן דפוס:</span>
-                  <span class="wb-prop-val green">PDF/X-1a (ISO 15930)</span>
-                </div>
-                <div class="wb-prop-row">
-                  <span class="wb-prop-label">פרופיל צבע:</span>
-                  <span class="wb-prop-val">Fogra 39 (DeviceCMYK)</span>
-                </div>
-                <div class="wb-prop-row">
-                  <span class="wb-prop-label">שולי גלישה:</span>
-                  <span class="wb-prop-val">BleedBox 3.00mm</span>
-                </div>
-              </div>
-
-              <div>
-                <div class="wb-panel-title">מאפייני צומת סמנטי</div>
-                <div class="wb-prop-row">
-                  <span class="wb-prop-label">סוג צומת:</span>
-                  <span class="wb-prop-val" id="wbPropNodeName">DocumentRoot</span>
-                </div>
-                <div class="wb-prop-row">
-                  <span class="wb-prop-label">מזהה ULID:</span>
-                  <span class="wb-prop-val" id="wbPropUlid">01HX5K3T9R0000000000000001</span>
-                </div>
-                <div class="wb-prop-row">
-                  <span class="wb-prop-label">Knuth Demerits:</span>
-                  <span class="wb-prop-val green" id="wbPropDemerits">0 (Optimal)</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         SECTION 6: BENTO GRID FEATURES
-         ==================================================================== -->
-    <section class="editorial-section" id="features">
-      <div class="container">
-        
-        <div class="section-lead-header">
-          <span class="section-pretitle">פרק ה׳: יכולות ומאפייני ליבה</span>
-          <h2 class="section-title">שבעת עמודי התווך של הארכיטקטורה</h2>
-          <p class="section-subtitle">
-            נבנה עבור מהנדסים, מוציאים לאור ומעמדים מקצועיים שאינם מוכנים להתפשר על ביצועים או על דיוק ההלכה הטיפוגרפית.
-          </p>
-        </div>
-
-        <div class="bento-grid">
-          
-          <div class="bento-card bento-card-span-2">
-            <div class="bento-header">
-              <div class="bento-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              </div>
-              <h3 class="bento-title">ליבת Rust עצמאית &amp; וירטואליזציה במסמכי ענק</h3>
-              <p class="bento-desc">
-                מערכות מונוליתיות ישנות סובלות מקיפאון תצוגה מוחלט במסמכים מעל 100 עמודים. TypesetOK מפרידה קפדנית בין ליבת העימוד והזיכרון ב-Rust לבין ה-UI, ומחזיקה ב-DOM שלושה עמודים פעילים בלבד בכל רגע נתון — מה שמבטיח ריצה יציבה במסמכי 1,000+ עמודים.
-              </p>
-            </div>
-            <div class="badge badge-brand">tok-core + tok-viewer</div>
-          </div>
-
-          <div class="bento-card">
-            <div class="bento-header">
-              <div class="bento-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/></svg>
-              </div>
-              <h3 class="bento-title">ת"י 6100 וגימטריה דטרמיניסטית</h3>
-              <p class="bento-desc">
-                נרמול יוניקוד קפדני לפי התקן הישראלי, עם טיפול אוטומטי בגרש וגרשיים תקניים והמרות טאבו מסורתיות (15 ← ט״ו, 16 ← ט״ז, 270 ← ע״ר).
-              </p>
-            </div>
-            <div class="badge badge-accent">100% SI 6100 Compliant</div>
-          </div>
-
-          <div class="bento-card">
-            <div class="bento-header">
-              <div class="bento-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/></svg>
-              </div>
-              <h3 class="bento-title">יישור עברי תלת-שלבי (Knuth-Plass)</h3>
-              <p class="bento-desc">
-                מדרג יישור מדעי: מתיחת רווחי מילים מבוקרת (Tier 1), אותיות התפשטות מסורתיות אהלתר"ם (Tier 2), ומיקרו-טרקינג עדין של ±2% em (Tier 3).
-              </p>
-            </div>
-            <div class="badge badge-brand">Demerits Optimization</div>
-          </div>
-
-          <div class="bento-card">
-            <div class="bento-header">
-              <div class="bento-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="3" width="7" height="18"/></svg>
-              </div>
-              <h3 class="bento-title">פותר אילוצים רב-תזרימי לספרי קודש</h3>
-              <p class="bento-desc">
-                אלגוריתם מתמטי ייעודי לפריסת עמודי ש"ס ומקראות גדולות. סנכרון מושלם בין גמרא למפרשים חוצה-עמודים ללא גלישה שגויה.
-              </p>
-            </div>
-            <div class="badge badge-accent">Multi-Flow Constraint Solver</div>
-          </div>
-
-          <div class="bento-card">
-            <div class="bento-header">
-              <div class="bento-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><rect x="6" y="14" width="12" height="8"/></svg>
-              </div>
-              <h3 class="bento-title">קדם-דפוס נייטיב ISO 15930</h3>
-              <p class="bento-desc">
-                ייצוא ישיר של PDF/X-1a ו-PDF/X-4 עם 100% K DeviceCMYK, פרופיל Fogra 39, צבעי ספוט וסימני חיתוך. טבלאות /ToUnicode לטקסט מנוקד שניתן להעתקה.
-              </p>
-            </div>
-            <div class="badge badge-brand">ISO 15930 Target</div>
-          </div>
-
-          <div class="bento-card">
-            <div class="bento-header">
-              <div class="bento-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/></svg>
-              </div>
-              <h3 class="bento-title">עמידות קריסות: ACID WAL &amp; .tok</h3>
-              <p class="bento-desc">
-                מסד נתונים פנימי עם Write-Ahead Logging לשמירה אוטומטית שוטפת ברקע ללא אובדן נתונים, לצד פורמט חבילה רשמי (.tok) המבוסס על ארכיב ZIP אטומי מוגן.
-              </p>
-            </div>
-            <div class="badge badge-brand">Zero Data Loss Target</div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         SECTION 7: ENGINEERING BENCHMARKS
-         ==================================================================== -->
-    <section class="editorial-section" id="engineering">
-      <div class="container">
-        
-        <div class="section-lead-header">
-          <span class="section-pretitle">פרק ו׳: שקיפות הנדסית ואימות נתונים</span>
-          <h2 class="section-title">תוצאות בדיקות אמת במאגר הקוד</h2>
-          <p class="section-subtitle">
-            בלי מילים שיווקיות ריקות — כל הנתונים שלהלן אומתו במאגר הקוד של TypesetOK ב-Rust.
-          </p>
-        </div>
-
-        <div class="benchmarks-table-wrapper">
-          <table class="benchmarks-table">
-            <thead>
-              <tr>
-                <th scope="col">מדד הנדסי / בדיקה</th>
-                <th scope="col">יעד ארכיטקטוני</th>
-                <th scope="col">תוצאה בפועל (Verified)</th>
-                <th scope="col">סטטוס</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>בדיקות יחידה ב-Workspace</strong></td>
-                <td>100% מעבר בכל 7 ה-Crates</td>
-                <td><strong>58 / 58 בדיקות עוברות בהצלחה</strong></td>
-                <td><span class="status-badge-pass">✓ PASSED</span></td>
-              </tr>
-              <tr>
-                <td><strong>בדיקות איכות קוד (Clippy)</strong></td>
-                <td>0 אזהרות עם הדגל <code>-D warnings</code></td>
-                <td><strong>0 אזהרות (Clean Build)</strong></td>
-                <td><span class="status-badge-pass">✓ PASSED</span></td>
-              </tr>
-              <tr>
-                <td><strong>פורמט אחיד (rustfmt)</strong></td>
-                <td>עמידה מלאה ב-<code>cargo fmt --check</code></td>
-                <td><strong>100% תאימות לכללי העיצוב</strong></td>
-                <td><span class="status-badge-pass">✓ PASSED</span></td>
-              </tr>
-              <tr>
-                <td><strong>דטרמיניזם ביט-אחר-ביט</strong></td>
-                <td>SHA-256 זהה לחלוטין בריצות עוקבות</td>
-                <td><strong>Pass 1 SHA == Pass 2 SHA (100%)</strong></td>
-                <td><span class="status-badge-pass">✓ PASSED</span></td>
-              </tr>
-              <tr>
-                <td><strong>מבחן עומס מסמך (Stress Test)</strong></td>
-                <td>1,000 עמודים מנוקדים ברציפות</td>
-                <td><strong>4,000 פסקאות / 6,400 שורות בליבת ה-Rust</strong></td>
-                <td><span class="status-badge-pass">✓ PASSED</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Developer Spotlight Section (Amlaach) -->
-        <div class="developer-card reveal-on-scroll">
-          <div class="dev-avatar">
-            <span>A</span>
-          </div>
-          <div>
-            <span class="section-pretitle" data-i18n="dev_pretitle">פרק ד׳: אודות הפרויקט והמפתח</span>
-            <h3 style="font-size: 20px; font-weight: 800; color: var(--color-ink-primary); margin-bottom: 8px;" data-i18n="dev_title">
-              חזון הקוד הפתוח של Amlaach
-            </h3>
-            <p style="font-size: 14px; color: var(--color-ink-secondary); line-height: 1.6;" data-i18n="dev_desc">
-              פרויקט TypesetOK הוקם מתוך צורך אמיתי של עולם הדפוס העברי והספרות התורנית בכלי עימוד מודרני, אמין, מהיר וחופשי ממנעולים מסחריים מיושנים. הפרויקט מנוהל ומפותח על ידי Amlaach.
-            </p>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="dev_btn_portfolio">
-              אתר המפתח (Amlaach) ↗
-            </a>
-            <a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="dev_btn_github">
-              מאגר ב-GitHub
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         SECTION 8: CTA & UPDATES
-         ==================================================================== -->
-    <section class="editorial-section" id="trust" style="border-bottom: none;">
-      <div class="container">
-        
-        <div class="cta-banner-card paper-sheet-crops">
-          <h2 class="cta-banner-title">הצטרפו לפיתוח עתיד העימוד העברי</h2>
-          <p class="cta-banner-desc">
-            עקבו אחר הפיתוח ב-GitHub, עיינו במפרט הארכיטקטורה המלא, או הירשמו לעדכוני גרסאות ומחקר.
-          </p>
-
-          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;">
-            <a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
-              <span>פרויקט TypesetOK ב-GitHub</span>
-            </a>
-
-            <button type="button" class="btn btn-secondary btn-lg" data-open-modal="architecture">
-              <span>קרא מפרט טכני</span>
-            </button>
-
-            <a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg" style="color: #FFF; border-color: rgba(255,255,255,0.4);">
-              <span>אתר המפתח ↗</span>
-            </a>
-          </div>
-
-          <!-- Updates Subscribe -->
-          <div style="max-width: 440px; margin: 0 auto;">
-            <form id="newsletterForm" style="display: flex; gap: 8px;">
-              <input type="email" id="newsletterEmail" placeholder="כתובת דוא״ל לעדכוני מחקר וקוד..." required
-                style="flex: 1; padding: 10px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #FFF; font-size: 13px;">
-              <button type="submit" class="btn btn-primary" style="background: var(--color-brand-blue); border: none; font-size: 13px;">
-                הרשם לעדכונים
-              </button>
-            </form>
-            <div id="newsletterMsg" style="display: none; color: #4ADE80; font-size: 12px; margin-top: 8px; font-family: var(--font-mono);"></div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Site Footer -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      
-      <div class="footer-grid">
-        
-        <div>
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <img src="assets/images/logo.jpg" alt="TypesetOK Logo" width="36" height="36" style="border-radius: 4px;">
-            <span style="font-family: var(--font-serif); font-size: 18px; font-weight: 800; color: var(--color-ink-primary);">TypesetOK (TOK)</span>
-          </div>
-          <p style="font-size: 13px; color: var(--color-ink-muted); line-height: 1.6; max-width: 320px;">
-            מערכת עימוד ופרסום שולחני בקוד פתוח. מחקר ופיתוח מודרני עבור טיפוגרפיה עברית מתקדמת, ספרי קודש ומסמכי ענק.
-          </p>
-          <div style="margin-top: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--color-ink-muted);">
-            License: TOK-NCCL v1.0 • Founded by <a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer" style="color: var(--color-brand-blue-hover);">Amlaach</a>
-          </div>
-        </div>
-
-        <div>
-          <h5 style="font-family: var(--font-mono); font-size: 12px; color: var(--color-ink-primary); margin-bottom: 12px; text-transform: uppercase;">ניווט</h5>
-          <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
-            <li><a href="#hero">דף הבית</a></li>
-            <li><a href="#storytelling">ארכיטקטורה</a></li>
-            <li><a href="#comparison">השוואת עימוד</a></li>
-            <li><a href="#playground">סדנת עימוד</a></li>
-            <li><a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent-gold);">אתר המפתח ↗</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5 style="font-family: var(--font-mono); font-size: 12px; color: var(--color-ink-primary); margin-bottom: 12px; text-transform: uppercase;">תקנים</h5>
-          <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
-            <li><a href="#engineering">תקן ת"י 6100 (SI 6100)</a></li>
-            <li><a href="#engineering">תקן ISO 15930 (PDF/X-1a)</a></li>
-            <li><a href="#engineering">אלגוריתם Knuth-Plass</a></li>
-            <li><button type="button" data-open-modal="architecture" style="color: var(--color-brand-blue-hover); font-size: 13px; padding: 0;">דו"ח ארכיטקטורה</button></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5 style="font-family: var(--font-mono); font-size: 12px; color: var(--color-ink-primary); margin-bottom: 12px; text-transform: uppercase;">קהילה וקוד</h5>
-          <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
-            <li><a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
-            <li><a href="https://github.com/TypesetOK/typesetok/issues" target="_blank" rel="noopener noreferrer">Issues &amp; Research</a></li>
-            <li><a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer">Amlaach Portfolio</a></li>
-            <li><button type="button" data-open-modal="source" style="color: var(--color-brand-blue-hover); font-size: 13px; padding: 0;">הוראות הרצה מקוד מקור</button></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        <div>
-          © 2026 TypesetOK (TOK) Project &amp; <a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer" style="color: inherit;">Amlaach</a>. All rights reserved under TOK-NCCL v1.0.
-        </div>
-        <div style="font-family: var(--font-mono); font-size: 11px;">
-          <span>WCAG 2.2 AA</span> • <span>Default Dark Mode</span>
-        </div>
-      </div>
-
-    </div>
-  </footer>
-
-  <!-- ====================================================================
-       ACCESSIBILITY FLOATING BUTTON & DRAWER (WCAG 2.2)
-       ==================================================================== -->
-  <button type="button" class="a11y-trigger-btn" id="a11yTriggerBtn" aria-label="פתח תפריט נגישות" title="תפריט נגישות (Accessibility Menu)" aria-expanded="false" aria-controls="a11yDrawer">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <circle cx="12" cy="4" r="2"/>
-      <path d="M19 13v-2c-1.54.02-3.09-.75-4.07-1.83l-1.29-1.43c-.17-.19-.38-.34-.61-.45-.01 0-.01 0-.02-.01H13c-.35-.2-.75-.3-1.19-.26-.6.06-1.13.41-1.41.94l-2.03 3.86c-.2.38-.17.84.09 1.18.25.35.68.53 1.11.47l2.84-.42v6.52c0 .55.45 1 1 1s1-.45 1-1V14.5l1.62.81c.64.32 1.34.49 2.05.49.65 0 1.31-.15 1.92-.47z"/>
-    </svg>
-  </button>
-
-  <div class="a11y-drawer" id="a11yDrawer" role="dialog" aria-modal="true" aria-labelledby="a11yDrawerTitle" tabindex="-1">
-    <div class="a11y-header">
-      <div class="a11y-title" id="a11yDrawerTitle">
-        <span>♿</span>
-        <span data-i18n="a11y_panel_title">תפריט נגישות מורחב</span>
-      </div>
-      <button type="button" class="a11y-close-btn" id="a11yCloseBtn" aria-label="סגור תפריט נגישות">✕</button>
-    </div>
-
-    <div class="a11y-grid">
-      <button type="button" class="a11y-btn" id="btnA11yFontInc" data-i18n="a11y_font_inc">
-        <strong>A+</strong>
-        <span>הגדל גופן</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11yFontDec" data-i18n="a11y_font_dec">
-        <strong>A-</strong>
-        <span>הקטן גופן</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11yContrast" data-i18n="a11y_contrast">
-        <strong>◐</strong>
-        <span>ניגודיות גבוהה</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11yTheme" data-i18n="a11y_theme">
-        <strong>☼ / ☽</strong>
-        <span>מצב יום / לילה</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11yReadableFont" data-i18n="a11y_readable_font">
-        <strong>Aa</strong>
-        <span>גופן קריא פשוט</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11yLinks" data-i18n="a11y_links">
-        <strong>🔗</strong>
-        <span>הדגשת קישורים</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11yHeadings" data-i18n="a11y_headings">
-        <strong>H1</strong>
-        <span>הדגשת כותרות</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11yCursor" data-i18n="a11y_big_cursor">
-        <strong>↖</strong>
-        <span>סמן עכבר מוגדל</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11yMotion" data-i18n="a11y_motion">
-        <strong>⏸</strong>
-        <span>עצירת תנועה</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11ySpacing" data-i18n="a11y_spacing">
-        <strong>≡</strong>
-        <span>ריווח שורות רחב</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11yLetters" data-i18n="a11y_letters">
-        <strong>↔</strong>
-        <span>ריווח אותיות</span>
-      </button>
-
-      <button type="button" class="a11y-btn" id="btnA11yMonochrome" data-i18n="a11y_monochrome">
-        <strong>⚪</strong>
-        <span>גווני אפור</span>
-      </button>
-
-      <button type="button" class="a11y-btn a11y-reset-btn" id="a11yResetBtn" data-i18n="a11y_reset">
-        איפוס כל הגדרות הנגישות ↺
-      </button>
-    </div>
+<body id="top">
+<a href="#main-content" class="skip-link">דלג לתוכן המרכזי</a>
+<div class="progress" id="bar" role="progressbar" aria-label="התקדמות קריאה" aria-valuemin="0" aria-valuemax="100"></div>
+<header role="banner">
+ <div class="wrap nav">
+  <a class="brand" href="#top" aria-label="TypesetOK, לראש הדף">
+   <img src="assets/images/logo.jpg" alt="TypesetOK Logo" class="brand-logo-img" width="40" height="40">
+   <span>TypesetOK</span>
+  </a>
+  <nav aria-label="ניווט ראשי"><ul>
+   <li><a href="#why">למה TOK</a></li><li><a href="#features">יכולות</a></li><li><a href="#how">איך עובדים</a></li><li><a href="#shots">מהתוכנה</a></li><li><a href="#status">סטטוס</a></li><li><a class="dev" href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer">אתר המפתח ↗</a></li>
+  </ul></nav>
+  <div class="tools"><button type="button" class="ib" id="themeBtn" aria-label="מעבר בין מצב יום ללילה">☽</button><a class="btn p" href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer">הורדה ועדכונים</a><button type="button" class="ib menu-btn" id="menuBtn" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="mnav">☰</button></div>
+ </div>
+ <div class="mnav" id="mnav" role="region" aria-label="תפריט נייד"><a href="#why">למה TOK</a><a href="#features">יכולות</a><a href="#how">איך עובדים</a><a href="#shots">מהתוכנה</a><a href="#status">סטטוס</a><a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer">אתר המפתח (Amlaach) ↗</a><a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+</header>
+
+<main id="main-content" role="main">
+<section class="hero">
+ <div class="wrap">
+  <div>
+   <div class="badge"><i></i>בפיתוח פעיל · קוד פתוח וחינמי</div>
+   <h1>עימוד עברי <em>כמו שמעמד רוצה</em> שיעבוד.</h1>
+   <p class="lead">TypesetOK היא תוכנת עימוד שנבנתה בשביל מי שמעמד ספרים בפועל: ניקוד וטעמים שלא מתפרקים, גמרא עם רש״י ותוספות שיושבים נכון על הדף, וקובץ סופי שמגיע לדפוס בלי הפתעות.</p>
+   <div class="cta">
+    <a class="btn p" href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer">עקבו אחרי הפיתוח ←</a>
+    <a class="btn g" href="#features">מה התוכנה יודעת לעשות</a>
+    <a class="btn g" href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer">אתר המפתח (Amlaach) ↗</a>
+   </div>
   </div>
-
-  <!-- ====================================================================
-       MODALS: ARCHITECTURE & SOURCE CODE GUIDE
-       ==================================================================== -->
-  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
-
-  <!-- Source Code Guide Modal -->
-  <div class="modal-dialog" id="sourceModal" role="dialog" aria-modal="true" aria-labelledby="sourceModalTitle" aria-hidden="true">
-    <div class="modal-header">
-      <h3 class="modal-title" id="sourceModalTitle">הרצת בדיקות מקוד המקור (Rust Engine)</h3>
-      <button type="button" class="modal-close-btn" aria-label="Close">✕</button>
-    </div>
-    <div style="font-size: 14px; line-height: 1.6; color: var(--color-ink-primary);">
-      <p style="margin-bottom: 14px;">
-        פרויקט <strong>TypesetOK</strong> נמצא בשלב פיתוח הליבה (Core Engine). מפתחים וחוקרים מוזמנים לשבט את המאגר ולהריץ את חבילת הבדיקות הרשמית:
-      </p>
-
-      <div style="background: #080B10; color: #E2E8F0; padding: 16px; border-radius: 6px; font-family: var(--font-mono); font-size: 12px; margin-bottom: 16px; direction: ltr; text-align: left; border: 1px solid #1E2638;">
-        <span style="color: #718096;"># 1. Clone repository</span><br>
-        git clone https://github.com/TypesetOK/typesetok.git<br>
-        cd typesetok<br><br>
-        <span style="color: #718096;"># 2. Build Rust workspace crates</span><br>
-        cargo build --workspace<br><br>
-        <span style="color: #718096;"># 3. Run all 58 core unit tests</span><br>
-        cargo test --workspace<br><br>
-        <span style="color: #718096;"># 4. Verify formatting &amp; clippy</span><br>
-        cargo fmt --check<br>
-        cargo clippy --workspace --all-targets -- -D warnings
-      </div>
-
-      <div style="background: var(--color-bg-subtle); padding: 12px; border-radius: 6px; border: 1px solid var(--color-border-subtle); font-size: 13px;">
-        <strong>דרישות סביבה:</strong> Rust 1.85+ עם כלי הניהול הרשמי Cargo.
-      </div>
-    </div>
+  <div class="page rv" id="pg" aria-hidden="true">
+   <div class="hd"><span>מסכת ברכות</span><span>דף ב ע״א</span></div>
+   <div class="talmud">
+    <div><b>רש״י</b>מאימתי. מאיזה זמן קורין את שמע בערבין. משעה שהכהנים נכנסים לאכול בתרומתן, דהיינו מצאת הכוכבים. תנא מהיכא קא סליק, דקתני מאימתי ולא קתני אימת קורין.</div>
+    <div class="m"><b>גמרא</b>מאימתי קורין את שמע בערבין. משעה שהכהנים נכנסין לאכול בתרומתן, עד סוף האשמורה הראשונה, דברי רבי אליעזר. וחכמים אומרים עד חצות.</div>
+    <div><b>תוספות</b>מאימתי קורין. לא פירש תנא דידן היכן רמיזא קריאת שמע, אלא סמך אקרא דכתיב בשכבך ובקומך. ותימה, אמאי תני ערבית ברישא.</div>
+   </div>
   </div>
+ </div>
+</section>
 
-  <!-- Architecture Specification Modal -->
-  <div class="modal-dialog" id="archModal" role="dialog" aria-modal="true" aria-labelledby="archModalTitle" aria-hidden="true">
-    <div class="modal-header">
-      <h3 class="modal-title" id="archModalTitle">דו״ח ארכיטקטורה הנדסי: TypesetOK (TOK)</h3>
-      <button type="button" class="modal-close-btn" aria-label="Close">✕</button>
-    </div>
-    <div style="font-size: 14px; line-height: 1.6; color: var(--color-ink-primary); max-height: 60vh; overflow-y: auto; padding-left: 8px;">
-      <h4 style="color: var(--color-brand-blue-hover); margin-bottom: 6px;">עקרונות היסוד הארכיטקטוניים</h4>
-      <p style="margin-bottom: 12px;">
-        1. <strong>עצמאות מוחלטת של מודל המסמך (TDM):</strong> מודל המסמך מנותק לחלוטין מ-DOM, מתגיות HTML ומחוקי CSS של הדפדפן. כל המבנים הסמנטיים כתובים ב-Rust טהור.
-      </p>
-      <p style="margin-bottom: 12px;">
-        2. <strong>עקרון ה-Pre-Pagination:</strong> מנוע ה-UI אינו מורשה לנחש שבירות עמודים או חלוקת טורים. ליבת ה-Rust מבצעת את כל חישובי Knuth-Plass ומעבירה דפים שכבר עברו חלוקה מראש.
-      </p>
-      <p style="margin-bottom: 12px;">
-        3. <strong>צינור PDF דואלי:</strong> שכבת תצוגה מבוקרת ומהירה למסך לצד צינור קדם-דפוס נייטיב עצמאי לחלוטין ב-Rust המפיק PDF/X-1a תקני עם 100% K Black ו-BleedBox של 3 מ"מ.
-      </p>
-      <p style="margin-bottom: 12px;">
-        4. <strong>שכבת סמן וירטואלי:</strong> עקיפת כשלי <code>contenteditable</code> המובנים בדפדפנים בעזרת שכבת Canvas שקופה וסמן וירטואלי.
-      </p>
-      <p style="margin-bottom: 16px;">
-        5. <strong>תמיכה מובנית במסמכי ענק:</strong> אלגוריתם עימוד אינקרמנטלי מבוסס התכנסות (Convergence Pagination) ווירטואליזציה מלאה של 3 עמודים פעילים בלבד.
-      </p>
-
-      <div style="background: var(--color-brand-blue-light); border: 1px solid rgba(37, 99, 235, 0.3); padding: 12px; border-radius: 6px; font-size: 13px;">
-        <strong>השוואה למערכות קיימות:</strong><br>
-        InDesign (טלאי RTL כבד ואיטי) | Affinity Publisher (0% תמיכה בעברית) | תג (תוכנת מונולית ישנה משנות ה-90) | Typst (קוד/Markup בלבד ללא עריכה שולחנית חזותית).
-      </div>
-    </div>
+<section class="pain" id="why">
+ <div class="wrap">
+  <span class="eyebrow rv">הבעיה</span>
+  <h2 class="rv">רוב התוכנות לא נבנו בשבילכם.</h2>
+  <p class="lead rv">מי שעימד ספר עם ניקוד, הערות שוליים ומפרשים מכיר את זה: שעות של תיקונים ידניים כדי שהדף ייראה כמו שצריך.</p>
+  <div class="cols">
+   <div class="box rv"><h3>היום, בתוכנות כלליות</h3><ul>
+    <li>הניקוד והטעמים זזים או נעלמים בעריכה</li>
+    <li>שורות רפויות ורווחים מכוערים באמצע הפסקה</li>
+    <li>עמוד גמרא דורש תעתועים ותיקונים ידניים בכל דף</li>
+    <li>ספר גדול הופך את התוכנה לאיטית ולא יציבה</li>
+    <li>מספרים כמו 15 ו־16 צריך לתקן ידנית כדי שלא ייצא שם קודש</li></ul></div>
+   <div class="box yes rv" style="--d:.12s"><h3>עם TypesetOK</h3><ul>
+    <li>ניקוד וטעמים נשמרים בסדר הנכון, תמיד</li>
+    <li>שבירת שורות חכמה ואותיות מתרחבות לדף מיושר ויפה</li>
+    <li>גמרא, רש״י ותוספות מסתדרים יחד על הדף</li>
+    <li>ספרים של אלפי עמודים בלי תקיעות</li>
+    <li>מספרים מומרים אוטומטית לאותיות: ט״ו, ט״ז, ע״ר</li></ul></div>
   </div>
+ </div>
+</section>
 
-  <!-- JavaScript Modules -->
-  <script src="assets/js/i18n.js" defer></script>
-  <script src="assets/js/a11y.js" defer></script>
-  <script src="assets/js/playground.js" defer></script>
-  <script src="assets/js/before-after.js" defer></script>
-  <script src="assets/js/workbench.js" defer></script>
-  <script src="assets/js/main.js" defer></script>
+<section id="features">
+ <div class="wrap">
+  <span class="eyebrow rv">יכולות</span>
+  <h2 class="rv">כל מה שדרוש לספר מוכן לדפוס.</h2>
+  
+  <div class="grid">
+   <article class="card rv"><div class="ic">אָ</div><h3>ניקוד וטעמים נקיים</h3><p>הסדר הפנימי של האותיות והניקוד נאכף לפי התקן הישראלי (ת״י 6100), כך שהטקסט נראה נכון ונשאר ניתן לחיפוש והעתקה.</p></article>
+   <article class="card rv" style="--d:.08s"><div class="ic">▤</div><h3>גמרא ומפרשים</h3><p>עמוד עם כמה טורי טקסט שמשפיעים זה על זה. התוכנה מסנכרנת ביניהם כדי שלא תצטרכו לעשות זאת ידנית.</p></article>
+   <article class="card rv" style="--d:.16s"><div class="ic">≡</div><h3>שורות מיושרות ויפות</h3><p>בלי חורים לבנים באמצע השורה. התוכנה מתחשבת בכל הפסקה ומשתמשת באותיות מתרחבות (אהלתר״ם) בדיוק איפה שצריך.</p></article>
+   <article class="card rv"><div class="ic">⎙</div><h3>יצוא ישיר לדפוס</h3><p>קובץ PDF בתקן דפוס מקצועי: שחור מלא, סימני חיתוך וגלישה של 3 מ״מ, כדי שבית הדפוס לא יחזיר אתכם לתיקונים.</p></article>
+   <article class="card rv" style="--d:.08s"><div class="ic">∞</div><h3>ספרים ענקיים בלי לקפוא</h3><p>התוכנה נשארת מהירה גם במסמכים של אלפי עמודים, כי היא מציגה רק את העמודים שאתם רואים עכשיו.</p></article>
+   <article class="card rv" style="--d:.16s"><div class="ic">✓</div><h3>שמירה אוטומטית</h3><p>העבודה נשמרת ברקע ברציפות. קפיצת חשמל או קריסה לא אמורות לאבד לכם ימי עבודה.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="pain" id="how">
+ <div class="wrap">
+  <span class="eyebrow rv">איך עובדים</span>
+  <h2 class="rv">מהטקסט הגולמי לדף מוכן, בשלושה שלבים.</h2>
+  <div class="steps">
+   <div class="step rv"><h3>מכניסים את הטקסט</h3><p>מדביקים או מייבאים את החומר. המספרים, הגרשיים והניקוד מסודרים אוטומטית לפי התקן.</p></div>
+   <div class="step rv" style="--d:.1s"><h3>בוחרים פריסה</h3><p>גודל דף, טורים, גופנים ושוליים. רואים את הדף מתעדכן בזמן אמת.</p></div>
+   <div class="step rv" style="--d:.2s"><h3>מייצאים לדפוס</h3><p>לוחצים על ייצוא וזהו: קובץ מוכן לשליחה לבית הדפוס.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="shots" id="shots">
+ <div class="wrap">
+  <span class="eyebrow rv">מהתוכנה</span>
+  <h2 class="rv">ככה זה נראה בפועל.</h2>
+  <div class="shotgrid">
+   <figure class="shot rv"><img src="assets/images/shot-main.png" alt="סביבת העבודה של TypesetOK" loading="lazy"><figcaption>סביבת העבודה</figcaption></figure>
+   <figure class="shot rv"><img src="assets/images/shot-talmud.png" alt="עמוד גמרא עם מפרשים ב-TypesetOK" loading="lazy"><figcaption>עמוד גמרא עם מפרשים</figcaption></figure>
+   <figure class="shot rv" style="--d:.1s"><img src="assets/images/shot-export.png" alt="ייצוא לדפוס ב-TypesetOK" loading="lazy"><figcaption>ייצוא לדפוס</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<section id="status">
+ <div class="wrap">
+  <span class="eyebrow rv">סטטוס</span>
+  <h2 class="rv">איפה אנחנו היום.</h2>
+  <p class="lead rv">TypesetOK עדיין בפיתוח, וזה המצב כרגע.</p>
+  <div class="status">
+   <div class="st rv"><small>✓ קיים</small><h3>ליבת העימוד</h3><p>המנוע שמסדר את הטקסט והדפים עובד ונבדק.</p></div>
+   <div class="st now rv" style="--d:.1s"><small>● בעבודה עכשיו</small><h3>הממשק למשתמש</h3><p>סביבת עבודה נוחה, שבנויה סביב הצרכים של מעמדים.</p></div>
+   <div class="st rv" style="--d:.2s"><small>○ בהמשך</small><h3>גרסה ראשונה להורדה</h3><p>נעדכן באתר ובגיטהאב כשהיא תהיה מוכנה.</p></div>
+  </div>
+ </div>
+</section>
+
+<div class="final rv">
+ <h2>רוצים להיות בין הראשונים?</h2>
+ <p class="lead">עקבו אחרי הפרויקט בגיטהאב, כתבו לנו מה חסר לכם בעבודה, ועזרו לבנות את תוכנת העימוד שחיכיתם לה.</p>
+ <div class="cta">
+  <a class="btn p" href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer">לפרויקט בגיטהאב</a>
+  <a class="btn g" href="https://github.com/TypesetOK/typesetok/issues" target="_blank" rel="noopener noreferrer">שלחו לנו הצעה</a>
+  <a class="btn g" href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer">אתר המפתח ↗</a>
+ </div>
+</div>
+</main>
+
+<footer role="contentinfo">
+ <div class="wrap">
+  <div class="brand">
+   <img src="assets/images/logo.jpg" alt="TypesetOK Logo" width="36" height="36" style="border-radius: 4px;">
+   <span>TypesetOK</span>
+  </div>
+  <div>פרויקט קוד פתוח מבית <a href="https://amlaach.github.io/personal-site/" target="_blank" rel="noopener noreferrer">Amlaach</a> · <a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+ </div>
+</footer>
+
+<button type="button" class="a11y-fab" id="a11yBtn" aria-label="פתח תפריט נגישות" aria-expanded="false" aria-controls="a11yPanel"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M5 8h14v2h-5v4l2 7h-2l-2-6-2 6H8l2-7v-4H5z"/></svg></button>
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-modal="false" aria-labelledby="a11yT" tabindex="-1">
+ <header><span id="a11yT">תפריט נגישות</span><button type="button" class="ib" id="a11yClose" aria-label="סגור תפריט נגישות">✕</button></header>
+ <div class="ag"><button type="button" class="ab" data-a="fs+" aria-pressed="false"><strong>A+</strong><span>הגדל גופן</span></button><button type="button" class="ab" data-a="fs-" aria-pressed="false"><strong>A-</strong><span>הקטן גופן</span></button><button type="button" class="ab" data-a="contrast" aria-pressed="false"><strong>◐</strong><span>ניגודיות גבוהה</span></button><button type="button" class="ab" data-a="plain" aria-pressed="false"><strong>Aa</strong><span>גופן קריא פשוט</span></button><button type="button" class="ab" data-a="links" aria-pressed="false"><strong>🔗</strong><span>הדגשת קישורים</span></button><button type="button" class="ab" data-a="heads" aria-pressed="false"><strong>H1</strong><span>הדגשת כותרות</span></button><button type="button" class="ab" data-a="cursor" aria-pressed="false"><strong>↖</strong><span>סמן עכבר מוגדל</span></button><button type="button" class="ab" data-a="still" aria-pressed="false"><strong>⏸</strong><span>עצירת תנועה</span></button><button type="button" class="ab" data-a="space" aria-pressed="false"><strong>≡</strong><span>ריווח שורות רחב</span></button><button type="button" class="ab" data-a="letters" aria-pressed="false"><strong>↔</strong><span>ריווח אותיות</span></button><button type="button" class="ab" data-a="gray" aria-pressed="false"><strong>⚪</strong><span>גווני אפור</span></button><button type="button" class="ab wide" id="a11yReset">איפוס כל הגדרות הנגישות ↺</button></div>
+</div>
+<script>
+(function(){
+ var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});
+ document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+ var bar=document.getElementById('bar'),pg=document.getElementById('pg'),links=[].slice.call(document.querySelectorAll('nav a[href^="#"]'));
+ var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ function on(){
+  var h=document.documentElement,s=h.scrollTop;
+  var p=s/(h.scrollHeight-h.clientHeight)*100;bar.style.width=p+'%';bar.setAttribute('aria-valuenow',Math.round(p));
+  var cur=-1;secs.forEach(function(el,i){if(el&&el.getBoundingClientRect().top<160)cur=i});
+  links.forEach(function(a,i){a.classList.toggle('on',i===cur);if(i===cur)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+  if(!reduce&&pg&&pg.classList.contains('in'))pg.style.transform='rotate('+(-2.5+Math.min(s,600)/240)+'deg) translateY('+(-Math.min(s,600)*.06)+'px)';
+ }
+
+ var H=document.documentElement,st={fs:0,t:'',f:{}},K='tok-a11y';
+ var cls={contrast:'',links:'x-links',heads:'x-heads',cursor:'x-cursor',still:'x-still',space:'x-space',letters:'x-letters',gray:'x-gray',plain:'x-plain'};
+ try{st=JSON.parse(localStorage.getItem(K))||st}catch(e){}
+ if(!st.f)st.f={};
+ function apply(){
+  H.style.fontSize=(100+st.fs*10)+'%';
+  if(st.t)H.setAttribute('data-theme',st.t);else H.removeAttribute('data-theme');
+  var dark=st.t==='dark';
+  document.getElementById('themeBtn').textContent=dark?'☼':'☽';
+  Object.keys(cls).forEach(function(k){
+   var on=!!st.f[k];
+   if(k==='contrast')H.toggleAttribute('data-contrast',on);else H.classList.toggle(cls[k],on);
+   var b=document.querySelector('[data-a="'+k+'"]');if(b)b.setAttribute('aria-pressed',on)
+  });
+  try{localStorage.setItem(K,JSON.stringify(st))}catch(e){}
+ }
+ function toggleTheme(){st.t=st.t==='dark'?'':'dark';apply()}
+ document.getElementById('themeBtn').addEventListener('click',toggleTheme);
+ document.querySelectorAll('[data-a]').forEach(function(b){b.addEventListener('click',function(){
+  var k=b.getAttribute('data-a');
+  if(k==='fs+')st.fs=Math.min(4,st.fs+1);else if(k==='fs-')st.fs=Math.max(-2,st.fs-1);else st.f[k]=!st.f[k];
+  apply()})});
+ document.getElementById('a11yReset').addEventListener('click',function(){st={fs:0,t:'',f:{}};apply()});
+ var fab=document.getElementById('a11yBtn'),pn=document.getElementById('a11yPanel');
+ function pane(o){pn.classList.toggle('open',o);fab.setAttribute('aria-expanded',o);if(o)pn.focus();else fab.focus()}
+ fab.addEventListener('click',function(){pane(!pn.classList.contains('open'))});
+ document.getElementById('a11yClose').addEventListener('click',function(){pane(false)});
+ addEventListener('keydown',function(e){if(e.key==='Escape'&&pn.classList.contains('open'))pane(false)});
+ var mb=document.getElementById('menuBtn'),mn=document.getElementById('mnav');
+ mb.addEventListener('click',function(){var o=mn.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+ mn.addEventListener('click',function(e){if(e.target.tagName==='A'){mn.classList.remove('open');mb.setAttribute('aria-expanded','false')}});
+ apply();
+ addEventListener('scroll',on,{passive:true});on();
+})();
+</script>
 </body>
 </html>
