@@ -107,6 +107,9 @@ def main():
                     has_errors = True
 
         for href in hrefs:
+            # Site-absolute paths (e.g. 404.html's <base href="/website/">) are server URLs, not repo files.
+            if href.startswith("/") and not href.startswith("//"):
+                continue
             if not href.startswith("http") and not href.startswith("#") and not href.startswith("//") and not href.startswith("mailto:"):
                 clean_href = href.split("?")[0].split("#")[0]
                 if clean_href == "./" or clean_href == "":
