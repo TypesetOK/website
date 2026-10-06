@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://typesetok.org/sitemap.xml
+Sitemap: https://typesetok.github.io/website/sitemap.xml

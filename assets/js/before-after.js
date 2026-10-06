@@ -19,28 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isRtl = document.documentElement.dir !== 'ltr';
 
-    if (smooth) {
-      afterLayer.style.transition = 'width 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-      handle.style.transition = 'left 0.3s, right 0.3s';
-    } else {
-      afterLayer.style.transition = 'none';
-      handle.style.transition = 'none';
-    }
+    const ease = '0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+    afterLayer.style.transition = smooth ? `clip-path ${ease}` : 'none';
+    handle.style.transition = smooth ? `left ${ease}, right ${ease}` : 'none';
 
+    // The "after" layer keeps its full-width layout; only the visible part changes,
+    // revealed from the reading-start edge (right in RTL, left in LTR).
+    const hidden = 100 - percentage;
     if (isRtl) {
-      afterLayer.style.width = `${percentage}%`;
-      afterLayer.style.right = '0';
-      afterLayer.style.left = 'auto';
-      afterLayer.style.borderLeft = '2px solid var(--color-brand-blue)';
-      afterLayer.style.borderRight = 'none';
+      afterLayer.style.clipPath = `inset(0 0 0 ${hidden}%)`;
       handle.style.right = `${percentage}%`;
       handle.style.left = 'auto';
     } else {
-      afterLayer.style.width = `${percentage}%`;
-      afterLayer.style.left = '0';
-      afterLayer.style.right = 'auto';
-      afterLayer.style.borderRight = '2px solid var(--color-brand-blue)';
-      afterLayer.style.borderLeft = 'none';
+      afterLayer.style.clipPath = `inset(0 ${hidden}% 0 0)`;
       handle.style.left = `${percentage}%`;
       handle.style.right = 'auto';
     }
@@ -145,4 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial position
   setSliderPosition(50);
+
+  // Switching language flips the page direction: re-anchor the reveal to the new start edge.
+  new MutationObserver(() => setSliderPosition(currentPercentage))
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['dir'] });
 });

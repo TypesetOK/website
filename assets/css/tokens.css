@@ -49,7 +49,8 @@
   /* Typography Families */
   --font-serif: 'Frank Ruhl Libre', 'David Libre', 'David', 'Times New Roman', serif;
   --font-sans: 'Heebo', 'Assistant', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  /* JetBrains Mono has no Hebrew: Hebrew in "mono" labels falls through to Heebo, not Courier New. */
+  --font-mono: 'JetBrains Mono', 'Heebo', 'Fira Code', ui-monospace, monospace;
 
   /* Fluid Typographic Scale — Responsive clamp */
   --font-size-2xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.75rem);
