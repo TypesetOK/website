@@ -433,6 +433,13 @@ body::before {
   margin-bottom: var(--space-2);
 }
 
+/* Tracked monospace caps suit Latin labels; Hebrew has no case and reads badly letter-spaced. */
+[dir="rtl"] .section-pretitle {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
 .section-title {
   font-size: var(--font-size-3xl);
   font-weight: 800;
@@ -512,6 +519,11 @@ body::before {
     display: inline-flex;
   }
 
+  /* The drawer carries the GitHub link; the header keeps only the controls that fit. */
+  .header-actions > .btn-outline {
+    display: none;
+  }
+
   .editorial-section {
     padding-top: var(--space-12);
     padding-bottom: var(--space-12);
@@ -530,8 +542,20 @@ body::before {
     padding-right: var(--space-4);
   }
 
-  .site-header {
-    height: 60px;
+  :root {
+    --header-height: 60px;
+  }
+
+  .header-inner {
+    gap: var(--space-2);
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .lang-btn {
+    padding: 3px 6px;
   }
 
   .brand-logo-img {
@@ -552,7 +576,8 @@ body::before {
     padding-bottom: var(--space-10);
   }
 
-  .btn {
+  main .btn,
+  .mobile-nav-drawer .btn {
     width: 100%;
     justify-content: center;
   }

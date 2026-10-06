@@ -47,23 +47,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
   if (mobileToggle && mobileDrawer) {
-    mobileToggle.addEventListener('click', () => {
-      const isOpen = mobileDrawer.classList.toggle('open');
+    const setDrawerOpen = (isOpen) => {
+      mobileDrawer.classList.toggle('open', isOpen);
       mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      mobileToggle.setAttribute('aria-label', isOpen ? 'Close Menu' : 'Open Menu');
+      mobileToggle.setAttribute('aria-label', window.tokT ? window.tokT(isOpen ? 'menu_close' : 'menu_open') : (isOpen ? 'Close Menu' : 'Open Menu'));
+    };
+
+    mobileToggle.addEventListener('click', () => {
+      setDrawerOpen(!mobileDrawer.classList.contains('open'));
     });
 
     mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileDrawer.classList.remove('open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
-      });
+      link.addEventListener('click', () => setDrawerOpen(false));
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
-        mobileDrawer.classList.remove('open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
+        setDrawerOpen(false);
         mobileToggle.focus();
       }
     });
@@ -73,81 +73,98 @@ document.addEventListener('DOMContentLoaded', () => {
   const floatingDownload = document.getElementById('floatingDownloadWidget');
   const heroDownloadCard = document.getElementById('heroDownloadCard');
 
+  // Shown only once the hero download card has scrolled away above the viewport: on
+  // phones the card starts below the fold, and anchor jumps skip past it entirely, so a
+  // position check on scroll is used rather than an IntersectionObserver.
   if (floatingDownload) {
-    if (heroDownloadCard && 'IntersectionObserver' in window) {
-      const dlObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          // If hero download card is NOT intersecting (user scrolled past it), show floating button
-          floatingDownload.classList.toggle('active', !entry.isIntersecting);
-        });
-      }, { threshold: 0.1 });
-      dlObserver.observe(heroDownloadCard);
-    } else {
-      window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY > 350;
-        floatingDownload.classList.toggle('active', scrolled);
-      }, { passive: true });
-    }
+    let pending = false;
+    const update = () => {
+      pending = false;
+      const scrolledPast = heroDownloadCard
+        ? heroDownloadCard.getBoundingClientRect().bottom < 0
+        : window.scrollY > 350;
+      floatingDownload.classList.toggle('active', scrolledPast);
+    };
+    window.addEventListener('scroll', () => {
+      if (!pending) {
+        pending = true;
+        window.requestAnimationFrame(update);
+      }
+    }, { passive: true });
+    update();
   }
 
-  // 5. Dynamic GitHub Latest Release Assets Fetcher
-  async function fetchLatestReleaseAssets() {
+  // 5. Release links: the static hrefs point at the releases page; when the
+  // GitHub API answers they are upgraded to direct asset downloads.
+  const RELEASES_API = 'https://api.github.com/repos/TypesetOK/typesetok/releases?per_page=15';
+  const RELEASES_CACHE_KEY = 'tok_releases_v1';
+  const RELEASES_CACHE_MS = 30 * 60 * 1000;
+  const GITHUB_DOWNLOAD_PREFIX = 'https://github.com/TypesetOK/typesetok/releases/download/';
+
+  async function loadReleases() {
     try {
-      const res = await fetch('https://api.github.com/repos/TypesetOK/typesetok/releases/latest', {
-        headers: { 'Accept': 'application/vnd.github.v3+json' }
-      });
-      if (!res.ok) return;
-      const data = await res.json();
-      if (!data || !data.assets) return;
-
-      const tagName = data.tag_name || 'v0.6.0';
-      document.querySelectorAll('.release-version-tag').forEach(el => {
-        el.textContent = tagName;
-      });
-
-      // Find Windows desktop portable zip
-      const portableAsset = data.assets.find(a => 
-        a.name.toLowerCase().includes('windows') && 
-        a.name.toLowerCase().includes('desktop') && 
-        a.name.endsWith('.zip')
-      );
-      if (portableAsset && portableAsset.browser_download_url) {
-        document.querySelectorAll('.download-link-portable').forEach(a => {
-          a.href = portableAsset.browser_download_url;
-        });
-      }
-
-      // Find Windows CLI zip
-      const cliAsset = data.assets.find(a => 
-        a.name.toLowerCase().includes('cli') && 
-        a.name.toLowerCase().includes('windows') && 
-        a.name.endsWith('.zip')
-      );
-      if (cliAsset && cliAsset.browser_download_url) {
-        document.querySelectorAll('.download-link-cli').forEach(a => {
-          a.href = cliAsset.browser_download_url;
-        });
-      }
-
-      // Find Installer if available
-      const installerAsset = data.assets.find(a => 
-        a.name.toLowerCase().endsWith('.exe') || 
-        a.name.toLowerCase().endsWith('.msi')
-      );
-      if (installerAsset && installerAsset.browser_download_url) {
-        document.querySelectorAll('.download-link-installer').forEach(a => {
-          a.href = installerAsset.browser_download_url;
-        });
-      }
-    } catch (e) {
-      // Offline or rate-limited; fallback static links already in HTML
-    }
+      const cached = JSON.parse(sessionStorage.getItem(RELEASES_CACHE_KEY) || 'null');
+      if (cached && Date.now() - cached.at < RELEASES_CACHE_MS) return cached.releases;
+    } catch (e) { /* storage unavailable */ }
+    const res = await fetch(RELEASES_API, { headers: { 'Accept': 'application/vnd.github+json' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!Array.isArray(data)) return null;
+    const releases = data
+      .filter(r => r && !r.draft && !r.prerelease && Array.isArray(r.assets))
+      .map(r => ({
+        tag: String(r.tag_name || ''),
+        assets: r.assets.map(a => ({ name: String(a.name || '').toLowerCase(), url: String(a.browser_download_url || '') }))
+      }));
+    try {
+      sessionStorage.setItem(RELEASES_CACHE_KEY, JSON.stringify({ at: Date.now(), releases }));
+    } catch (e) { /* storage unavailable */ }
+    return releases;
   }
 
-  fetchLatestReleaseAssets();
+  // Only trust URLs that point at this project's own release downloads.
+  function findAsset(releases, test) {
+    for (const r of releases) {
+      const asset = r.assets.find(a => test(a.name) && a.url.startsWith(GITHUB_DOWNLOAD_PREFIX));
+      if (asset) return asset.url;
+    }
+    return null;
+  }
 
-  // 5. Scroll Reveal Observer
+  function setHref(selector, url) {
+    if (!url) return;
+    document.querySelectorAll(selector).forEach(a => { a.href = url; });
+  }
+
+  async function applyLatestRelease() {
+    let releases;
+    try {
+      releases = await loadReleases();
+    } catch (e) {
+      return; // offline or rate-limited: the static links already work
+    }
+    if (!releases || !releases.length) return;
+
+    const latest = releases[0];
+    if (/^v?\d+(\.\d+)*$/.test(latest.tag)) {
+      document.querySelectorAll('.release-version-tag').forEach(el => { el.textContent = latest.tag; });
+      document.querySelectorAll('.floating-widget-title').forEach(el => { el.textContent = `TypesetOK ${latest.tag}`; });
+    }
+
+    const inLatest = [latest];
+    setHref('.download-link-portable', findAsset(inLatest, n => n.includes('windows') && n.includes('desktop') && n.endsWith('.zip')));
+    setHref('.download-link-installer', findAsset(inLatest, n => n.endsWith('setup.exe') || n.endsWith('.msi')));
+    setHref('.download-link-cli', findAsset(inLatest, n => n.includes('cli') && n.includes('windows') && n.endsWith('.zip')));
+    // Linux/macOS CLIs are not built for every release: use the newest one that has them.
+    setHref('.download-link-cli-linux', findAsset(releases, n => n.includes('cli') && n.includes('linux')));
+    setHref('.download-link-cli-macos', findAsset(releases, n => n.includes('cli') && n.includes('macos')));
+  }
+
+  applyLatestRelease();
+
+  // 5b. Scroll Reveal Observer (CSS hides .reveal-on-scroll only under .js-reveal)
   const reveals = document.querySelectorAll('.reveal-on-scroll');
+  document.documentElement.classList.add('js-reveal');
   if (reveals.length && 'IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -163,64 +180,17 @@ document.addEventListener('DOMContentLoaded', () => {
     reveals.forEach(el => el.classList.add('revealed'));
   }
 
-  // 6. Pipeline Progressive Disclosure Steps
-  const pipelineCards = document.querySelectorAll('.pipeline-step-card');
-  const pipeTitle = document.getElementById('pipeDetailTitle');
-  const pipeDesc = document.getElementById('pipeDetailDesc');
-  const pipeSpecs = document.getElementById('pipeDetailSpecs');
-
-  const pipelineData = {
-    1: {
-      title: 'שלב 1: ייבוא וקליטת מסמך גולמי (Document Ingestion)',
-      desc: 'קליטה סמנטית של קובצי טקסט נקי, Markdown, DOCX או ODF. המערכת מחלצת את התוכן בלבד ומנתקת אותו מעיצובי מורשת לקויים.',
-      specs: 'פורמטים נתמכים: UTF-8 Plain, Markdown AST, ODF/DOCX Importer | אכיפת יוניקוד מלאה'
-    },
-    2: {
-      title: 'שלב 2: יצירת מודל מסמך סמנטי (TDM AST & SI 6100)',
-      desc: 'בניית עץ בלתי-מוטבילי ב-Rust. כל פסקה, מקטע ועוגן מקבלים מזהה ייחודי ULID בן 128 סיביות ואינדוקס שברירי ב-$O(1)$. נרמול יוניקוד קפדני לפי תקן ישראלי ת"י 6100 לסדר דטרמיניסטי של אותיות, ניקוד וטעמים.',
-      specs: 'Crate: tok-core | ULID 128-bit | FractionalIndex O(1) | SI 6100 Hebrew Unicode Normalizer'
-    },
-    3: {
-      title: 'שלב 3: מנוע עימוד, שבירת שורות ופותר רב-תזרימי (Layout & Knuth-Plass)',
-      desc: 'מנוע Knuth-Plass ממזער את הפגמים (Demerits) לאורך הפסקה כולה למניעת שורות רפויות. שילוב יישור עברי תלת-שלבי (רווחי מילים, אותיות התפשטות אהלתר"ם, ומיקרו-טרקינג). פותר אילוצים למקראות גדולות וש"ס מסנכרן בין טקסט מרכזי למפרשים.',
-      specs: 'Crate: tok-typeset | Knuth-Plass Global Optimum | 3-Tier Justification | Multi-Flow Solver'
-    },
-    4: {
-      title: 'שלב 4: רינדור וירטואלי וקדם-דפוס נייטיב (Pre-Press & Virtualized Render)',
-      desc: 'צינור דואלי: מעטפת Electron מציגה 3 עמודים פעילים בלבד ב-120 FPS בעזרת שכבת Canvas שקופה וסמן וירטואלי (<16ms). במקביל, ליבת Rust מייצרת קובץ PDF/X-1a מוכן לדפוס.',
-      specs: 'Crates: tok-pdf, tok-viewer | ISO 15930-1 | 100% K DeviceCMYK | Fogra 39 BleedBox 3mm'
-    },
-    5: {
-      title: 'שלב 5: פלט מושלם לדפוס ודיגיטל (Final Print & Archival Package)',
-      desc: 'הפקת קובץ PDF/X עם צלבי רישום וסימני חיתוך וקטוריים, טבלאות /ToUnicode לטקסט מנוקד שניתן להעתקה וחיפוש, ושמירה בארכיב .tok אטומי עמיד בפני נפילות מתח.',
-      specs: 'Package: .tok (Atomic ZIP Safe-Save) | ACID WAL (redb) | 100% Deterministic Output'
-    }
-  };
-
-  if (pipelineCards.length && pipeTitle && pipeDesc && pipeSpecs) {
-    pipelineCards.forEach(card => {
-      card.addEventListener('click', () => {
-        pipelineCards.forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
-
-        const step = card.dataset.step;
-        const data = pipelineData[step];
-        if (data) {
-          pipeTitle.textContent = data.title;
-          pipeDesc.textContent = data.desc;
-          pipeSpecs.textContent = data.specs;
-        }
-      });
-    });
-  }
-
-  // 7. Modals Management (Architecture & Source Guide)
+  // 6. Modals Management (Architecture & Source Guide)
   const modalBackdrop = document.getElementById('modalBackdrop');
   const sourceModal = document.getElementById('sourceModal');
   const archModal = document.getElementById('archModal');
+  let modalOpener = null;
+  let activeModal = null;
 
   function openModal(modal) {
     if (!modalBackdrop || !modal) return;
+    modalOpener = document.activeElement;
+    activeModal = modal;
     modalBackdrop.classList.add('open');
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
@@ -242,7 +212,27 @@ document.addEventListener('DOMContentLoaded', () => {
       archModal.setAttribute('aria-hidden', 'true');
     }
     document.body.style.overflow = '';
+    activeModal = null;
+    if (modalOpener && typeof modalOpener.focus === 'function') modalOpener.focus();
+    modalOpener = null;
   }
+
+  // Keep Tab inside the open dialog (aria-modal="true").
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !activeModal) return;
+    const focusable = [...activeModal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+      .filter(el => el.offsetParent !== null);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
 
   document.querySelectorAll('[data-open-modal="source"]').forEach(btn => {
     btn.addEventListener('click', (e) => {

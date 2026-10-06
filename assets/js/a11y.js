@@ -240,14 +240,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     root.setAttribute('data-theme', effectiveTheme);
     root.setAttribute('data-theme-setting', mode);
-    localStorage.setItem('tok_theme', mode);
+    try { localStorage.setItem('tok_theme', mode); } catch (e) { /* storage unavailable */ }
 
     if (themeToggle) {
       themeToggle.innerHTML = ICONS[mode] || ICONS.light;
       const labelMap = {
-        light: 'ערכת נושא: מצב יום (בהיר)',
-        dark: 'ערכת נושא: מצב לילה (כהה)',
-        system: 'ערכת נושא: לפי המערכת (אוטומטי)'
+        light: window.tokT ? window.tokT('theme_label_light') : 'ערכת נושא: מצב יום (בהיר)',
+        dark: window.tokT ? window.tokT('theme_label_dark') : 'ערכת נושא: מצב לילה (כהה)',
+        system: window.tokT ? window.tokT('theme_label_system') : 'ערכת נושא: לפי המערכת (אוטומטי)'
       };
       themeToggle.setAttribute('aria-label', labelMap[mode] || 'ערכת נושא');
       themeToggle.setAttribute('title', labelMap[mode] || 'ערכת נושא');
@@ -263,8 +263,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Handle system color scheme change in real time
+  function savedTheme() {
+    try { return localStorage.getItem('tok_theme') || 'system'; } catch (e) { return 'system'; }
+  }
+
   systemMedia.addEventListener('change', () => {
-    const saved = localStorage.getItem('tok_theme') || 'system';
+    const saved = savedTheme();
     if (saved === 'system') {
       applyThemeMode('system');
     }
@@ -306,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Accessibility panel theme button (cycles: light -> dark -> system)
   if (a11yThemeToggle) {
     a11yThemeToggle.addEventListener('click', () => {
-      const current = localStorage.getItem('tok_theme') || 'system';
+      const current = savedTheme();
       const order = ['light', 'dark', 'system'];
       const next = order[(order.indexOf(current) + 1) % order.length];
       applyThemeMode(next);
@@ -314,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Initial theme initialization: default to 'system' (or 'light' for typesetters)
-  const initialTheme = localStorage.getItem('tok_theme') || 'system';
+  const initialTheme = savedTheme();
   applyThemeMode(initialTheme);
 
   // Initial application of accessibility state

@@ -73,11 +73,12 @@
 }
 
 .hero-metric-value {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: var(--font-size-lg);
   font-weight: 800;
+  font-variant-numeric: tabular-nums;
   color: var(--color-ink-primary);
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .hero-metric-label {
@@ -324,9 +325,8 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-ink-muted);
-  font-family: var(--font-mono);
   flex-wrap: wrap;
 }
 
@@ -371,10 +371,17 @@
   border-color: var(--color-brand-blue);
 }
 
-.floating-dl-btn {
+.floating-widget-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.floating-download-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-height: 40px;
   background: var(--color-brand-blue);
   color: #FFFFFF !important;
   padding: 8px 16px;
@@ -382,29 +389,53 @@
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
+  white-space: nowrap;
   transition: background var(--motion-fast);
 }
 
-.floating-dl-btn:hover {
+.floating-download-btn:hover {
   background: var(--color-brand-blue-hover);
 }
 
-.floating-dl-info {
+.floating-widget-info {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
-.floating-dl-title {
+.floating-widget-title {
   font-size: 13px;
   font-weight: 700;
   color: var(--color-ink-primary);
   line-height: 1.1;
+  white-space: nowrap;
 }
 
-.floating-dl-version {
-  font-family: var(--font-mono);
-  font-size: 10px;
+.floating-widget-sub {
+  font-size: 11px;
   color: var(--color-ink-muted);
+  white-space: nowrap;
+}
+
+/* On phones the pill shrinks to its button so it does not cover the text column. */
+@media (max-width: 600px) {
+  .floating-download-widget,
+  [dir="ltr"] .floating-download-widget {
+    padding: 4px;
+    bottom: 16px;
+  }
+
+  .floating-download-widget {
+    left: 16px;
+  }
+
+  [dir="ltr"] .floating-download-widget {
+    right: 16px;
+  }
+
+  .floating-widget-info {
+    display: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -597,14 +628,15 @@
   color: var(--color-brand-blue-hover);
 }
 
+/* Both versions are laid out at full width in the same grid cell; the "after"
+   layer is revealed with clip-path (before-after.js), so neither text reflows. */
 .comparison-wrapper {
   position: relative;
+  display: grid;
   width: 100%;
   max-width: 920px;
   margin-left: auto;
   margin-right: auto;
-  min-height: 400px;
-  height: clamp(380px, 50vh, 460px);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-medium);
   box-shadow: var(--shadow-paper);
@@ -617,12 +649,10 @@
 
 .comparison-before,
 .comparison-after {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  grid-area: 1 / 1;
+  position: relative;
+  min-width: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .comparison-before {
@@ -633,34 +663,43 @@
 .comparison-after {
   background: var(--color-bg-paper);
   color: var(--color-ink-primary);
-  width: 50%;
-  box-shadow: -2px 0 14px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
+  clip-path: inset(0 0 0 50%);
+}
+
+[dir="ltr"] .comparison-after {
+  clip-path: inset(0 50% 0 0);
 }
 
 .comparison-inner {
   width: 100%;
-  max-width: 840px;
-  padding: var(--space-8) var(--space-6);
+  padding: 64px var(--space-8) var(--space-8);
   box-sizing: border-box;
 }
 
 .comp-badge {
   position: absolute;
-  top: 12px;
+  top: 16px;
   padding: 3px 10px;
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   border-radius: var(--radius-xs);
   z-index: 5;
+  /* Each label owns one half, so the two never overlap at the 50% position. */
+  max-width: calc(50% - 28px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .comp-badge-before {
   left: 14px;
-  background: rgba(239, 68, 68, 0.15);
-  color: #F87171;
+  background: rgba(239, 68, 68, 0.1);
+  color: #B91C1C;
   border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+[data-theme="dark"] .comp-badge-before {
+  color: #F87171;
 }
 
 .comp-badge-after {
@@ -692,6 +731,11 @@
   align-items: center;
   justify-content: center;
   touch-action: none;
+}
+
+[dir="ltr"] .comparison-handle {
+  margin-right: 0;
+  margin-left: -22px;
 }
 
 .handle-line {
@@ -887,9 +931,13 @@
   font-size: 15px;
   line-height: 1.6;
   color: var(--color-ink-primary);
-  font-style: italic;
+  /* Frank Ruhl Libre has no italic; a synthesized slant on Hebrew looks broken. */
+  font-style: normal;
   padding-right: 12px;
   border-right: 3px solid var(--color-accent-gold);
+  /* A quote in another script (e.g. English) takes its own direction and punctuation. */
+  unicode-bidi: plaintext;
+  text-align: start;
 }
 
 [dir="ltr"] .quote-body {
@@ -955,6 +1003,18 @@
   grid-column: span 2;
 }
 
+/* Six cards in a 3-column grid (first one double width) leave the last card
+   alone on its row; let it take the full row instead of leaving a hole. */
+.bento-grid > .bento-card:last-child {
+  grid-column: 1 / -1;
+}
+
+/* Tags sit at their natural width instead of stretching across the card. */
+.bento-card > .badge {
+  align-self: flex-start;
+  margin-top: var(--space-4);
+}
+
 .bento-icon {
   width: 40px;
   height: 40px;
@@ -978,69 +1038,6 @@
   font-size: 13px;
   color: var(--color-ink-secondary);
   line-height: var(--line-height-base);
-}
-
-/* --------------------------------------------------------------------------
-   7. HOW IT WORKS (PIPELINE)
-   -------------------------------------------------------------------------- */
-.pipeline-track {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--space-3);
-  margin-top: var(--space-6);
-}
-
-.pipeline-step-card {
-  background-color: var(--color-bg-paper);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
-  padding: var(--space-4);
-  box-shadow: var(--shadow-subtle);
-  cursor: pointer;
-  transition: all var(--motion-fast);
-  display: flex;
-  flex-direction: column;
-}
-
-.pipeline-step-card:hover,
-.pipeline-step-card.active {
-  border-color: var(--color-brand-blue);
-  box-shadow: var(--shadow-paper);
-}
-
-.pipeline-step-card.active {
-  background: var(--color-brand-blue-light);
-}
-
-.pipe-num {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 800;
-  color: var(--color-brand-blue);
-  margin-bottom: var(--space-1);
-}
-
-.pipe-title {
-  font-family: var(--font-serif);
-  font-size: var(--font-size-base);
-  font-weight: 700;
-  color: var(--color-ink-primary);
-  margin-bottom: var(--space-1);
-}
-
-.pipe-desc {
-  font-size: 12px;
-  color: var(--color-ink-secondary);
-  line-height: var(--line-height-snug);
-}
-
-.pipeline-detail-panel {
-  margin-top: var(--space-5);
-  background: var(--color-bg-paper);
-  border: 1px solid var(--color-border-medium);
-  border-radius: var(--radius-md);
-  padding: var(--space-5);
-  box-shadow: var(--shadow-paper);
 }
 
 /* --------------------------------------------------------------------------
@@ -1069,8 +1066,7 @@
 .benchmarks-table th {
   background-color: var(--color-bg-subtle);
   padding: var(--space-3) var(--space-5);
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-ink-primary);
   border-bottom: 2px solid var(--color-border-medium);
   font-weight: 700;
@@ -1088,11 +1084,15 @@
   gap: 4px;
   padding: 2px 8px;
   border-radius: var(--radius-pill);
-  background: rgba(34, 197, 94, 0.15);
-  color: #4ADE80;
+  background: rgba(34, 197, 94, 0.14);
+  color: #15803D;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
+}
+
+[data-theme="dark"] .status-badge-pass {
+  color: #4ADE80;
 }
 
 /* Developer Spotlight Card */
@@ -1176,6 +1176,27 @@
   border-top: 1px solid var(--color-border-subtle);
   padding-top: var(--space-6);
   font-size: 11px;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* English legal line inside an RTL page: keep its own direction and punctuation. */
+.footer-bottom > * {
+  unicode-bidi: plaintext;
+}
+
+/* Modal triggers in the link lists must line up with the plain links. */
+.site-footer li > button {
+  min-height: 0;
+  font: inherit;
+  line-height: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.site-footer li > button:hover,
+.site-footer li > a:hover {
+  text-decoration: underline;
 }
 
 /* --------------------------------------------------------------------------
@@ -1262,9 +1283,6 @@
     grid-template-columns: 1fr;
   }
 
-  .pipeline-track {
-    grid-template-columns: repeat(2, 1fr);
-  }
 
   .developer-card {
     grid-template-columns: 1fr;
@@ -1291,33 +1309,47 @@
     grid-column: span 1;
   }
 
-  .pipeline-track {
-    grid-template-columns: 1fr;
-  }
 
   .footer-grid {
     grid-template-columns: 1fr;
   }
 
-  .comparison-wrapper {
-    min-height: 440px;
-    height: auto;
-  }
-
   .comparison-inner {
-    padding: var(--space-6) var(--space-4);
+    padding: 56px var(--space-4) var(--space-6);
   }
 
-  .comparison-before,
-  .comparison-after {
-    position: relative;
-    height: auto;
+  /* Wide tables scroll sideways with the row label pinned, instead of
+     squeezing every column to one word per line. */
+  .matrix-table {
+    min-width: 720px;
   }
 
-  .comp-badge {
-    position: static;
-    display: inline-block;
-    margin-bottom: var(--space-2);
+  .matrix-table th:first-child,
+  .matrix-table td:first-child,
+  .benchmarks-table th:first-child,
+  .benchmarks-table td:first-child {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: 1;
+    background-color: var(--color-bg-paper);
+    box-shadow: inset 1px 0 0 var(--color-border-medium);
+  }
+
+  [dir="ltr"] .matrix-table td:first-child,
+  [dir="ltr"] .matrix-table th:first-child,
+  [dir="ltr"] .benchmarks-table td:first-child,
+  [dir="ltr"] .benchmarks-table th:first-child {
+    box-shadow: inset -1px 0 0 var(--color-border-medium);
+  }
+
+  .matrix-table th:first-child,
+  .benchmarks-table th:first-child {
+    background-color: var(--color-bg-subtle);
+  }
+
+  .matrix-table th,
+  .matrix-table td {
+    padding: 12px 14px;
   }
 
   .talmud-layout-specimen {

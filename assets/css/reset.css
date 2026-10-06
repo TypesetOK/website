@@ -14,8 +14,9 @@ html {
   line-height: var(--line-height-base);
   color: var(--color-ink-primary);
   background-color: var(--color-bg-base);
-  direction: rtl;
-  text-align: right;
+  /* Direction comes from <html dir> (switched by i18n.js); a CSS `direction`
+     here would override the attribute and keep LTR languages laid out RTL. */
+  text-align: start;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
