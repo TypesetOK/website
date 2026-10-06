@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <base href="/website/">
+  <meta name="robots" content="noindex">
   <title>404 — עמוד לא נמצא | TypesetOK (TOK)</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;800;900&family=Heebo:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@800&family=Heebo:wght@400;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/main.css">
@@ -17,7 +21,7 @@
 <body style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px; text-align: center;">
 
   <div class="paper-sheet paper-sheet-crops" style="max-width: 560px; width: 100%; padding: 48px 32px; box-shadow: var(--shadow-floating);">
-    <img src="assets/images/logo.jpg" alt="TypesetOK Logo" width="56" height="56" style="margin: 0 auto 20px auto; border-radius: 8px;">
+    <img src="assets/images/logo-96.webp" alt="TypesetOK" width="56" height="56" style="margin: 0 auto 20px auto; border-radius: 8px;">
     
     <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: var(--color-brand-blue); margin-bottom: 8px;">
       שגיאה 404 • PAGE NOT FOUND
@@ -39,7 +43,7 @@
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
       </a>
-      <a href="https://github.com/TypesetOK/website" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg">
+      <a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg">
         מאגר ה-GitHub
       </a>
     </div>
