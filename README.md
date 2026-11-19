@@ -9,7 +9,7 @@
 [![GitHub Pages](https://github.com/TypesetOK/website/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/TypesetOK/website/actions/workflows/deploy-pages.yml)
 [![Live Site](https://img.shields.io/badge/Live%20Site-typesetok.github.io%2Fwebsite-1D63ED.svg)](https://typesetok.github.io/website/)
 [![License](https://img.shields.io/badge/License-TOK--NCCL%20v1.0-blue.svg)](https://github.com/TypesetOK/typesetok/blob/main/LICENSE.md)
-[![Standard](https://img.shields.io/badge/Standard-ת"י%206100%20(SI%206100)-blue.svg)]()
+[![Standard](https://img.shields.io/badge/Unicode-UAX%20%239%20Bidi-blue.svg)]()
 [![Pre-Press](https://img.shields.io/badge/PDF%2FX--1a-ISO%2015930-purple.svg)]()
 [![A11y](https://img.shields.io/badge/Accessibility-WCAG%202.2%20AA-brightgreen.svg)]()
 
@@ -39,17 +39,14 @@
 2. **השוואה מעשית מול וורד ואינדיזיין (Head-to-Head Matrix):**
    * טבלת השוואה עניינית ומעשית של התמודדות מול מסמכי ענק (500+ עמודים), ניקוד וטעמים, ספרי קודש ומפרשים מרובים, יישור בלוק הטקסט וייצוא קדם-דפוס.
 
-3. **קולות מהשטח — ציטוטים מפורומי מעמדים:**
-   * אתגרים אמיתיים ומצוקות מפורומי מעמדים (פרוג, פורום לתורה, איגודי דפוס) והמענה המבני של TypesetOK עבורם.
-
-4. **סליידר השוואה לפני/אחרי (Before / After Comparison):**
+3. **סליידר השוואה לפני/אחרי (Before / After Comparison):**
    * השוואה ויזואלית חיה בין פלט מעבד תמלילים פשוט לבין בלוק העימוד המהודק והמאוזן של TypesetOK.
 
-5. **ששת עמודי התווך (Bento Grid):**
-   * ליבת Rust עצמאית ווירטואליזציה (3 עמודים פעילים), ת״י 6100, יישור תלת-שלבי (Knuth-Plass), פותר אילוצים רב-תזרימי, קדם-דפוס ISO 15930, ומסד נתונים פנימי עמיד קריסות (ACID WAL).
+4. **ששת עמודי התווך (Bento Grid):**
+   * ליבת Rust עצמאית ווירטואליזציה (3 עמודים פעילים), נרמול יוניקוד קנוני (UAX #9), יישור תלת-שלבי (Knuth-Plass), פותר אילוצים רב-תזרימי, קדם-דפוס ISO 15930, ומסד נתונים פנימי עמיד קריסות (SQLite WAL).
 
-6. **שקיפות הנדסית ואימות נתונים:**
-   * תוצאות בדיקות אמת במאגר הקוד של הליבה (174/174 בדיקות Rust עוברות, 0 אזהרות Clippy, דטרמיניזם ביט-אחר-ביט, עמידה במבחן עומס של 1,000 עמודים).
+5. **שקיפות הנדסית ומבנה המאגר:**
+   * פירוט 7 חבילות ה-Rust (`crates/`) ו-5 חבילות ה-TypeScript (`packages/`) במאגר `TypesetOK/typesetok`.
 
 ---
 

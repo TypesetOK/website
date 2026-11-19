@@ -58,6 +58,194 @@
   margin-top: var(--space-2);
 }
 
+/* Modern Hero Download Dock */
+.hero-download-dock {
+  margin-top: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 520px;
+}
+
+[data-theme="light"] .hero-download-dock {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 246, 240, 0.9) 100%);
+  border-color: var(--color-border-medium);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.hero-dl-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+
+.hero-dl-release {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 600;
+  color: var(--color-ink-primary);
+}
+
+.hero-dl-release code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  background: rgba(29, 99, 237, 0.16);
+  color: #60A5FA;
+  border: 1px solid rgba(59, 130, 246, 0.28);
+}
+
+[data-theme="light"] .hero-dl-release code {
+  background: rgba(29, 99, 237, 0.1);
+  color: #1D4ED8;
+  border-color: rgba(29, 99, 237, 0.22);
+}
+
+.hero-dl-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #22C55E;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+.hero-dl-os {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-ink-muted);
+}
+
+.btn-dl-primary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 13px 18px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  color: #FFFFFF !important;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms ease, filter 180ms ease;
+}
+
+.btn-dl-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  filter: brightness(1.06);
+}
+
+.btn-dl-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 180ms ease;
+}
+
+.btn-dl-primary:hover .btn-dl-icon {
+  transform: translateY(1px);
+}
+
+.btn-dl-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.btn-dl-text strong {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.btn-dl-text small {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 400;
+}
+
+.btn-dl-arrow {
+  font-size: 16px;
+  opacity: 0.8;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.btn-dl-primary:hover .btn-dl-arrow {
+  opacity: 1;
+  transform: translate(-2px, 2px);
+}
+
+[dir="ltr"] .btn-dl-primary:hover .btn-dl-arrow {
+  transform: translate(2px, 2px);
+}
+
+.hero-dl-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.btn-dl-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-subtle);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-ink-secondary);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+[data-theme="light"] .btn-dl-ghost {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.btn-dl-ghost:hover {
+  border-color: var(--color-brand-blue);
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--color-ink-primary);
+}
+
+.hero-dl-footnotes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-size: 11.5px;
+  color: var(--color-ink-muted);
+  padding-top: 2px;
+}
+
+@media (max-width: 520px) {
+  .hero-dl-secondary {
+    grid-template-columns: 1fr;
+  }
+}
+
 .hero-metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -395,7 +583,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   FLOATING STICKY DOWNLOAD BUTTON (Smooth Transition on Scroll)
+   FLOATING STICKY DOWNLOAD DOCK (Modern Frosted Glass Pill)
    -------------------------------------------------------------------------- */
 .floating-download-widget {
   position: fixed;
@@ -404,24 +592,32 @@
   z-index: var(--z-sticky);
   display: flex;
   align-items: center;
-  gap: 8px;
-  background-color: var(--color-bg-paper);
-  border: 1px solid var(--color-border-medium);
+  background: rgba(15, 23, 42, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-pill);
-  padding: 6px 16px 6px 6px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(12px);
+  padding: 6px 12px 6px 6px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   opacity: 0;
-  transform: translateY(24px) scale(0.95);
+  transform: translateY(20px) scale(0.96);
   pointer-events: none;
-  transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 200ms ease,
+              box-shadow 200ms ease;
+}
+
+[data-theme="light"] .floating-download-widget {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 [dir="ltr"] .floating-download-widget {
   left: auto;
   right: 24px;
-  padding: 6px 6px 6px 16px;
+  padding: 6px 6px 6px 12px;
 }
 
 .floating-download-widget.active {
@@ -431,34 +627,56 @@
 }
 
 .floating-download-widget:hover {
-  box-shadow: 0 12px 36px rgba(29, 99, 237, 0.28);
-  border-color: var(--color-brand-blue);
+  box-shadow: 0 18px 44px rgba(37, 99, 235, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  border-color: rgba(59, 130, 246, 0.5);
 }
 
 .floating-widget-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+}
+
+.floating-widget-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+.floating-widget-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .floating-download-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-height: 40px;
-  background: var(--color-brand-blue);
+  gap: 7px;
+  min-height: 38px;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
   color: #FFFFFF !important;
-  padding: 8px 16px;
+  padding: 7px 16px;
   border-radius: var(--radius-pill);
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
-  transition: background var(--motion-fast);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
 }
 
 .floating-download-btn:hover {
-  background: var(--color-brand-blue-hover);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .floating-widget-info {
@@ -468,7 +686,7 @@
 }
 
 .floating-widget-title {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--color-ink-primary);
   line-height: 1.1;
@@ -481,11 +699,11 @@
   white-space: nowrap;
 }
 
-/* On phones the pill shrinks to its button so it does not cover the text column. */
+/* On phones the pill shrinks cleanly so it does not cover text or the a11y button. */
 @media (max-width: 600px) {
   .floating-download-widget,
   [dir="ltr"] .floating-download-widget {
-    padding: 4px;
+    padding: 5px;
     bottom: 16px;
   }
 
@@ -497,6 +715,7 @@
     right: 16px;
   }
 
+  .floating-widget-badge,
   .floating-widget-info {
     display: none;
   }

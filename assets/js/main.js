@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // phones the card starts below the fold, and anchor jumps skip past it entirely, so a
   // position check on scroll is used rather than an IntersectionObserver.
   if (floatingDownload) {
-    const heroTriggerEl = heroDownloadCard || document.getElementById('hero');
     let pending = false;
     const update = () => {
       pending = false;
