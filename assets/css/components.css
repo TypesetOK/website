@@ -88,6 +88,70 @@
 }
 
 /* --------------------------------------------------------------------------
+   1.1 HERO PRINT SPECIMEN CARD (Warm Cream #FAF8F5 Paper on Dark Studio)
+   -------------------------------------------------------------------------- */
+.hero-specimen-card {
+  position: relative;
+  background-color: var(--paper-bg);
+  color: var(--paper-ink);
+  border: 1px solid var(--paper-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-8) var(--space-8) var(--space-6);
+  box-shadow: var(--paper-shadow);
+  direction: rtl;
+}
+
+.hero-specimen-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--paper-rule);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--paper-ink-muted);
+}
+
+.hero-specimen-tag {
+  font-weight: 700;
+  color: var(--color-accent-gold-hover);
+}
+
+.hero-specimen-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 1.2rem + 0.6vw, 1.65rem);
+  font-weight: 800;
+  color: var(--paper-ink);
+  text-align: center;
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
+}
+
+.hero-specimen-body {
+  font-family: var(--font-serif);
+  font-size: clamp(1.06rem, 1rem + 0.35vw, 1.2rem);
+  line-height: 1.85;
+  color: var(--paper-ink);
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.hero-specimen-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--paper-rule);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--paper-ink-muted);
+}
+
+/* --------------------------------------------------------------------------
    THEME SELECTOR DROPDOWN (Light, Dark, System)
    -------------------------------------------------------------------------- */
 .theme-selector-wrapper {
@@ -518,60 +582,74 @@
   justify-content: center;
 }
 
-/* Talmud Specimen */
+/* Talmud Specimen (Warm Cream #FAF8F5 Print Paper) */
 .talmud-layout-specimen {
   display: grid;
   grid-template-columns: 1fr 1.6fr 1fr;
   gap: var(--space-3);
-  background: var(--color-bg-subtle);
-  border: 1px solid var(--color-border-medium);
-  padding: var(--space-4);
-  border-radius: var(--radius-xs);
+  background: var(--paper-bg);
+  color: var(--paper-ink);
+  border: 1px solid var(--paper-border);
+  box-shadow: var(--paper-shadow);
+  padding: var(--space-5);
+  border-radius: var(--radius-sm);
   font-family: var(--font-serif);
   direction: rtl;
 }
 
 .talmud-rashi {
-  font-size: 11px;
-  line-height: 1.35;
-  color: var(--color-ink-muted);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--paper-ink-secondary);
   text-align: justify;
-  border-left: 1px solid var(--color-border-subtle);
-  padding-left: 6px;
+  border-left: 1px solid var(--paper-rule);
+  padding-left: 8px;
 }
 
 .talmud-gemara {
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 700;
-  line-height: 1.45;
-  color: var(--color-ink-primary);
+  line-height: 1.55;
+  color: var(--paper-ink);
   text-align: justify;
 }
 
 .talmud-tosafot {
-  font-size: 11px;
-  line-height: 1.35;
-  color: var(--color-ink-muted);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--paper-ink-secondary);
   text-align: justify;
-  border-right: 1px solid var(--color-border-subtle);
-  padding-right: 6px;
+  border-right: 1px solid var(--paper-rule);
+  padding-right: 8px;
 }
 
 .talmud-label {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 9.5px;
   font-weight: 700;
-  color: var(--color-accent-gold);
+  color: var(--color-accent-gold-hover);
   text-align: center;
   margin-bottom: 4px;
 }
 
-/* Prepress Proof */
+/* Prepress Proof (Warm Cream #FAF8F5 Print Paper) */
 .prepress-proof-visual {
-  background: var(--color-bg-subtle);
-  border: 2px dashed var(--color-border-medium);
+  background: var(--paper-bg);
+  color: var(--paper-ink);
+  border: 2px dashed var(--paper-border);
+  box-shadow: var(--paper-shadow);
+  border-radius: var(--radius-sm);
   padding: var(--space-5);
   position: relative;
+}
+
+.unicode-specimen-card {
+  background: var(--paper-bg);
+  color: var(--paper-ink);
+  border: 1px solid var(--paper-border);
+  box-shadow: var(--paper-shadow);
+  padding: 18px;
+  border-radius: var(--radius-sm);
 }
 
 .prepress-crop-tl, .prepress-crop-tr, .prepress-crop-bl, .prepress-crop-br {
@@ -622,7 +700,8 @@
   transition: all var(--motion-fast);
 }
 
-.comp-preset-btn:hover {
+.comp-preset-btn:hover,
+.comp-preset-btn.active {
   background: var(--color-brand-blue-light);
   border-color: var(--color-brand-blue);
   color: var(--color-brand-blue-hover);
@@ -638,11 +717,12 @@
   margin-left: auto;
   margin-right: auto;
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border-medium);
-  box-shadow: var(--shadow-paper);
+  border: 1px solid var(--paper-border);
+  box-shadow: var(--paper-shadow);
   overflow: hidden;
   user-select: none;
-  background-color: var(--color-bg-paper);
+  background-color: var(--paper-bg);
+  color: var(--paper-ink);
   touch-action: pan-y;
   box-sizing: border-box;
 }
@@ -656,13 +736,13 @@
 }
 
 .comparison-before {
-  background: var(--color-bg-subtle);
-  color: var(--color-ink-secondary);
+  background: var(--paper-bg-muted);
+  color: var(--paper-ink-secondary);
 }
 
 .comparison-after {
-  background: var(--color-bg-paper);
-  color: var(--color-ink-primary);
+  background: var(--paper-bg);
+  color: var(--paper-ink);
   clip-path: inset(0 0 0 50%);
 }
 
@@ -693,20 +773,16 @@
 
 .comp-badge-before {
   left: 14px;
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(220, 38, 38, 0.1);
   color: #B91C1C;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-[data-theme="dark"] .comp-badge-before {
-  color: #F87171;
+  border: 1px solid rgba(220, 38, 38, 0.28);
 }
 
 .comp-badge-after {
   right: 14px;
-  background: var(--color-brand-blue-light);
-  color: var(--color-brand-blue-hover);
-  border: 1px solid rgba(37, 99, 235, 0.4);
+  background: rgba(29, 99, 237, 0.1);
+  color: #1551CA;
+  border: 1px solid rgba(29, 99, 237, 0.3);
 }
 
 [dir="ltr"] .comp-badge-before {
@@ -1093,6 +1169,10 @@
 
 [data-theme="dark"] .status-badge-pass {
   color: #4ADE80;
+}
+
+[data-theme="light"] .status-badge-pass {
+  color: #15803D;
 }
 
 /* Developer Spotlight Card */
