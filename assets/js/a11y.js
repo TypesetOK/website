@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle system color scheme change in real time
   function savedTheme() {
-    try { return localStorage.getItem('tok_theme') || 'system'; } catch (e) { return 'system'; }
+    try { return localStorage.getItem('tok_theme') || 'dark'; } catch (e) { return 'dark'; }
   }
 
   systemMedia.addEventListener('change', () => {
@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Initial theme initialization: default to 'system' (or 'light' for typesetters)
+  // Initial theme initialization: default to 'dark' (Dark Studio vs. Print Paper)
   const initialTheme = savedTheme();
   applyThemeMode(initialTheme);
 
