@@ -10,6 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!container || !afterLayer || !handle) return;
 
+  const afterInner = afterLayer.querySelector('.comparison-inner');
+  const beforeLayer = container.querySelector('.comparison-before');
+  const beforeInner = beforeLayer ? beforeLayer.querySelector('.comparison-inner') : null;
+
+  function syncInnerWidths() {
+    const w = container.clientWidth;
+    if (w > 0) {
+      if (afterInner) afterInner.style.width = `${w}px`;
+      if (beforeInner) beforeInner.style.width = `${w}px`;
+    }
+  }
+
+  syncInnerWidths();
+  window.addEventListener('resize', syncInnerWidths);
+
   let isDragging = false;
   let currentPercentage = 50;
 
