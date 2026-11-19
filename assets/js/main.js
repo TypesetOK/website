@@ -71,17 +71,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. Floating Download Button Glide (Scroll Observer)
   const floatingDownload = document.getElementById('floatingDownloadWidget');
-  const heroDownloadCard = document.getElementById('heroDownloadCard');
+  const heroTriggerEl = document.getElementById('heroDownloadCard') || document.getElementById('hero');
 
   // Shown only once the hero download card has scrolled away above the viewport: on
   // phones the card starts below the fold, and anchor jumps skip past it entirely, so a
   // position check on scroll is used rather than an IntersectionObserver.
   if (floatingDownload) {
+    const heroTriggerEl = heroDownloadCard || document.getElementById('hero');
     let pending = false;
     const update = () => {
       pending = false;
-      const scrolledPast = heroDownloadCard
-        ? heroDownloadCard.getBoundingClientRect().bottom < 0
+      const scrolledPast = heroTriggerEl
+        ? heroTriggerEl.getBoundingClientRect().bottom < 0
         : window.scrollY > 350;
       floatingDownload.classList.toggle('active', scrolledPast);
     };
