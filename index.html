@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl" data-theme="light">
+<html lang="he" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -136,13 +136,11 @@
         </div>
       </a>
 
-      <!-- Primary Desktop Nav -->
+      <!-- Primary Desktop Nav (5 Core Anchors) -->
       <nav class="primary-nav" role="navigation" aria-label="Main Navigation" data-i18n-attr="aria-label:aria_main_nav">
         <a href="#hero" class="nav-link active" data-i18n="nav_home">ראשי</a>
         <a href="#storytelling" class="nav-link" data-i18n="nav_story">ארכיטקטורה</a>
-        <a href="#comparison" class="nav-link" data-i18n="nav_comparison">השוואה למעמדים</a>
-        <a href="#matrix" class="nav-link" data-i18n="nav_matrix">השוואת וורד ואינדיזיין</a>
-        <a href="#quotes" class="nav-link" data-i18n="nav_quotes">קולות מהשטח</a>
+        <a href="#comparison" class="nav-link" data-i18n="nav_comparison">השוואה</a>
         <a href="#features" class="nav-link" data-i18n="nav_features">יכולות</a>
         <a href="#engineering" class="nav-link" data-i18n="nav_engineering">בנצ'מרק</a>
       </nav>
@@ -232,9 +230,7 @@
     <div class="mobile-nav-drawer" id="mobileNavDrawer" role="region" aria-label="Mobile Navigation" data-i18n-attr="aria-label:aria_mobile_nav">
       <a href="#hero" class="mobile-nav-link" data-i18n="nav_home">ראשי</a>
       <a href="#storytelling" class="mobile-nav-link" data-i18n="nav_story">ארכיטקטורה</a>
-      <a href="#comparison" class="mobile-nav-link" data-i18n="nav_comparison">השוואה למעמדים</a>
-      <a href="#matrix" class="mobile-nav-link" data-i18n="nav_matrix">השוואת וורד ואינדיזיין</a>
-      <a href="#quotes" class="mobile-nav-link" data-i18n="nav_quotes">קולות מהשטח</a>
+      <a href="#comparison" class="mobile-nav-link" data-i18n="nav_comparison">השוואה</a>
       <a href="#features" class="mobile-nav-link" data-i18n="nav_features">יכולות</a>
       <a href="#engineering" class="mobile-nav-link" data-i18n="nav_engineering">בנצ'מרק</a>
       <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">
@@ -257,135 +253,45 @@
     <section class="hero-section" id="hero">
       <div class="container hero-grid">
         
-        <!-- Left Column: Copy & Benefits for Typesetters -->
+        <!-- Left Column: Sharp Title & Single Primary Action -->
         <div class="hero-copy">
-          <div class="badge badge-brand hero-tag">
-            <span class="badge-dot"></span>
-            <span data-i18n="hero_badge">תוכנת עימוד שולחנית מקצועית בקוד פתוח • ללא עלות וללא נעילה</span>
-          </div>
-
           <h1 class="hero-title">
             <span data-i18n="hero_title_1">עימוד ספרים אמיתי.</span><br>
             <span class="highlight-blue" data-i18n="hero_title_2">חופשי, פתוח ומדויק לדפוס.</span>
           </h1>
 
           <p class="hero-description" data-i18n-html="hero_desc">
-            <strong>TypesetOK</strong> נבנתה במיוחד עבור מעמדים, מעצבי ספרים ומוציאים לאור. טיפול טבעי באות העברית, ניקוד וטעמים מדויקים ללא שיבושים, עמודי ש״ס ומקראות גדולות עם ריבוי מפרשים, ועמידה מלאה בתקני דפוס.
+            <strong>TypesetOK</strong> היא מערכת עימוד שולחנית בקוד פתוח ב-Rust עבור ספרים בעברית, ש״ס ומקראות גדולות — עם ניקוד וטעמים מדויקים, אותיות התפשטות (אהלתר״ם) ופלט PDF/X-1a נייטיב.
           </p>
 
-          <div style="display: flex; flex-direction: column; gap: 8px; margin: 4px 0 12px 0; font-size: 14px; color: var(--color-ink-primary);">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-i18n="hero_point_1">עבודה חלקה במסמכי ענק של מאות ואלפי עמודים ללא קיפאון תצוגה</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-i18n="hero_point_2">יישור שורות מאוזן עם אותיות מתרחבות (אהלתר״ם) למניעת 'נהרות' רווחים</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-i18n="hero_point_3">פלט מוכן לדפוס: PDF/X-1a עם שחור 100% K טהור, צלבי חיתוך ובליד 3 מ״מ</span>
-            </div>
-          </div>
-
           <div class="hero-actions">
-            <a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg" aria-label="Open TypesetOK on GitHub" data-i18n-attr="aria-label:aria_open_github">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-              </svg>
-              <span data-i18n="hero_cta_github">מאגר הקוד ב-GitHub</span>
-            </a>
-
-            <button type="button" class="btn btn-secondary btn-lg" data-open-modal="architecture">
-              <span data-i18n="hero_cta_arch">מפרט ארכיטקטוני מלא</span>
-            </button>
-          </div>
-
-          <!-- Real & Honest Engineering Metrics -->
-          <div class="hero-metrics">
-            <div class="hero-metric-item">
-              <span class="hero-metric-value" data-i18n="metric_tests">174 / 174</span>
-              <span class="hero-metric-label" data-i18n="metric_tests_label">בדיקות ליבה ב-Rust עוברות</span>
-            </div>
-            <div class="hero-metric-item">
-              <span class="hero-metric-value" data-i18n="metric_clippy">0 אזהרות</span>
-              <span class="hero-metric-label" data-i18n="metric_clippy_label">קוד נקי בתקן Clippy</span>
-            </div>
-            <div class="hero-metric-item">
-              <span class="hero-metric-value" data-i18n="metric_standards">ת״י 6100 &amp; ISO 15930</span>
-              <span class="hero-metric-label" data-i18n="metric_standards_label">עמידה מלאה בתקני דפוס ויוניקוד</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Grand Download Hub (Centerpiece for Typesetters) -->
-        <div class="hero-download-card paper-sheet-crops" id="heroDownloadCard" role="region" aria-label="מרכז הורדות TypesetOK" data-i18n-attr="aria-label:aria_download_hub">
-          <div class="hero-download-header">
-            <div class="hero-download-os">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color: #0078D4;">
-                <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.902-1.749"/>
-              </svg>
-              <span data-i18n="dl_card_os">Windows 10 / 11 (64-bit)</span>
-            </div>
-            <span class="hero-download-badge">
-              <span class="badge-dot"></span>
-              <span class="release-version-tag">v0.9.8</span> • <span data-i18n="dl_card_badge">מהדורה רשמית</span>
-            </span>
-          </div>
-
-          <div class="download-cta-stack">
-            <!-- Primary Download: Portable ZIP (Zero install hassle) -->
-            <a href="https://github.com/TypesetOK/typesetok/releases/latest" class="btn-download-primary download-link-portable" aria-label="הורדה ישירה של TypesetOK ללא התקנה" data-i18n-attr="aria-label:aria_dl_portable">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <a href="https://github.com/TypesetOK/typesetok/releases/latest" class="btn btn-primary btn-lg download-link-portable" aria-label="הורדה ישירה של TypesetOK ל-Windows" data-i18n-attr="aria-label:aria_dl_portable">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                 <polyline points="7 10 12 15 17 10"/>
                 <line x1="12" y1="15" x2="12" y2="3"/>
               </svg>
-              <div class="btn-download-text-group">
-                <span class="btn-download-title" data-i18n="dl_btn_portable_title">הורדה ישירה (ללא התקנה)</span>
-                <span class="btn-download-subtitle" data-i18n="dl_btn_portable_sub">קובץ ZIP נייד — לחלץ ולהפעיל מיד</span>
-              </div>
-            </a>
-
-            <!-- Secondary Download: Installer / Setup -->
-            <a href="https://github.com/TypesetOK/typesetok/releases/latest" class="btn-download-secondary download-link-installer" aria-label="הורדה עם מתקין Windows Setup" data-i18n-attr="aria-label:aria_dl_installer">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
-              <span data-i18n="dl_btn_installer_title">הורדה עם מתקין (Windows Setup)</span>
+              <span data-i18n="hero_cta_download">הורדה ישירה ל-Windows (<span class="release-version-tag">v0.9.8</span>)</span>
             </a>
           </div>
+        </div>
 
-          <div class="download-extra-options">
-            <div style="font-weight: 700; color: var(--color-ink-primary);" data-i18n="dl_cli_label">אפשרויות נוספות:</div>
-            <div class="download-extra-links">
-              <a href="https://github.com/TypesetOK/typesetok/releases/latest" class="download-extra-link download-link-cli">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-                <span data-i18n="dl_cli_windows">CLI ל-Windows</span>
-              </a>
-              <span>•</span>
-              <a href="https://github.com/TypesetOK/typesetok/releases/latest" class="download-extra-link download-link-cli-linux">
-                <span data-i18n="dl_cli_linux">Linux CLI</span>
-              </a>
-              <span>•</span>
-              <a href="https://github.com/TypesetOK/typesetok/releases/latest" class="download-extra-link download-link-cli-macos">
-                <span data-i18n="dl_cli_macos">macOS CLI</span>
-              </a>
-              <span>•</span>
-              <a href="https://github.com/TypesetOK/typesetok" target="_blank" rel="noopener noreferrer" class="download-extra-link">
-                <span data-i18n="dl_source_link">קוד מקור ב-GitHub ↗</span>
-              </a>
-            </div>
+        <!-- Right Column: Clean Print-Paper Specimen (Psalm 23 on #FAF8F5) -->
+        <div class="hero-specimen-card paper-sheet-crops" role="region" aria-label="דוגמת עימוד: תהילים מזמור כ״ג">
+          <div class="hero-specimen-header">
+            <span class="hero-specimen-tag">SPECIMEN • ת״י 6100</span>
+            <span>Knuth-Plass + אהלתר״ם</span>
           </div>
 
-          <div class="download-meta-notes">
-            <span data-i18n="dl_note_oss">✓ 100% קוד פתוח</span>
-            <span>•</span>
-            <span data-i18n="dl_note_free">✓ ללא עלות וללא הרשמה</span>
-            <span>•</span>
-            <span data-i18n="dl_note_official">✓ קובץ רשמי מ-GitHub Releases</span>
+          <h2 class="hero-specimen-title">תְּהִלִּים • מִזְמוֹר כ״ג</h2>
+
+          <p class="hero-specimen-body" dir="rtl" lang="he">
+            מִזְמ֥וֹר לְדָוִ֑ד יְהֹוָ֥ה רֹ֝עִ֗י לֹ֣א <span class="expand-letter">אֶחְסָֽר׃</span> בִּנְא֣וֹת דֶּ֭שֶׁא יַרְבִּיצֵ֑נִי עַל־מֵ֖י מְנֻח֣וֹת <span class="expand-letter">יְנַהֲלֵֽנִי׃</span> נַפְשִׁ֥י יְשׁוֹבֵ֑ב יַֽנְחֵ֥נִי בְמַעְגְּלֵי־צֶ֝֗דֶק לְמַ֣עַן <span class="expand-letter">שְׁמֽוֹ׃</span> גַּ֤ם כִּֽי־אֵלֵ֨ךְ בְּגֵ֪יא צַלְמָ֡וֶת לֹא־אִ֘ירָ֤א רָ֗ע כִּי־אַתָּ֥ה עִמָּדִ֑י שִׁבְטְךָ֥ וּ֝מִשְׁעַנְתֶּ֗ךָ הֵ֣מָּה <span class="expand-letter">יְנַֽחֲמֻֽנִי׃</span>
+          </p>
+
+          <div class="hero-specimen-footer">
+            <span>Frank Ruhl Libre • 100% K</span>
+            <span>PDF/X-1a • 3mm Bleed</span>
           </div>
         </div>
 
@@ -399,7 +305,7 @@
       <div class="container-editorial">
         
         <div class="section-lead-header">
-          <span class="section-pretitle" data-i18n="story_pretitle">פרק א׳: עמודי התווך של הארכיטקטורה</span>
+          <span class="section-pretitle" data-i18n="story_pretitle">פרק א׳: יסודות ההנדסה</span>
           <h2 class="section-title" data-i18n="story_title">שלושה עקרונות הנדסיים מנחים</h2>
           <p class="section-subtitle" data-i18n="story_subtitle">
             כיצד תוכנן מנוע העימוד של TypesetOK לפתור את האתגרים ההיסטוריים של עולם הדפוס העברי.
@@ -423,21 +329,21 @@
                 </div>
                 <div class="scene-feature-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="story1_point_2">אינדוקס שברירי ב-O(1) ללא צורך במספור מחדש של המסמך</span>
+                  <span data-i18n="story1_point_2">אינדוקס שברירי ב-<code>O(1)</code> ללא צורך במספור מחדש של המסמך</span>
                 </div>
               </div>
             </div>
             <div class="scene-visual">
-              <div style="background: var(--color-bg-paper); border: 1px solid var(--color-border-subtle); padding: 16px; border-radius: 6px;">
-                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--color-ink-muted); margin-bottom: 8px;">UNICODE CANONICAL SI 6100 DECOMPOSITION:</div>
+              <div class="unicode-specimen-card">
+                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--paper-ink-muted); margin-bottom: 10px;">UNICODE CANONICAL SI 6100 DECOMPOSITION:</div>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px;">
-                  <span style="background: var(--color-brand-blue-light); border: 1px solid rgba(37,99,235,0.3); padding: 3px 6px; border-radius: 4px; color: var(--color-brand-blue-hover);">U+05E9 (ש)</span>
-                  <span style="background: var(--color-brand-blue-light); border: 1px solid rgba(37,99,235,0.3); padding: 3px 6px; border-radius: 4px; color: #4ADE80;">U+05C1 (שׁ)</span>
-                  <span style="background: var(--color-brand-blue-light); border: 1px solid rgba(37,99,235,0.3); padding: 3px 6px; border-radius: 4px; color: #F87171;">U+05BC (ּ)</span>
-                  <span style="background: var(--color-brand-blue-light); border: 1px solid rgba(37,99,235,0.3); padding: 3px 6px; border-radius: 4px; color: var(--color-accent-gold);">U+05B8 (ָ)</span>
-                  <span style="background: var(--color-brand-blue-light); border: 1px solid rgba(37,99,235,0.3); padding: 3px 6px; border-radius: 4px; color: #C084FC;">U+0591 (֑)</span>
+                  <span style="background: rgba(29, 99, 237, 0.08); border: 1px solid rgba(29, 99, 237, 0.25); padding: 3px 6px; border-radius: 4px; color: #1551CA;">U+05E9 (ש)</span>
+                  <span style="background: rgba(22, 163, 74, 0.08); border: 1px solid rgba(22, 163, 74, 0.25); padding: 3px 6px; border-radius: 4px; color: #15803D;">U+05C1 (שׁ)</span>
+                  <span style="background: rgba(220, 38, 38, 0.08); border: 1px solid rgba(220, 38, 38, 0.25); padding: 3px 6px; border-radius: 4px; color: #B91C1C;">U+05BC (ּ)</span>
+                  <span style="background: rgba(180, 131, 62, 0.12); border: 1px solid rgba(180, 131, 62, 0.35); padding: 3px 6px; border-radius: 4px; color: #976B2C;">U+05B8 (ָ)</span>
+                  <span style="background: rgba(147, 51, 234, 0.08); border: 1px solid rgba(147, 51, 234, 0.25); padding: 3px 6px; border-radius: 4px; color: #7E22CE;">U+0591 (֑)</span>
                 </div>
-                <div style="margin-top: 14px; font-family: var(--font-serif); font-size: 26px; text-align: center; color: var(--color-ink-primary);">
+                <div style="margin-top: 14px; font-family: var(--font-serif); font-size: 28px; text-align: center; color: var(--paper-ink);">
                   שָׁ֕
                 </div>
               </div>
@@ -506,10 +412,10 @@
                 <div class="prepress-crop-tr"></div>
                 <div class="prepress-crop-bl"></div>
                 <div class="prepress-crop-br"></div>
-                <div style="font-family: var(--font-mono); font-size: 10px; color: var(--color-ink-muted); text-align: center; margin-bottom: 8px;">
+                <div style="font-family: var(--font-mono); font-size: 10px; color: var(--paper-ink-muted); text-align: center; margin-bottom: 8px;">
                   ISO 15930-1:2001 PDF/X-1a | Fogra 39 Coated | Bleed: 3.00mm
                 </div>
-                <div style="border: 1px solid var(--color-border-subtle); padding: 12px; text-align: center; font-family: var(--font-serif); font-size: 15px; color: var(--color-ink-primary);" data-i18n="story3_proof_text">
+                <div style="border: 1px solid var(--paper-rule); padding: 12px; text-align: center; font-family: var(--font-serif); font-size: 15px; color: var(--paper-ink);" data-i18n="story3_proof_text">
                   מסמך מוגן לדפוס — הפרדת לוחות CMYK טהורה
                 </div>
                 <div class="cmyk-color-bars" aria-label="CMYK Bars" data-i18n-attr="aria-label:aria_cmyk_bars">
@@ -554,13 +460,13 @@
           <div class="comparison-before">
             <span class="comp-badge comp-badge-before" data-i18n="comp_before_label">מעבד תמלילים מסורתי (וורד)</span>
             <div class="comparison-inner">
-              <h4 dir="rtl" lang="he" style="font-family: Arial, sans-serif; font-size: 20px; text-align: right; margin-bottom: 12px; color: var(--color-ink-primary);">
+              <h4 dir="rtl" lang="he" style="font-family: Arial, sans-serif; font-size: 20px; text-align: right; margin-bottom: 12px; color: var(--paper-ink);">
                 הלכות דעות — פרק ראשון
               </h4>
-              <p dir="rtl" lang="he" style="font-family: Arial, sans-serif; font-size: 15px; line-height: 1.5; text-align: justify; word-spacing: 5px; color: var(--color-ink-secondary);">
+              <p dir="rtl" lang="he" style="font-family: Arial, sans-serif; font-size: 15px; line-height: 1.5; text-align: justify; word-spacing: 5px; color: var(--paper-ink-secondary);">
                 דעות הרבה יש לכל אחד ואחד מבני אדם, וזו משונה מזו ורחוקה ממנה ביותר: יש אדם שהוא בעל חמה כועס תמיד, ויש אדם שדעתו מיושבת עליו ואינו כועס כלל. ויש אדם שהוא גבה לב ביותר, ויש שהוא שפל רוח בתכלית. ועל דרך זו שאר כל הדעות כולן. והדרך הישרה היא מידה בינונית שבכל דעה ודעה מכל הדעות שיש לו לאדם.
               </p>
-              <div style="margin-top: 18px; padding: 10px 14px; background: rgba(239, 68, 68, 0.08); border-right: 3px solid #EF4444; font-size: 13px; color: #DC2626; display: flex; align-items: center; gap: 8px;">
+              <div style="margin-top: 18px; padding: 10px 14px; background: rgba(220, 38, 38, 0.08); border-right: 3px solid #DC2626; font-size: 13px; color: #B91C1C; display: flex; align-items: center; gap: 8px;">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                 <span data-i18n="comp_before_note">בוורד: שורות מתוחות, חללים לבנים בולטים, היעדר אותיות התפשטות ואי-אחידות בצפיפות העמוד.</span>
               </div>
@@ -571,10 +477,10 @@
           <div class="comparison-after" id="comparisonAfter">
             <span class="comp-badge comp-badge-after" data-i18n="comp_after_label">מפרט TypesetOK (Knuth-Plass + אהלתר״ם)</span>
             <div class="comparison-inner">
-              <h4 dir="rtl" lang="he" style="font-family: var(--font-serif); font-size: 22px; text-align: right; margin-bottom: 12px; color: var(--color-ink-primary); font-weight: 800;">
+              <h4 dir="rtl" lang="he" style="font-family: var(--font-serif); font-size: 22px; text-align: right; margin-bottom: 12px; color: var(--paper-ink); font-weight: 800;">
                 הִלְכוֹת דֵּעוֹת — פֶּרֶק רִאשׁוֹן
               </h4>
-              <p dir="rtl" lang="he" style="font-family: var(--font-serif); font-size: 16px; line-height: 1.65; text-align: justify; color: var(--color-ink-primary);">
+              <p dir="rtl" lang="he" style="font-family: var(--font-serif); font-size: 16px; line-height: 1.65; text-align: justify; color: var(--paper-ink);">
                 דֵּעוֹת הַרְבֵּה יֵשׁ לְכָל אֶחָד וְאֶחָד מִבְּנֵי אָדָם, וְזוֹ מְשֻׁנָּה מִזּוֹ וּרְחוֹקָה מִמֶּנָּה <span class="expand-letter">בְּיוֹתֵר:</span> יֵשׁ אָדָם שֶׁהוּא בַּעַל חֵמָה כּוֹעֵס תָּמִיד, וְיֵשׁ אָדָם שֶׁדַּעְתּוֹ מְיוּשֶׁבֶת עָלָיו וְאֵינוֹ כּוֹעֵס כְּלָל. וְיֵשׁ אָדָם שֶׁהוּא גְּבַהּ לֵב בְּיוֹתֵר, וְיֵשׁ שֶׁהוּא שְׁפַל רוּחַ <span class="expand-letter">בְּתַכְלִית.</span> וְעַל דֶּרֶךְ זוֹ שְׁאָר כָּל הַדֵּעוֹת כֻּלָּן. וְהַדֶּרֶךְ הַיְשָׁרָה הִיא מִדָּה בֵּינוֹנִית שֶׁבְּכָל דֵּעָה וְדֵעָה מִכָּל הַדֵּעוֹת שֶׁיֵּשׁ לוֹ <span class="expand-letter">לָאָדָם.</span>
               </p>
               <div style="margin-top: 18px; padding: 10px 14px; background: rgba(34, 197, 94, 0.08); border-right: 3px solid #16A34A; font-size: 13px; color: #15803D; display: flex; align-items: center; gap: 8px;">
@@ -932,6 +838,19 @@
             <div class="badge badge-brand">Zero Data Loss Target</div>
           </div>
 
+          <div class="bento-card bento-card-span-2">
+            <div class="bento-header">
+              <div class="bento-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <h3 class="bento-title">שכבת סמן וירטואלי ועריכה דו-כיוונית (Canvas + Bidi)</h3>
+              <p class="bento-desc">
+                עקיפת כשלי העריכה המובנים של דפדפנים (<code>contenteditable</code>) באמצעות שכבת Canvas שקופה וסמן וירטואלי מדויק. בחירת טקסט, ניווט בין עברית לאנגלית ומיקום ניקוד מגיבים בזמן תגובה של פחות מ-16ms.
+              </p>
+            </div>
+            <div class="badge badge-accent">Virtual Cursor &amp; Sub-16ms Input</div>
+          </div>
+
         </div>
 
       </div>
@@ -966,31 +885,31 @@
                 <td><strong data-i18n="eng_r1_name">בדיקות יחידה ב-Workspace</strong></td>
                 <td data-i18n="eng_r1_target">100% מעבר בכל 7 ה-Crates</td>
                 <td><strong data-i18n="eng_r1_result">174 / 174 בדיקות עוברות בהצלחה</strong></td>
-                <td><span class="status-badge-pass">✓ PASSED</span></td>
+                <td><span class="status-badge-pass"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> PASSED</span></td>
               </tr>
               <tr>
                 <td><strong data-i18n="eng_r2_name">בדיקות איכות קוד (Clippy)</strong></td>
                 <td data-i18n-html="eng_r2_target">0 אזהרות עם הדגל <code>-D warnings</code></td>
                 <td><strong data-i18n="eng_r2_result">0 אזהרות (Clean Build)</strong></td>
-                <td><span class="status-badge-pass">✓ PASSED</span></td>
+                <td><span class="status-badge-pass"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> PASSED</span></td>
               </tr>
               <tr>
                 <td><strong data-i18n="eng_r3_name">פורמט אחיד (rustfmt)</strong></td>
                 <td data-i18n-html="eng_r3_target">עמידה מלאה ב-<code>cargo fmt --check</code></td>
                 <td><strong data-i18n="eng_r3_result">100% תאימות לכללי העיצוב</strong></td>
-                <td><span class="status-badge-pass">✓ PASSED</span></td>
+                <td><span class="status-badge-pass"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> PASSED</span></td>
               </tr>
               <tr>
                 <td><strong data-i18n="eng_r4_name">דטרמיניזם ביט-אחר-ביט</strong></td>
                 <td data-i18n="eng_r4_target">SHA-256 זהה לחלוטין בריצות עוקבות</td>
                 <td><strong>Pass 1 SHA == Pass 2 SHA (100%)</strong></td>
-                <td><span class="status-badge-pass">✓ PASSED</span></td>
+                <td><span class="status-badge-pass"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> PASSED</span></td>
               </tr>
               <tr>
                 <td><strong data-i18n="eng_r5_name">מבחן עומס מסמך (Stress Test)</strong></td>
                 <td data-i18n="eng_r5_target">1,000 עמודים מנוקדים ברציפות</td>
                 <td><strong data-i18n="eng_r5_result">1,001 עמודים / 49,001 שורות ב-3.1 שניות</strong></td>
-                <td><span class="status-badge-pass">✓ PASSED</span></td>
+                <td><span class="status-badge-pass"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> PASSED</span></td>
               </tr>
             </tbody>
           </table>
@@ -1244,7 +1163,7 @@
   <div class="modal-dialog" id="sourceModal" role="dialog" aria-modal="true" aria-labelledby="sourceModalTitle" aria-hidden="true">
     <div class="modal-header">
       <h3 class="modal-title" id="sourceModalTitle" data-i18n="source_modal_title">הרצת בדיקות מקוד המקור (Rust Engine)</h3>
-      <button type="button" class="modal-close-btn" aria-label="Close" data-i18n-attr="aria-label:modal_close">✕</button>
+      <button type="button" class="modal-close-btn" aria-label="Close" data-i18n-attr="aria-label:modal_close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div style="font-size: 14px; line-height: 1.6; color: var(--color-ink-primary);">
       <p style="margin-bottom: 14px;" data-i18n-html="source_modal_intro">
@@ -1274,7 +1193,7 @@
   <div class="modal-dialog" id="archModal" role="dialog" aria-modal="true" aria-labelledby="archModalTitle" aria-hidden="true">
     <div class="modal-header">
       <h3 class="modal-title" id="archModalTitle" data-i18n="arch_modal_title">דו״ח ארכיטקטורה הנדסי: TypesetOK (TOK)</h3>
-      <button type="button" class="modal-close-btn" aria-label="Close" data-i18n-attr="aria-label:modal_close">✕</button>
+      <button type="button" class="modal-close-btn" aria-label="Close" data-i18n-attr="aria-label:modal_close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div style="font-size: 14px; line-height: 1.6; color: var(--color-ink-primary); max-height: 60vh; overflow-y: auto; padding-left: 8px;">
       <h4 style="color: var(--color-brand-blue-hover); margin-bottom: 6px;" data-i18n="arch_principles">עקרונות היסוד הארכיטקטוניים</h4>
