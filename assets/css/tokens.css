@@ -1,12 +1,22 @@
 /* ==========================================================================
-   TypesetOK (TOK) — Design Tokens (Editorial Technology)
-   Default: Light Mode (מצב יום כברירת מחדל עבור מעמדים)
-   Supports: Light, Dark, System
+   TypesetOK (TOK) — Design Tokens (Dark Studio + Print Paper)
+   Default: Dark Studio Mode with Warm Cream (#FAF8F5) Print Paper Specimens
+   Supports: Dark, Light, System
    ========================================================================== */
 
 :root,
 [data-theme="light"] {
-  /* Color Palette — Editorial Paper Light Mode (Default for Typesetters) */
+  /* Print Paper Specimen Tokens (Warm Cream #FAF8F5 + Sharp Dark Ink) */
+  --paper-bg: #FAF8F5;
+  --paper-bg-muted: #F1EDE3;
+  --paper-ink: #12161F;
+  --paper-ink-secondary: #2E3646;
+  --paper-ink-muted: #5C667A;
+  --paper-border: #DCD5C7;
+  --paper-rule: rgba(18, 22, 31, 0.14);
+  --paper-shadow: 0 12px 32px rgba(18, 22, 31, 0.12), 0 2px 8px rgba(18, 22, 31, 0.06);
+
+  /* Color Palette — Editorial Paper Light Mode */
   --color-bg-base: #F8F6F0;
   --color-bg-paper: #FCFBF9;
   --color-bg-surface: #FFFFFF;
@@ -163,4 +173,5 @@
   --shadow-paper: 0 4px 16px rgba(0, 0, 0, 0.45);
   --shadow-floating: 0 16px 48px rgba(0, 0, 0, 0.65);
   --shadow-glow: 0 0 24px rgba(37, 99, 235, 0.35);
+  --paper-shadow: 0 24px 56px rgba(0, 0, 0, 0.55), 0 4px 14px rgba(0, 0, 0, 0.3);
 }
